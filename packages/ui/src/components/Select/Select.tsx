@@ -1,0 +1,235 @@
+import * as stylex from "@stylexjs/stylex";
+import { forwardRef } from "react";
+import type { ReactNode } from "react";
+import {
+  Button as AriaButton,
+  ListBox,
+  ListBoxItem,
+  type ListBoxItemProps,
+  Popover,
+  Select as AriaSelect,
+  type SelectProps as AriaSelectProps,
+  SelectValue,
+} from "react-aria-components";
+import {
+  borderWidth,
+  color,
+  fontSize,
+  fontWeight,
+  motion,
+  radius,
+  shadow,
+  size,
+  space,
+  zIndex,
+} from "@dsw/tokens/semantic.stylex";
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  type FieldProps,
+} from "../Field/Field";
+import { fieldStyles } from "../Field/Field.styles";
+
+const styles = stylex.create({
+  trigger: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: space.sm,
+    textAlign: "start",
+    cursor: "pointer",
+  },
+  value: {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
+  placeholder: {
+    color: color.fgMuted,
+  },
+  chevron: {
+    flexShrink: 0,
+    color: color.fgMuted,
+    transitionProperty: "transform",
+    transitionDuration: motion.fast,
+    transitionTimingFunction: motion.easeOut,
+  },
+  chevronOpen: {
+    transform: "rotate(180deg)",
+  },
+  popover: {
+    boxSizing: "border-box",
+    // Match the trigger's width; React Aria sets this custom property.
+    minWidth: "var(--trigger-width)",
+    maxHeight: size.popoverMaxHeight,
+    zIndex: zIndex.popover,
+    overflowY: "auto",
+    padding: space.xs,
+    borderRadius: radius.md,
+    borderWidth: borderWidth.thin,
+    borderStyle: "solid",
+    borderColor: color.borderDefault,
+    backgroundColor: color.bgSurface,
+    boxShadow: shadow.popover,
+  },
+  listBox: {
+    outline: "none",
+  },
+  item: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: space.sm,
+    paddingBlock: space.sm,
+    paddingInline: space.sm,
+    borderRadius: radius.sm,
+    fontSize: fontSize.sm,
+    color: color.fgDefault,
+    cursor: "pointer",
+    outline: "none",
+  },
+  itemFocused: {
+    backgroundColor: color.bgSurfaceRaised,
+  },
+  itemSelected: {
+    fontWeight: fontWeight.semibold,
+  },
+  itemDisabled: {
+    cursor: "not-allowed",
+    color: color.fgDisabled,
+  },
+  check: {
+    color: color.accentDefault,
+  },
+});
+
+export interface SelectProps<T extends object>
+  extends Omit<AriaSelectProps<T>, "children" | "className" | "style">,
+    FieldProps {
+  /** Items for dynamic collections; pair with a render-function `children`. */
+  items?: Iterable<T>;
+  children: ReactNode | ((item: T) => ReactNode);
+}
+
+function SelectInner<T extends object>(
+  { label, description, errorMessage, items, children, ...rest }: SelectProps<T>,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <AriaSelect {...rest} ref={ref} {...stylex.props(fieldStyles.root)}>
+      {({ isOpen, isDisabled, isInvalid }) => (
+        <>
+          <FieldLabel isRequired={rest.isRequired} isDisabled={isDisabled}>
+            {label}
+          </FieldLabel>
+          <AriaButton
+            className={(rp) =>
+              stylex.props(
+                fieldStyles.control,
+                styles.trigger,
+                !rp.isDisabled && rp.isHovered && fieldStyles.controlHovered,
+                (rp.isFocusVisible || isOpen) && fieldStyles.controlFocused,
+                isInvalid && fieldStyles.controlInvalid,
+                rp.isDisabled && fieldStyles.controlDisabled,
+              ).className ?? ""
+            }
+          >
+            <SelectValue<T>
+              className={(rp) =>
+                stylex.props(styles.value, rp.isPlaceholder && styles.placeholder)
+                  .className ?? ""
+              }
+            />
+            <svg
+              aria-hidden="true"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              {...stylex.props(styles.chevron, isOpen && styles.chevronOpen)}
+            >
+              <path
+                d="m4 6 4 4 4-4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </AriaButton>
+          <FieldDescription>{description}</FieldDescription>
+          <FieldError>{errorMessage}</FieldError>
+          <Popover offset={4} {...stylex.props(styles.popover)}>
+            <ListBox<T> {...(items && { items })} {...stylex.props(styles.listBox)}>
+              {children}
+            </ListBox>
+          </Popover>
+        </>
+      )}
+    </AriaSelect>
+  );
+}
+
+/**
+ * Generic over the item type so dynamic `items` stay typed. forwardRef
+ * erases generics, hence the cast.
+ *
+ * Controlled: `value` + `onChange` (the selected item's `id`, or null).
+ * Uncontrolled: `defaultValue`. Open state can be controlled the same way
+ * with `isOpen` / `defaultOpen` / `onOpenChange`.
+ */
+export const Select = forwardRef(SelectInner) as <T extends object>(
+  props: SelectProps<T> & { ref?: React.ForwardedRef<HTMLDivElement> },
+) => ReturnType<typeof SelectInner>;
+
+export type SelectItemProps<T extends object = object> = Omit<
+  ListBoxItemProps<T>,
+  "className" | "style" | "children"
+> & { children: ReactNode };
+
+export function SelectItem<T extends object>({
+  children,
+  ...rest
+}: SelectItemProps<T>) {
+  return (
+    <ListBoxItem
+      {...rest}
+      // Plain-text label for typeahead when children isn't a string.
+      {...(rest.textValue === undefined &&
+        typeof children === "string" && { textValue: children })}
+      className={(rp) =>
+        stylex.props(
+          styles.item,
+          (rp.isFocused || rp.isHovered) && styles.itemFocused,
+          rp.isSelected && styles.itemSelected,
+          rp.isDisabled && styles.itemDisabled,
+        ).className ?? ""
+      }
+    >
+      {(rp) => (
+        <>
+          {children}
+          {rp.isSelected && (
+            <svg
+              aria-hidden="true"
+              width="14"
+              height="14"
+              viewBox="0 0 12 12"
+              fill="none"
+              {...stylex.props(styles.check)}
+            >
+              <path
+                d="M2.5 6.2 5 8.5l4.5-5"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
+        </>
+      )}
+    </ListBoxItem>
+  );
+}

@@ -1,0 +1,25 @@
+/*
+ * The one hand-written stylesheet in this app. StyleX only styles
+ * elements React renders, so it can't reach <html>/<body> themselves —
+ * everything else is StyleX.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  /* Font, colours and canvas come from tokens via ThemeProvider. */
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100%;
+}
