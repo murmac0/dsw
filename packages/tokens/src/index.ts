@@ -1,4 +1,5 @@
 export type { ThemeName } from "./theme-name";
+export type { BrandName, ColorMode } from "./themes";
 
 // StyleX's compiler must statically trace defineVars()/createTheme() calls
 // back to the file that defines them, which breaks across a re-export

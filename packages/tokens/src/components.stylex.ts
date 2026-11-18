@@ -1,6 +1,14 @@
 import * as stylex from "@stylexjs/stylex";
 import { colorPrimitives } from "./primitives.stylex";
-import { color, shadow } from "./semantic.stylex";
+import {
+  borderWidth,
+  color,
+  fontFamily,
+  fontWeight,
+  letterSpacing,
+  radius,
+  shadow,
+} from "./semantic.stylex";
 
 /**
  * Component tokens: the third tier (primitive → semantic → component).
@@ -14,6 +22,12 @@ import { color, shadow } from "./semantic.stylex";
  * secondary buttons with a tinted background, without touching the
  * semantic layer every other component shares.
  *
+ * Each component has two groups: `*Tokens` (colour, themed per mode) and
+ * `*Shape` (radius, border weight, type, shadow, motion: themed per
+ * brand). Splitting them is what lets a brand change a button's whole
+ * character (pill vs square, uppercase mono vs sentence case) once, while
+ * light/dark stays a colour-only concern.
+ *
  * Aliases resolve where they're declared (:root), which is why themes are
  * applied to <html>. A theme class on a nested element would re-skin
  * semantic tokens but not the component aliases computed above it.
@@ -24,6 +38,8 @@ export const buttonTokens = stylex.defineVars({
   primaryBgHover: color.accentHover,
   primaryBgPressed: color.accentActive,
   primaryFg: color.fgOnAccent,
+  /** Invisible by default (matches the fill); brands can outline it. */
+  primaryBorder: color.accentDefault,
 
   secondaryBg: color.bgSurface,
   secondaryBgHover: color.bgHover,
@@ -37,6 +53,7 @@ export const buttonTokens = stylex.defineVars({
   dangerBg: color.dangerDefault,
   dangerBgHover: color.dangerHover,
   dangerFg: color.fgOnDanger,
+  dangerBorder: color.dangerDefault,
 
   disabledBg: color.accentDisabled,
   disabledFg: color.fgDisabled,
@@ -71,6 +88,11 @@ export const selectionTokens = stylex.defineVars({
   borderHover: color.fgMuted,
   checkedBg: color.accentDefault,
   checkedBgHover: color.accentHover,
+  /**
+   * The checked box's boundary: what carries 3:1 against the surface.
+   * Matches the fill by default; brands with pale fills outline instead.
+   */
+  checkedBorder: color.accentDefault,
   mark: color.fgOnAccent,
   borderInvalid: color.dangerDefault,
   label: color.fgDefault,
@@ -86,8 +108,16 @@ export const switchTokens = stylex.defineVars({
   trackOffHover: colorPrimitives.ink600,
   trackOn: color.accentDefault,
   trackOnHover: color.accentHover,
-  /** Must hold ≥3:1 against both track colours (WCAG 1.4.11). */
+  /** Thumb on the off track; ≥3:1 against it (WCAG 1.4.11). */
   thumb: colorPrimitives.white,
+  /** Thumb on the on track; may differ when no colour suits both. */
+  thumbOn: colorPrimitives.white,
+  /**
+   * Track boundaries: what carries 3:1 against the surface. Drawn with
+   * width `switchShape.edgeWidth` (0 by default, so the fill is the edge).
+   */
+  trackOffEdge: color.borderStrong,
+  trackOnEdge: color.accentDefault,
   thumbShadow: shadow.thumb,
   label: color.fgDefault,
 
@@ -115,4 +145,51 @@ export const dialogTokens = stylex.defineVars({
   overlay: color.bgOverlay,
   title: color.fgDefault,
   body: color.fgMuted,
+});
+
+/* ------------------------------------------------------------------ */
+/* Shape: per-brand, mode-independent                                  */
+/* ------------------------------------------------------------------ */
+
+export const buttonShape = stylex.defineVars({
+  radius: radius.md,
+  borderWidth: borderWidth.thin,
+  fontFamily: fontFamily.sans,
+  fontWeight: fontWeight.semibold,
+  letterSpacing: letterSpacing.normal,
+  textTransform: "none",
+  /** Resting elevation; brutalist brands use a hard offset shadow. */
+  shadow: "none",
+  shadowPressed: "none",
+  /** How the button moves when pressed. */
+  pressTransform: "scale(0.98)",
+});
+
+export const fieldShape = stylex.defineVars({
+  radius: radius.md,
+  borderWidth: borderWidth.thin,
+});
+
+export const selectionShape = stylex.defineVars({
+  /** Checkbox corner. Radios are always circles. */
+  boxRadius: radius.sm,
+  borderWidth: borderWidth.thick,
+});
+
+export const switchShape = stylex.defineVars({
+  trackRadius: radius.full,
+  thumbRadius: radius.full,
+  /** Outline around the track, drawn outside it so layout never shifts. */
+  edgeWidth: "0px",
+});
+
+export const menuShape = stylex.defineVars({
+  radius: radius.lg,
+  itemRadius: radius.md,
+  borderWidth: borderWidth.thin,
+});
+
+export const dialogShape = stylex.defineVars({
+  radius: radius.xl,
+  borderWidth: borderWidth.thin,
 });

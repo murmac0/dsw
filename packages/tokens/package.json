@@ -13,7 +13,8 @@
     "./components.stylex": "./src/components.stylex.ts",
     "./fonts": "./src/fonts.ts",
     "./contrast": "./src/contrast.ts",
-    "./themes/dark": "./src/themes/dark.ts"
+    "./themes/dark": "./src/themes/dark.ts",
+    "./themes": "./src/themes/index.ts"
   },
   "scripts": {
     "lint": "eslint .",
@@ -21,8 +22,12 @@
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "5.3.0",
+    "@fontsource-variable/fraunces": "5.3.0",
     "@fontsource-variable/geist": "5.3.0",
     "@fontsource-variable/geist-mono": "5.3.0",
+    "@fontsource-variable/instrument-sans": "5.3.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "@fontsource-variable/space-grotesk": "5.3.0",
     "@stylexjs/stylex": "^0.19.1"
   },
   "devDependencies": {

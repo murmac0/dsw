@@ -1,18 +1,15 @@
 import * as stylex from "@stylexjs/stylex";
 import {
-  borderWidth,
   color,
   focus,
   fontSize,
-  fontWeight,
   lineHeight,
   motion,
   opacity,
-  radius,
   size,
   space,
 } from "@dsw/tokens/semantic.stylex";
-import { buttonTokens as t } from "@dsw/tokens/components.stylex";
+import { buttonShape as shape, buttonTokens as t } from "@dsw/tokens/components.stylex";
 
 export const styles = stylex.create({
   base: {
@@ -21,17 +18,21 @@ export const styles = stylex.create({
     alignItems: "center",
     justifyContent: "center",
     gap: space.sm,
-    borderRadius: radius.md,
-    borderWidth: borderWidth.thin,
+    borderRadius: shape.radius,
+    borderWidth: shape.borderWidth,
     borderStyle: "solid",
     borderColor: "transparent",
-    fontFamily: "inherit",
-    fontWeight: fontWeight.semibold,
+    boxShadow: shape.shadow,
+    fontFamily: shape.fontFamily,
+    fontWeight: shape.fontWeight,
+    letterSpacing: shape.letterSpacing,
+    textTransform: shape.textTransform,
     lineHeight: lineHeight.none,
     whiteSpace: "nowrap",
     userSelect: "none",
     cursor: "pointer",
-    transitionProperty: "background-color, border-color, color, opacity, transform",
+    transitionProperty:
+      "background-color, border-color, color, opacity, transform, box-shadow",
     transitionDuration: motion.fast,
     transitionTimingFunction: motion.easeOut,
   },
@@ -39,6 +40,7 @@ export const styles = stylex.create({
   // Variants
   primary: {
     backgroundColor: t.primaryBg,
+    borderColor: t.primaryBorder,
     color: t.primaryFg,
   },
   secondary: {
@@ -49,9 +51,12 @@ export const styles = stylex.create({
   ghost: {
     backgroundColor: "transparent",
     color: t.ghostFg,
+    // Ghost buttons stay flat in every brand.
+    boxShadow: "none",
   },
   danger: {
     backgroundColor: t.dangerBg,
+    borderColor: t.dangerBorder,
     color: t.dangerFg,
   },
 
@@ -67,10 +72,11 @@ export const styles = stylex.create({
   hoveredGhost: { backgroundColor: t.ghostBgHover },
 
   pressed: {
-    opacity: opacity.pressed,
-    transform: "scale(0.98)", // token-exempt: press micro-interaction
+    transform: shape.pressTransform,
+    boxShadow: shape.shadowPressed,
   },
-  pressedPrimary: { backgroundColor: t.primaryBgPressed, opacity: 1 },
+  pressedPrimary: { backgroundColor: t.primaryBgPressed },
+  pressedFlat: { opacity: opacity.pressed },
 
   focusVisible: {
     outlineStyle: "solid",
@@ -84,6 +90,7 @@ export const styles = stylex.create({
     backgroundColor: t.disabledBg,
     borderColor: t.disabledBg,
     color: t.disabledFg,
+    boxShadow: "none",
   },
 
   // Sizes

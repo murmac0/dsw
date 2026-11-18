@@ -11,6 +11,7 @@ import { styles } from "./App.styles";
 import { ComponentsPage } from "./pages/ComponentsPage";
 import { FoundationsPage } from "./pages/FoundationsPage";
 import { PlaygroundPage } from "./pages/PlaygroundPage";
+import { BrandSwitcher } from "./theme/BrandSwitcher";
 import { useTheme } from "./theme/ThemeProvider";
 
 function getTabClassName(renderProps: TabRenderProps): string {
@@ -37,9 +38,12 @@ export function App() {
             <span {...stylex.props(styles.titleAccent)}>Workbench</span>
           </h1>
         </div>
-        <Button variant="ghost" size="sm" onPress={toggleTheme}>
-          {theme === "light" ? "Dark mode" : "Light mode"}
-        </Button>
+        <div {...stylex.props(styles.controls)}>
+          <BrandSwitcher />
+          <Button variant="secondary" size="sm" onPress={toggleTheme}>
+            {theme === "light" ? "Dark mode" : "Light mode"}
+          </Button>
+        </div>
       </header>
 
       <TabList aria-label="Workbench sections" {...stylex.props(styles.tabList)}>

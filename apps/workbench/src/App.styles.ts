@@ -27,6 +27,12 @@ export const styles = stylex.create({
     borderBottomStyle: "solid",
     borderBottomColor: color.borderDefault,
   },
+  controls: {
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: "center",
+    gap: space.sm,
+  },
   brand: {
     display: "flex",
     alignItems: "center",

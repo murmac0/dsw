@@ -11,3 +11,9 @@
 import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/geist";
 import "@fontsource-variable/geist-mono";
+// Brand fonts. @font-face only downloads a file when text actually uses
+// the family, so unused brands cost nothing at runtime.
+import "@fontsource-variable/space-grotesk";
+import "@fontsource-variable/jetbrains-mono";
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/instrument-sans";

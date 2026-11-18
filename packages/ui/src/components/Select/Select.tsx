@@ -12,16 +12,14 @@ import {
   SelectValue,
 } from "react-aria-components";
 import {
-  borderWidth,
   fontSize,
   fontWeight,
   motion,
-  radius,
   size,
   space,
   zIndex,
 } from "@dsw/tokens/semantic.stylex";
-import { fieldTokens, menuTokens as t } from "@dsw/tokens/components.stylex";
+import { fieldTokens, menuShape as shape, menuTokens as t } from "@dsw/tokens/components.stylex";
 import {
   FieldDescription,
   FieldError,
@@ -65,8 +63,8 @@ const styles = stylex.create({
     zIndex: zIndex.popover,
     overflowY: "auto",
     padding: space.xs,
-    borderRadius: radius.lg,
-    borderWidth: borderWidth.thin,
+    borderRadius: shape.radius,
+    borderWidth: shape.borderWidth,
     borderStyle: "solid",
     borderColor: t.border,
     backgroundColor: t.bg,
@@ -82,7 +80,7 @@ const styles = stylex.create({
     gap: space.sm,
     paddingBlock: space.sm,
     paddingInline: space.sm,
-    borderRadius: radius.md,
+    borderRadius: shape.itemRadius,
     fontSize: fontSize.sm,
     color: t.itemFg,
     cursor: "pointer",

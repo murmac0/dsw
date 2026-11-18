@@ -3,7 +3,13 @@ import { contrastRatio, parseColor } from "@dsw/tokens/contrast";
 import { ContrastAudit } from "./ContrastAudit";
 // Primitives are imported here only to document the palette; components
 // never consume them directly.
-import { colorPrimitives } from "@dsw/tokens/primitives.stylex";
+import {
+  bloomPalette,
+  colorPrimitives,
+  voltPalette,
+} from "@dsw/tokens/primitives.stylex";
+import { brands } from "@dsw/tokens/themes";
+import { useTheme } from "../theme/ThemeProvider";
 import { breakpoints } from "@dsw/tokens/breakpoints.stylex";
 import {
   borderWidth,
@@ -282,16 +288,26 @@ function ResolvedValue({ value }: { value: string }) {
   );
 }
 
+/** Volt and Bloom palettes are named colours rather than numbered ramps. */
+const namedPalettes = { volt: voltPalette, bloom: bloomPalette } as const;
+
 export function FoundationsPage() {
+  const { brand } = useTheme();
+  const info = brands.find((b) => b.id === brand) ?? brands[0]!;
+  const named = brand === "iris" ? null : namedPalettes[brand];
+
   return (
     <div>
       <section {...stylex.props(styles.section)}>
         <div {...stylex.props(styles.specimen)}>
           <p {...stylex.props(styles.specimenDisplay)}>Beautiful by default.</p>
           <p {...stylex.props(styles.specimenBody)}>
-            Bricolage Grotesque for display, Geist for interface text and
-            Geist Mono for code: self-hosted variable fonts, set on a
-            palette built in OKLCH and checked for contrast on every render.
+            {info.label}: {info.tagline.toLowerCase()}.{" "}
+            {info.fonts.display === info.fonts.sans
+              ? `${info.fonts.display} throughout`
+              : `${info.fonts.display} for display, ${info.fonts.sans} for interface text`}{" "}
+            and {info.fonts.mono} for code — self-hosted variable fonts, on a
+            palette checked for contrast on every render.
           </p>
           <div {...stylex.props(styles.specimenMeta)}>
             <span>
@@ -311,13 +327,23 @@ export function FoundationsPage() {
       </section>
 
       <section {...stylex.props(styles.section)}>
-        <h2 {...stylex.props(styles.heading)}>Palette</h2>
+        <h2 {...stylex.props(styles.heading)}>Palette · {info.label}</h2>
         <p {...stylex.props(styles.note)}>
-          Primitive ramps, generated in OKLCH so each step has the same
-          perceived lightness across hues. Components never use these
-          directly; they go through semantic and component tokens.
+          {named
+            ? "This brand's primitive colours. Components never use these directly; the brand theme maps them onto semantic and component tokens."
+            : "Primitive ramps, generated in OKLCH so each step has the same perceived lightness across hues. Components never use these directly; they go through semantic and component tokens."}
         </p>
-        {ramps.map((family) => (
+        {named && (
+          <div {...stylex.props(styles.swatchGrid)}>
+            {Object.entries(named).map(([name, hex]) => (
+              <div key={name} {...stylex.props(styles.swatch)}>
+                <div {...stylex.props(styles.chip(hex, labelFor(hex)))}>{hex}</div>
+                <div {...stylex.props(styles.label)}>{name}</div>
+              </div>
+            ))}
+          </div>
+        )}
+        {!named && ramps.map((family) => (
           <div key={family}>
             <div {...stylex.props(styles.rampName)}>{family}</div>
             <div {...stylex.props(styles.ramp)}>

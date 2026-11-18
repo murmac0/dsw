@@ -11,11 +11,10 @@ import {
   focus,
   fontSize,
   motion,
-  radius,
   size,
   space,
 } from "@dsw/tokens/semantic.stylex";
-import { switchTokens as t } from "@dsw/tokens/components.stylex";
+import { switchShape as shape, switchTokens as t } from "@dsw/tokens/components.stylex";
 
 const styles = stylex.create({
   root: {
@@ -37,8 +36,10 @@ const styles = stylex.create({
     position: "relative",
     width: size.switchTrackWidth,
     height: size.switchTrackHeight,
-    borderRadius: radius.full,
+    borderRadius: shape.trackRadius,
     backgroundColor: t.trackOff,
+    // Edge drawn outside the track (spread shadow) so layout never shifts.
+    boxShadow: `0 0 0 ${shape.edgeWidth} ${t.trackOffEdge}`,
     transitionProperty: "background-color",
     transitionDuration: motion.medium,
     transitionTimingFunction: motion.easeOut,
@@ -48,6 +49,7 @@ const styles = stylex.create({
   },
   trackSelected: {
     backgroundColor: t.trackOn,
+    boxShadow: `0 0 0 ${shape.edgeWidth} ${t.trackOnEdge}`,
   },
   trackSelectedHovered: {
     backgroundColor: t.trackOnHover,
@@ -67,7 +69,7 @@ const styles = stylex.create({
     insetInlineStart: space.xxs,
     width: size.switchThumb,
     height: size.switchThumb,
-    borderRadius: radius.full,
+    borderRadius: shape.thumbRadius,
     backgroundColor: t.thumb,
     boxShadow: t.thumbShadow,
     transitionProperty: "transform",
@@ -77,6 +79,9 @@ const styles = stylex.create({
   },
   // Travel = track width − thumb − 2 × inset, derived from tokens so the
   // thumb stays aligned if the switch size tokens change.
+  thumbOn: {
+    backgroundColor: t.thumbOn,
+  },
   thumbSelected: {
     transform: `translateX(calc(${size.switchTrackWidth} - ${size.switchThumb} - 2 * ${space.xxs}))`,
   },
@@ -127,6 +132,7 @@ export const Switch = forwardRef<HTMLLabelElement, SwitchProps>(function Switch(
             <span
               {...stylex.props(
                 styles.thumb,
+                rp.isSelected && styles.thumbOn,
                 rp.isSelected &&
                   (direction === "rtl" ? styles.thumbSelectedRtl : styles.thumbSelected),
               )}

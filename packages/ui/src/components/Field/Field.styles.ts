@@ -1,16 +1,14 @@
 import * as stylex from "@stylexjs/stylex";
 import {
-  borderWidth,
   color,
   focus,
   fontSize,
   fontWeight,
   motion,
-  radius,
   size,
   space,
 } from "@dsw/tokens/semantic.stylex";
-import { fieldTokens as t } from "@dsw/tokens/components.stylex";
+import { fieldShape as shape, fieldTokens as t } from "@dsw/tokens/components.stylex";
 
 /**
  * Shared anatomy for every form control: label → control → description →
@@ -52,8 +50,8 @@ export const fieldStyles = stylex.create({
     height: size.controlMd,
     width: "100%",
     paddingInline: space.md,
-    borderRadius: radius.md,
-    borderWidth: borderWidth.thin,
+    borderRadius: shape.radius,
+    borderWidth: shape.borderWidth,
     borderStyle: "solid",
     borderColor: t.border,
     backgroundColor: t.bg,
@@ -75,13 +73,13 @@ export const fieldStyles = stylex.create({
   // caret alone is too weak a signal of where typing will land.
   controlFocused: {
     borderColor: t.borderFocus,
-    boxShadow: `0 0 0 ${borderWidth.thin} ${t.borderFocus}`,
+    boxShadow: `0 0 0 ${shape.borderWidth} ${t.borderFocus}`,
   },
   controlInvalid: {
     borderColor: t.borderInvalid,
   },
   controlInvalidFocused: {
-    boxShadow: `0 0 0 ${borderWidth.thin} ${t.borderInvalid}`,
+    boxShadow: `0 0 0 ${shape.borderWidth} ${t.borderInvalid}`,
   },
   controlDisabled: {
     cursor: "not-allowed",

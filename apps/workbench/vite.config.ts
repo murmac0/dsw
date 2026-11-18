@@ -8,6 +8,9 @@ import { defineConfig } from "vite";
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
+  resolve: {
+    conditions: ["import", "module", "browser", "development|production", "default"],
+  },
   plugins: [
     stylexVite({
       unstable_moduleResolution: { type: "commonJS" },

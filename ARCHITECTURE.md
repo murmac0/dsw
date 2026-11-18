@@ -145,12 +145,70 @@ They're self-hosted rather than loaded from a font CDN: no third-party
 request, works offline, and versions are pinned. Display sizes
 (`display1–3`) pair with `letterSpacing.tight`.
 
+### Brands
+
+Three brands ship, each in light and dark, from `@dsw/tokens/themes`:
+
+| Brand | Character | Type |
+|---|---|---|
+| **Iris** (default) | Electric violet, soft geometry | Bricolage Grotesque / Geist |
+| **Volt** | Neo-brutalist: square, 2px ink outlines, hard offset shadows, uppercase mono buttons that press into the page | Space Grotesk / JetBrains Mono |
+| **Bloom** | Editorial: cream and forest, pill buttons, generous curves, warm diffuse shadows | Fraunces / Instrument Sans |
+
+A brand is more than a colour swap. That's why component tokens come in
+two kinds:
+
+- `*Tokens`: colour, varies per mode.
+- `*Shape`: radius, border weight, font, weight, letter case, shadow and
+  press motion, varies per brand.
+
+`buttonShape.pressTransform` is how Volt's buttons slide into their own
+shadow while Iris's scale down slightly.
+
+**Composition rule.** Exactly one `themes[brand][mode]` list goes on
+`<html>`. Two `createTheme()` overrides of the same token group on one
+element have no defined winner (it depends on stylesheet order), so each
+list is complete for its combination. A brand's light and dark lists share
+the same shape and type themes and differ only in colour and shadow.
+
+**Most brand overrides reference semantic tokens, not hex values.** For
+example, Volt's `buttonTokens.primaryBorder` is `color.borderStrong`, so
+one override works in both modes. Only `color`, `brand` and `shadow` are
+written out per mode.
+
+**Pale fills get outlines, and the audit checks the outline.** Volt's lime
+is ~1.1:1 on white, so it can't be a boundary. Checked boxes and switch
+tracks carry an ink outline (`checkedBorder`, `trackOnEdge`, drawn via
+`switchShape.edgeWidth`), and the contrast audit checks those edges, which
+are the boundary users actually see. Where a brand draws no outline, the
+edge tokens must equal the fill. Switch thumbs have separate off and on
+colours (`thumb` / `thumbOn`), because no single colour clears 3:1 against
+both a lime track and a near-black one.
+
+**Verified:**
+
+- The E2E contrast audit runs all six brand × mode combinations.
+- `e2e/brands.spec.ts` asserts the brands really reshape components
+  (radius, border, case, font, shadow), including portaled dialogs.
+- The brand choice persists across reloads.
+
+The workbench header has a brand switcher, and Storybook has Brand and Mode
+toolbar pickers.
+
+**Adding a brand:**
+
+1. Add a palette to `primitives.stylex.ts`.
+2. Add `themes/<brand>.ts` with `color`/`brand`/`shadow` per mode, plus
+   whichever shape and component themes it changes.
+3. Register it in `themes/index.ts`.
+4. Add it to the brand list in `e2e/contrast.spec.ts`.
+
 ### Needs a human design review
 
 These choices were made to a staff-level bar and verified for contrast,
 but haven't been signed off by a design lead. Worth a review:
 
-- The hue choices.
+- The hue choices, and the Volt and Bloom brand concepts.
 - Neutral tint strength. `ink50` canvas is noticeably lavender.
 - Dark surface steps.
 - Radius scale (6/10/16/22).

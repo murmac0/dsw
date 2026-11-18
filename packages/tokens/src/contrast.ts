@@ -94,19 +94,22 @@ export const contrastPairs: readonly ContrastPair[] = [
   pair("Selection", "Label on surface", "text", selectionTokens.label, color.bgSurface),
   pair("Selection", "Box border vs canvas", "ui", selectionTokens.border, color.bgCanvas),
   pair("Selection", "Box border vs surface", "ui", selectionTokens.border, color.bgSurface),
-  pair("Selection", "Checked fill vs surface", "ui", selectionTokens.checkedBg, color.bgSurface),
+  // The checked box's boundary (outline, or the fill when they match).
+  pair("Selection", "Checked box edge vs surface", "ui", selectionTokens.checkedBorder, color.bgSurface),
   pair("Selection", "Check mark", "ui", selectionTokens.mark, selectionTokens.checkedBg),
   pair("Selection", "Check mark, hover", "ui", selectionTokens.mark, selectionTokens.checkedBgHover),
 
   // Switch
   pair("Switch", "Label on surface", "text", switchTokens.label, color.bgSurface),
-  pair("Switch", "Off track vs surface", "ui", switchTokens.trackOff, color.bgSurface),
-  pair("Switch", "Off track vs canvas", "ui", switchTokens.trackOff, color.bgCanvas),
-  pair("Switch", "On track vs surface", "ui", switchTokens.trackOn, color.bgSurface),
+  // Track edges: an outline where a brand draws one, else the fill itself
+  // (edge tokens must then equal the fill — see components.stylex.ts).
+  pair("Switch", "Off track edge vs surface", "ui", switchTokens.trackOffEdge, color.bgSurface),
+  pair("Switch", "Off track edge vs canvas", "ui", switchTokens.trackOffEdge, color.bgCanvas),
+  pair("Switch", "On track edge vs surface", "ui", switchTokens.trackOnEdge, color.bgSurface),
   pair("Switch", "Thumb on off track", "ui", switchTokens.thumb, switchTokens.trackOff),
   pair("Switch", "Thumb on off track, hover", "ui", switchTokens.thumb, switchTokens.trackOffHover),
-  pair("Switch", "Thumb on on track", "ui", switchTokens.thumb, switchTokens.trackOn),
-  pair("Switch", "Thumb on on track, hover", "ui", switchTokens.thumb, switchTokens.trackOnHover),
+  pair("Switch", "Thumb on on track", "ui", switchTokens.thumbOn, switchTokens.trackOn),
+  pair("Switch", "Thumb on on track, hover", "ui", switchTokens.thumbOn, switchTokens.trackOnHover),
 
   // Select menu
   pair("Menu", "Item", "text", menuTokens.itemFg, menuTokens.bg),

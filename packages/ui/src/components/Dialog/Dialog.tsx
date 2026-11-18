@@ -8,19 +8,17 @@ import {
   ModalOverlay,
 } from "react-aria-components";
 import {
-  borderWidth,
   fontFamily,
   fontSize,
   fontWeight,
   letterSpacing,
   lineHeight,
   motion,
-  radius,
   size,
   space,
   zIndex,
 } from "@dsw/tokens/semantic.stylex";
-import { dialogTokens as t } from "@dsw/tokens/components.stylex";
+import { dialogShape as shape, dialogTokens as t } from "@dsw/tokens/components.stylex";
 import { breakpoints } from "@dsw/tokens/breakpoints.stylex";
 
 const fadeIn = stylex.keyframes({
@@ -60,8 +58,8 @@ const styles = stylex.create({
     width: "100%",
     maxHeight: `calc(100dvh - 2 * ${space.lg})`,
     overflowY: "auto",
-    borderRadius: radius.xl,
-    borderWidth: borderWidth.thin,
+    borderRadius: shape.radius,
+    borderWidth: shape.borderWidth,
     borderStyle: "solid",
     borderColor: t.border,
     backgroundColor: t.bg,

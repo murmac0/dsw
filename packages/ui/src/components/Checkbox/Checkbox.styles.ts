@@ -1,6 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
-import { borderWidth, color, focus, fontSize, motion, radius, size, space } from "@dsw/tokens/semantic.stylex";
-import { selectionTokens as t } from "@dsw/tokens/components.stylex";
+import { color, focus, fontSize, motion, radius, size, space } from "@dsw/tokens/semantic.stylex";
+import { selectionShape as shape, selectionTokens as t } from "@dsw/tokens/components.stylex";
 
 /**
  * Shared by Checkbox and Radio: both are "box + label" selection controls,
@@ -28,7 +28,7 @@ export const selectionStyles = stylex.create({
     justifyContent: "center",
     width: size.indicator,
     height: size.indicator,
-    borderWidth: borderWidth.thick,
+    borderWidth: shape.borderWidth,
     borderStyle: "solid",
     borderColor: t.border,
     backgroundColor: t.bg,
@@ -38,7 +38,7 @@ export const selectionStyles = stylex.create({
     transitionTimingFunction: motion.easeOut,
   },
   box: {
-    borderRadius: radius.sm,
+    borderRadius: shape.boxRadius,
   },
   circle: {
     borderRadius: radius.full,
@@ -48,11 +48,10 @@ export const selectionStyles = stylex.create({
   },
   indicatorSelected: {
     backgroundColor: t.checkedBg,
-    borderColor: t.checkedBg,
+    borderColor: t.checkedBorder,
   },
   indicatorSelectedHovered: {
     backgroundColor: t.checkedBgHover,
-    borderColor: t.checkedBgHover,
   },
   indicatorPressed: {
     transform: "scale(0.94)", // token-exempt: press micro-interaction

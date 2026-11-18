@@ -14,26 +14,32 @@ async function auditResults(page: Page) {
   );
 }
 
-for (const theme of ["light", "dark"] as const) {
-  test(`every shipped colour pairing meets WCAG AA in ${theme} theme`, async ({
-    page,
-  }) => {
-    await page.goto("/");
-    if (theme === "dark") {
-      await page.getByRole("button", { name: "Dark mode" }).click();
-    }
+const brands = ["Iris", "Volt", "Bloom"] as const;
 
-    const results = await auditResults(page);
-    expect(results.length).toBeGreaterThan(50);
-    // A ratio of 0 means a token didn't resolve — fail loudly, don't skip.
-    expect(results.filter((r) => r.ratio === 0)).toEqual([]);
+for (const brand of brands) {
+  for (const theme of ["light", "dark"] as const) {
+    test(`every shipped colour pairing meets WCAG AA in ${brand} ${theme}`, async ({
+      page,
+    }) => {
+      await page.goto("/");
+      await page.getByRole("radio", { name: brand, exact: true }).click();
+      if (theme === "dark") {
+        await page.getByRole("button", { name: "Dark mode" }).click();
+      }
+      await expect(page.locator("html")).toHaveAttribute("data-brand", brand.toLowerCase());
 
-    const failures = results.filter((r) => !r.pass);
-    expect(
-      failures,
-      failures.map((f) => `${f.group} / ${f.usage}: ${f.ratio}:1`).join("\n"),
-    ).toEqual([]);
-  });
+      const results = await auditResults(page);
+      expect(results.length).toBeGreaterThan(50);
+      // A ratio of 0 means a token didn't resolve — fail loudly, don't skip.
+      expect(results.filter((r) => r.ratio === 0)).toEqual([]);
+
+      const failures = results.filter((r) => !r.pass);
+      expect(
+        failures,
+        failures.map((f) => `${f.group} / ${f.usage}: ${f.ratio}:1`).join("\n"),
+      ).toEqual([]);
+    });
+  }
 }
 
 test("themes actually differ (audit re-measures on switch)", async ({ page }) => {
