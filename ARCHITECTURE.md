@@ -67,30 +67,107 @@ binding) doesn't tear down cleanly after a one-shot `vitest run`, adding a
 harmless ~10s delay at the end of every test run. Tests still pass and exit
 correctly; this is cosmetic.
 
-## Tokens: two-tier (primitive → semantic)
+## Tokens: three tiers (primitive → semantic → component)
 
-`packages/tokens/src/primitives.stylex.ts` holds raw scales (color ramps,
-spacing, radii, font sizes) with no theme awareness. `semantic.stylex.ts`
-defines the only vocabulary components are allowed to consume
-(`color.bgSurface`, `color.fgMuted`, `color.borderFocus`, …), with the light
-theme as `defineVars()`'s default values. `themes/dark.ts` overrides that
-same contract via `createTheme()`.
+`primitives.stylex.ts` holds raw scales (colour ramps, spacing, radii, font
+sizes) with no theme awareness. `semantic.stylex.ts` names roles
+(`color.bgSurface`, `color.fgMuted`, `color.borderFocus`, …) with the light
+theme as `defineVars()`'s defaults. `components.stylex.ts` gives every
+component its own group (`buttonTokens.primaryBg`, `fieldTokens.border`,
+`switchTokens.thumb`, …) whose defaults alias semantic tokens.
+`themes/dark.ts` overrides semantic tokens via `createTheme()`, and
+overrides a component token only where the alias isn't right for that
+component.
 
-This is what makes multi-brand theming additive later: a new brand is one
-more `createTheme()` file mapping the existing semantic contract to new
-primitive values. No component touches a token directly that isn't semantic,
-so no component changes when a brand is added.
+Components consume only their component tokens, plus the shared focus
+ring. That's what makes theming additive at two levels: a new theme or
+brand is one more file of `createTheme()` calls, and a brand can restyle one
+component (pill-shaped secondary buttons, say) without touching what every
+other component shares.
+
+**Why aliases follow the theme.** A component token compiles to
+`--button-primary-bg: var(--accent)` declared at `:root`. Custom properties
+resolve where they're declared, so the theme class must sit on the same
+element, `<html>` (see "Themes live on `<html>`" below). A theme applied to a
+nested element would re-skin semantic tokens but not the aliases above it.
+Nested theming (a dark panel on a light page) would need component themes
+re-declared on that element. That's a known limitation, not used today.
+
+### Colour
+
+Ramps are generated in **OKLCH**, which has perceptually uniform lightness.
+The same step number has the same visual weight across hues, so `iris600`
+and `rose600` both carry white text at ~5:1, and semantic mappings can be
+chosen by rule. Hues:
+
+- `iris` (primary): electric violet.
+- `ink` (neutrals): tinted toward violet, so greys belong to the palette.
+- `coral`, `mint`, `amber`: warmth, success and warning.
+- `rose`: danger.
+
+Dark mode uses lighter accent fills with dark text (`iris400` + `ink975`,
+8:1) rather than white on a mid tone, which can't reach 4.5:1 without going
+muddy.
+
+`brand.*` tokens are decorative only (logo, illustrations). Gradient text
+uses `fgGradientStart` / `fgGradientEnd`, whose ends are both contrast-
+audited.
+
+### Contrast is tested, not asserted
+
+`@dsw/tokens/contrast` lists every colour pairing the system ships, at the
+component-token level (~60 pairs: labels on fills, borders against
+surfaces, switch thumbs against both track states, and so on). Each pair is
+tagged `text` (4.5:1, WCAG 1.4.3) or `ui` (3:1, WCAG 1.4.11). Disabled
+states are exempt under WCAG and not listed.
+
+The Foundations page resolves each pair through a probe element, so it
+measures what the browser actually paints after aliasing and theme
+overrides, and shows a live table that re-measures on theme switch.
+`e2e/contrast.spec.ts` runs it in both themes and fails on any miss or on
+any token that doesn't resolve. Adding a component means adding its pairs.
+I checked the guard fails for the right reason: breaking one dark token
+fails eight named component pairs.
+
+Rule this encodes: form controls are specified for `bgCanvas` and
+`bgSurface`. `bgSurfaceRaised` is for chrome, not a backdrop for inputs.
+
+### Typography
+
+Self-hosted variable fonts via Fontsource (`import "@dsw/tokens/fonts"`):
+
+- **Bricolage Grotesque** (`fontFamily.display`): headings, with an
+  optical-size axis.
+- **Geist** (`fontFamily.sans`): UI text.
+- **Geist Mono** (`fontFamily.mono`): code.
+
+They're self-hosted rather than loaded from a font CDN: no third-party
+request, works offline, and versions are pinned. Display sizes
+(`display1–3`) pair with `letterSpacing.tight`.
+
+### Needs a human design review
+
+These choices were made to a staff-level bar and verified for contrast,
+but haven't been signed off by a design lead. Worth a review:
+
+- The hue choices.
+- Neutral tint strength. `ink50` canvas is noticeably lavender.
+- Dark surface steps.
+- Radius scale (6/10/16/22).
+- The Bricolage + Geist pairing at small display sizes.
 
 ### Token groups
 
 | Group | Examples | Notes |
 |---|---|---|
-| `color` | `bgSurface`, `fgDanger`, `borderFocus` | Overridden per theme |
+| `color` | `bgSurface`, `fgDanger`, `borderFocus`, `fgGradientStart` | Overridden per theme |
+| `brand` | `iris`, `coral`, `mint`, `amber` | Decorative only, never text |
+| component groups | `buttonTokens`, `fieldTokens`, `selectionTokens`, `switchTokens`, `menuTokens`, `dialogTokens` | Alias semantic; themed where needed |
 | `space` | `xxs`…`xxl`, `gutter` | 4px scale; `gutter` is responsive |
 | `size` | `controlSm/Md/Lg`, `indicator`, `dialogMd`, `contentMax` | Control sizes grow on touch |
 | `radius` | `sm`…`full` | |
 | `borderWidth`, `focus` | `thin`, `thick`; `focus.width/offset` | One focus ring everywhere |
-| `fontSize`, `fontWeight`, `lineHeight`, `fontFamily` | `semibold`, `tight`, `mono` | |
+| `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing`, `fontFamily` | `display1`, `semibold`, `tight`, `display` | |
 | `motion` | `fast/medium/slow`, `easeOut`, `emphasized` | 0ms under reduced motion |
 | `opacity`, `zIndex`, `shadow` | `pressed`, `overlay`, `dialog` | |
 | `breakpoints` (consts) | `mobile`, `tablet`, `coarsePointer` | Media queries can't be CSS vars |

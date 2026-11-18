@@ -10,6 +10,7 @@ import {
   size,
   space,
 } from "@dsw/tokens/semantic.stylex";
+import { fieldTokens as t } from "@dsw/tokens/components.stylex";
 
 /**
  * Shared anatomy for every form control: label → control → description →
@@ -27,22 +28,22 @@ export const fieldStyles = stylex.create({
   label: {
     fontSize: fontSize.sm,
     fontWeight: fontWeight.semibold,
-    color: color.fgDefault,
+    color: t.label,
   },
   labelDisabled: {
-    color: color.fgDisabled,
+    color: t.disabledFg,
   },
   requiredMark: {
-    color: color.fgDanger,
+    color: t.required,
     marginInlineStart: space.xxs,
   },
   description: {
     fontSize: fontSize.xs,
-    color: color.fgMuted,
+    color: t.description,
   },
   error: {
     fontSize: fontSize.xs,
-    color: color.fgDanger,
+    color: t.error,
   },
 
   // Text-like control surface (Input, Select trigger)
@@ -54,9 +55,9 @@ export const fieldStyles = stylex.create({
     borderRadius: radius.md,
     borderWidth: borderWidth.thin,
     borderStyle: "solid",
-    borderColor: color.borderStrong,
-    backgroundColor: color.bgSurface,
-    color: color.fgDefault,
+    borderColor: t.border,
+    backgroundColor: t.bg,
+    color: t.fg,
     fontFamily: "inherit",
     fontSize: fontSize.sm,
     outline: "none",
@@ -64,29 +65,29 @@ export const fieldStyles = stylex.create({
     transitionDuration: motion.fast,
     transitionTimingFunction: motion.easeOut,
     "::placeholder": {
-      color: color.fgMuted,
+      color: t.placeholder,
     },
   },
   controlHovered: {
-    borderColor: color.fgMuted,
+    borderColor: t.borderHover,
   },
   // Inputs show focus ring on any focus (not only focus-visible): a text
   // caret alone is too weak a signal of where typing will land.
   controlFocused: {
-    borderColor: color.borderFocus,
-    boxShadow: `0 0 0 ${borderWidth.thin} ${color.borderFocus}`,
+    borderColor: t.borderFocus,
+    boxShadow: `0 0 0 ${borderWidth.thin} ${t.borderFocus}`,
   },
   controlInvalid: {
-    borderColor: color.dangerDefault,
+    borderColor: t.borderInvalid,
   },
   controlInvalidFocused: {
-    boxShadow: `0 0 0 ${borderWidth.thin} ${color.dangerDefault}`,
+    boxShadow: `0 0 0 ${borderWidth.thin} ${t.borderInvalid}`,
   },
   controlDisabled: {
     cursor: "not-allowed",
-    backgroundColor: color.bgSurfaceRaised,
-    borderColor: color.borderDefault,
-    color: color.fgDisabled,
+    backgroundColor: t.disabledBg,
+    borderColor: t.disabledBorder,
+    color: t.disabledFg,
   },
 
   focusRing: {

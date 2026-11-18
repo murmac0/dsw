@@ -13,16 +13,15 @@ import {
 } from "react-aria-components";
 import {
   borderWidth,
-  color,
   fontSize,
   fontWeight,
   motion,
   radius,
-  shadow,
   size,
   space,
   zIndex,
 } from "@dsw/tokens/semantic.stylex";
+import { fieldTokens, menuTokens as t } from "@dsw/tokens/components.stylex";
 import {
   FieldDescription,
   FieldError,
@@ -46,11 +45,11 @@ const styles = stylex.create({
     whiteSpace: "nowrap",
   },
   placeholder: {
-    color: color.fgMuted,
+    color: fieldTokens.placeholder,
   },
   chevron: {
     flexShrink: 0,
-    color: color.fgMuted,
+    color: fieldTokens.icon,
     transitionProperty: "transform",
     transitionDuration: motion.fast,
     transitionTimingFunction: motion.easeOut,
@@ -66,12 +65,12 @@ const styles = stylex.create({
     zIndex: zIndex.popover,
     overflowY: "auto",
     padding: space.xs,
-    borderRadius: radius.md,
+    borderRadius: radius.lg,
     borderWidth: borderWidth.thin,
     borderStyle: "solid",
-    borderColor: color.borderDefault,
-    backgroundColor: color.bgSurface,
-    boxShadow: shadow.popover,
+    borderColor: t.border,
+    backgroundColor: t.bg,
+    boxShadow: t.shadow,
   },
   listBox: {
     outline: "none",
@@ -83,24 +82,28 @@ const styles = stylex.create({
     gap: space.sm,
     paddingBlock: space.sm,
     paddingInline: space.sm,
-    borderRadius: radius.sm,
+    borderRadius: radius.md,
     fontSize: fontSize.sm,
-    color: color.fgDefault,
+    color: t.itemFg,
     cursor: "pointer",
     outline: "none",
   },
-  itemFocused: {
-    backgroundColor: color.bgSurfaceRaised,
-  },
   itemSelected: {
+    color: t.itemFgSelected,
+    backgroundColor: t.itemBgSelected,
     fontWeight: fontWeight.semibold,
+  },
+  // After itemSelected so hover/keyboard focus still shows on the
+  // selected row.
+  itemFocused: {
+    backgroundColor: t.itemBgHover,
   },
   itemDisabled: {
     cursor: "not-allowed",
-    color: color.fgDisabled,
+    color: t.itemFgDisabled,
   },
   check: {
-    color: color.accentDefault,
+    color: t.check,
   },
 });
 
@@ -201,8 +204,8 @@ export function SelectItem<T extends object>({
       className={(rp) =>
         stylex.props(
           styles.item,
-          (rp.isFocused || rp.isHovered) && styles.itemFocused,
           rp.isSelected && styles.itemSelected,
+          (rp.isFocused || rp.isHovered) && styles.itemFocused,
           rp.isDisabled && styles.itemDisabled,
         ).className ?? ""
       }

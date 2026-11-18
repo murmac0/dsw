@@ -11,34 +11,98 @@ import * as stylex from "@stylexjs/stylex";
  * analysis only, so a plain exported object's properties aren't visible
  * to it across a file boundary. defineConsts() is StyleX's construct for
  * compiler-visible constants and is designed for exactly this.
+ *
+ * Colour ramps are generated in OKLCH (perceptually uniform lightness), so
+ * the same step number has the same visual weight across hues: iris600 and
+ * rose600 both carry white text at ~5:1. That's what lets the semantic layer
+ * pick steps by rule rather than by eye. Contrast for every shipped pairing
+ * is checked in-browser by the Foundations contrast audit (and its E2E test).
  */
 
 export const colorPrimitives = stylex.defineConsts({
   white: "#ffffff",
-  gray50: "#f7f8fa",
-  gray100: "#eceef1",
-  gray200: "#d8dce2",
-  gray300: "#b9c0ca",
-  gray400: "#8d96a3",
-  gray500: "#6b7280",
-  gray600: "#4b5563",
-  gray700: "#374151",
-  gray800: "#1f2530",
-  gray900: "#121620",
-  black: "#05070a",
+  black: "#000000",
 
-  blue400: "#5b9dff",
-  blue500: "#3b82f6",
-  blue600: "#2563eb",
-  blue700: "#1d4ed8",
+  // ink — Neutrals, tinted toward violet so greys feel part of the palette.
+  ink50: "#f6f6ff",
+  ink100: "#ebebfb",
+  ink200: "#dadaee",
+  ink300: "#c5c5dc",
+  ink400: "#aaaac2",
+  ink500: "#87889c",
+  ink600: "#737489",
+  ink700: "#5e5e70",
+  ink800: "#494956",
+  ink900: "#34343d",
+  ink925: "#282839",
+  ink950: "#1e1e26",
+  ink960: "#161622",
+  ink975: "#0e0e19",
 
-  red400: "#f87171",
-  red500: "#ef4444",
-  red600: "#dc2626",
+  // iris — Primary. An electric violet.
+  iris50: "#f6f6ff",
+  iris100: "#eaebff",
+  iris200: "#d8d8ff",
+  iris300: "#c0c0ff",
+  iris400: "#a2a0fe",
+  iris500: "#847bff",
+  iris600: "#6a58ee",
+  iris700: "#554bbf",
+  iris800: "#413f88",
+  iris900: "#303251",
+  iris950: "#1b1c35",
 
-  green400: "#4ade80",
-  green500: "#22c55e",
-  green600: "#16a34a",
+  // coral — Warm accent for highlights and illustration.
+  coral50: "#fff4f2",
+  coral100: "#ffe6e3",
+  coral200: "#ffd0c8",
+  coral300: "#ffb0a3",
+  coral400: "#ff836e",
+  coral500: "#ed593f",
+  coral600: "#c6432a",
+  coral700: "#a03b25",
+  coral800: "#743525",
+  coral900: "#492d26",
+  coral950: "#2f1912",
+
+  // rose — Danger.
+  rose50: "#fff4f5",
+  rose100: "#fee6e8",
+  rose200: "#ffced2",
+  rose300: "#feaeb6",
+  rose400: "#ff7e8f",
+  rose500: "#f44869",
+  rose600: "#cc3352",
+  rose700: "#a52f44",
+  rose800: "#782e38",
+  rose900: "#4b2b2d",
+  rose950: "#301618",
+
+  // mint — Success.
+  mint50: "#e4fef3",
+  mint100: "#bffde4",
+  mint200: "#92f3ce",
+  mint300: "#61e3b4",
+  mint400: "#24c996",
+  mint500: "#08aa7c",
+  mint600: "#048b63",
+  mint700: "#00724f",
+  mint800: "#1b573e",
+  mint900: "#253b30",
+  mint950: "#12241b",
+
+  // amber — Warning.
+  amber50: "#fef6e6",
+  amber100: "#ffeac6",
+  amber200: "#fed693",
+  amber300: "#fdb93f",
+  amber400: "#e39d03",
+  amber500: "#c08208",
+  amber600: "#9f6906",
+  amber700: "#845500",
+  amber800: "#684102",
+  amber900: "#45311a",
+  amber950: "#2d1b07",
 });
 
 export const spacePrimitives = stylex.defineConsts({
@@ -56,9 +120,10 @@ export const spacePrimitives = stylex.defineConsts({
 
 export const radiusPrimitives = stylex.defineConsts({
   none: "0px",
-  sm: "4px",
-  md: "8px",
-  lg: "12px",
+  sm: "6px",
+  md: "10px",
+  lg: "16px",
+  xl: "22px",
   full: "9999px",
 });
 
@@ -69,6 +134,9 @@ export const fontSizePrimitives = stylex.defineConsts({
   lg: "16px",
   xl: "18px",
   xxl: "22px",
+  display3: "28px",
+  display2: "36px",
+  display1: "48px",
 });
 
 export const sizePrimitives = stylex.defineConsts({

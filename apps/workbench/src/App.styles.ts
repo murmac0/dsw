@@ -2,10 +2,13 @@ import * as stylex from "@stylexjs/stylex";
 import { breakpoints } from "@dsw/tokens/breakpoints.stylex";
 import {
   borderWidth,
+  brand,
   color,
   focus,
+  fontFamily,
   fontSize,
   fontWeight,
+  letterSpacing,
   radius,
   size,
   space,
@@ -24,10 +27,30 @@ export const styles = stylex.create({
     borderBottomStyle: "solid",
     borderBottomColor: color.borderDefault,
   },
+  brand: {
+    display: "flex",
+    alignItems: "center",
+    gap: space.sm,
+  },
+  /** Decorative mark: brand colours are for exactly this. */
+  logo: {
+    flexShrink: 0,
+    width: size.controlSm,
+    height: size.controlSm,
+    borderRadius: radius.md,
+    backgroundImage: `conic-gradient(from 210deg, ${brand.iris}, ${brand.coral}, ${brand.amber}, ${brand.mint}, ${brand.iris})`,
+  },
   title: {
-    fontSize: { default: fontSize.lg, [breakpoints.mobile]: fontSize.md },
-    fontWeight: fontWeight.bold,
     margin: 0,
+    fontFamily: fontFamily.display,
+    fontSize: { default: fontSize.xl, [breakpoints.mobile]: fontSize.lg },
+    fontWeight: fontWeight.bold,
+    letterSpacing: letterSpacing.tight,
+  },
+  titleAccent: {
+    backgroundImage: `linear-gradient(100deg, ${color.fgGradientStart}, ${color.fgGradientEnd})`,
+    backgroundClip: "text",
+    color: "transparent",
   },
   tabList: {
     display: "flex",
@@ -56,11 +79,12 @@ export const styles = stylex.create({
     userSelect: "none",
   },
   tabHovered: {
-    backgroundColor: color.bgSurfaceRaised,
+    color: color.fgDefault,
+    backgroundColor: color.bgHover,
   },
   tabSelected: {
-    color: color.fgDefault,
-    backgroundColor: color.bgSurfaceRaised,
+    color: color.fgAccent,
+    backgroundColor: color.bgAccentSubtle,
   },
   tabFocusVisible: {
     outlineStyle: "solid",

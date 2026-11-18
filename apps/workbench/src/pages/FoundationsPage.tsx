@@ -1,9 +1,17 @@
 import * as stylex from "@stylexjs/stylex";
+import { contrastRatio, parseColor } from "@dsw/tokens/contrast";
+import { ContrastAudit } from "./ContrastAudit";
+// Primitives are imported here only to document the palette; components
+// never consume them directly.
+import { colorPrimitives } from "@dsw/tokens/primitives.stylex";
+import { breakpoints } from "@dsw/tokens/breakpoints.stylex";
 import {
   borderWidth,
   color,
+  fontFamily,
   fontSize,
   fontWeight,
+  letterSpacing,
   lineHeight,
   motion,
   radius,
@@ -16,11 +24,80 @@ const styles = stylex.create({
     marginBottom: space.xxl,
   },
   heading: {
-    fontSize: fontSize.md,
+    fontFamily: fontFamily.display,
+    fontSize: fontSize.xl,
     fontWeight: fontWeight.bold,
+    letterSpacing: letterSpacing.tight,
     marginTop: 0,
     marginBottom: space.xs,
   },
+  ramp: {
+    display: "grid",
+    gridTemplateColumns: "repeat(11, minmax(0, 1fr))",
+    gap: space.xxs,
+    marginBottom: space.sm,
+  },
+  rampName: {
+    marginBottom: space.xs,
+    fontSize: fontSize.xs,
+    fontWeight: fontWeight.semibold,
+    color: color.fgMuted,
+  },
+  chip: (bg: string, fg: string) => ({
+    display: "flex",
+    alignItems: "flex-end",
+    height: size.controlLg,
+    paddingInline: space.xs,
+    paddingBlock: space.xxs,
+    borderRadius: radius.sm,
+    // Hairline so the lightest steps stay visible against the canvas.
+    boxShadow: `inset 0 0 0 ${borderWidth.thin} ${color.borderDefault}`,
+    backgroundColor: bg,
+    color: fg,
+    fontSize: fontSize.xs,
+    fontFamily: fontFamily.mono,
+  }),
+  specimen: {
+    display: "flex",
+    flexDirection: "column",
+    gap: space.md,
+    padding: space.xl,
+    borderRadius: radius.xl,
+    backgroundColor: color.bgSurface,
+    borderWidth: borderWidth.thin,
+    borderStyle: "solid",
+    borderColor: color.borderDefault,
+  },
+  specimenDisplay: {
+    margin: 0,
+    fontFamily: fontFamily.display,
+    fontSize: { default: fontSize.display1, [breakpoints.mobile]: fontSize.display2 },
+    fontWeight: fontWeight.bold,
+    letterSpacing: letterSpacing.tight,
+    lineHeight: lineHeight.none,
+    backgroundImage: `linear-gradient(100deg, ${color.fgGradientStart}, ${color.fgGradientEnd})`,
+    backgroundClip: "text",
+    color: "transparent",
+  },
+  specimenBody: {
+    margin: 0,
+    maxWidth: size.dialogMd,
+    fontSize: fontSize.lg,
+    lineHeight: lineHeight.normal,
+    color: color.fgMuted,
+  },
+  specimenMeta: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: space.lg,
+    fontSize: fontSize.xs,
+    color: color.fgMuted,
+  },
+  metaFont: (family: string) => ({
+    fontFamily: family,
+    fontSize: fontSize.md,
+    color: color.fgDefault,
+  }),
   note: {
     marginTop: 0,
     marginBottom: space.md,
@@ -112,14 +189,33 @@ const styles = stylex.create({
 
 type Step = { name: string; value: string };
 
+const RAMP_STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
+const ramps = ["iris", "coral", "rose", "mint", "amber", "ink"] as const;
+const rampValue = (family: string, step: number) =>
+  (colorPrimitives as Record<string, string>)[`${family}${step}`] ?? "";
+
+/** Chip label: whichever of white / ink950 contrasts more with the chip. */
+function labelFor(bg: string): string {
+  const b = parseColor(bg);
+  const light = parseColor(colorPrimitives.white);
+  const dark = parseColor(colorPrimitives.ink950);
+  if (!b || !light || !dark) return colorPrimitives.ink950;
+  return contrastRatio(light, b) >= contrastRatio(dark, b)
+    ? colorPrimitives.white
+    : colorPrimitives.ink950;
+}
+
 const colorSwatches: Step[] = [
   { name: "accentDefault", value: color.accentDefault },
   { name: "accentHover", value: color.accentHover },
   { name: "accentActive", value: color.accentActive },
+  { name: "fgAccent", value: color.fgAccent },
+  { name: "bgAccentSubtle", value: color.bgAccentSubtle },
   { name: "dangerDefault", value: color.dangerDefault },
   { name: "dangerHover", value: color.dangerHover },
   { name: "fgDanger", value: color.fgDanger },
   { name: "successDefault", value: color.successDefault },
+  { name: "bgCanvas", value: color.bgCanvas },
   { name: "bgSurface", value: color.bgSurface },
   { name: "bgSurfaceRaised", value: color.bgSurfaceRaised },
 ];
@@ -190,6 +286,58 @@ export function FoundationsPage() {
   return (
     <div>
       <section {...stylex.props(styles.section)}>
+        <div {...stylex.props(styles.specimen)}>
+          <p {...stylex.props(styles.specimenDisplay)}>Beautiful by default.</p>
+          <p {...stylex.props(styles.specimenBody)}>
+            Bricolage Grotesque for display, Geist for interface text and
+            Geist Mono for code: self-hosted variable fonts, set on a
+            palette built in OKLCH and checked for contrast on every render.
+          </p>
+          <div {...stylex.props(styles.specimenMeta)}>
+            <span>
+              <span {...stylex.props(styles.metaFont(fontFamily.display))}>Aa</span>{" "}
+              fontFamily.display
+            </span>
+            <span>
+              <span {...stylex.props(styles.metaFont(fontFamily.sans))}>Aa</span>{" "}
+              fontFamily.sans
+            </span>
+            <span>
+              <span {...stylex.props(styles.metaFont(fontFamily.mono))}>Aa</span>{" "}
+              fontFamily.mono
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section {...stylex.props(styles.section)}>
+        <h2 {...stylex.props(styles.heading)}>Palette</h2>
+        <p {...stylex.props(styles.note)}>
+          Primitive ramps, generated in OKLCH so each step has the same
+          perceived lightness across hues. Components never use these
+          directly; they go through semantic and component tokens.
+        </p>
+        {ramps.map((family) => (
+          <div key={family}>
+            <div {...stylex.props(styles.rampName)}>{family}</div>
+            <div {...stylex.props(styles.ramp)}>
+              {RAMP_STEPS.map((step) => (
+                <div
+                  key={step}
+                  title={`${family}${step} ${rampValue(family, step)}`}
+                  {...stylex.props(
+                    styles.chip(rampValue(family, step), labelFor(rampValue(family, step))),
+                  )}
+                >
+                  {step}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <section {...stylex.props(styles.section)}>
         <h2 {...stylex.props(styles.heading)}>Color</h2>
         <p {...stylex.props(styles.note)}>
           Semantic roles; each theme maps them to different primitives.
@@ -202,6 +350,15 @@ export function FoundationsPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section {...stylex.props(styles.section)}>
+        <h2 {...stylex.props(styles.heading)}>Contrast audit</h2>
+        <p {...stylex.props(styles.note)}>
+          Every colour pairing a component paints, resolved from the live
+          theme. Switch themes and it re-measures. The same check runs in CI.
+        </p>
+        <ContrastAudit />
       </section>
 
       <section {...stylex.props(styles.section)}>

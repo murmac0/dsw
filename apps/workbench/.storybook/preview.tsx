@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/react-vite";
+import "@dsw/tokens/fonts";
 import "../src/global.css";
 import { ThemeProvider } from "../src/theme/ThemeProvider";
 

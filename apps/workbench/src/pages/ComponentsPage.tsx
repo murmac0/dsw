@@ -23,7 +23,9 @@ import {
   fontFamily,
   fontSize,
   fontWeight,
+  letterSpacing,
   radius,
+  shadow,
   size,
   space,
 } from "@dsw/tokens/semantic.stylex";
@@ -33,8 +35,11 @@ const styles = stylex.create({
     marginBottom: space.xxl,
   },
   heading: {
-    fontSize: fontSize.md,
+    fontFamily: fontFamily.display,
+    fontSize: fontSize.xl,
     fontWeight: fontWeight.bold,
+    letterSpacing: letterSpacing.tight,
+    marginTop: 0,
     marginBottom: space.md,
   },
   row: {
@@ -66,6 +71,7 @@ const styles = stylex.create({
     borderStyle: "solid",
     borderColor: color.borderDefault,
     backgroundColor: color.bgSurface,
+    boxShadow: shadow.card,
   },
   status: {
     margin: 0,
@@ -94,7 +100,9 @@ const styles = stylex.create({
   },
   cardTitle: {
     margin: 0,
-    fontSize: fontSize.lg,
+    fontFamily: fontFamily.display,
+    letterSpacing: letterSpacing.tight,
+    fontSize: fontSize.xxl,
     fontWeight: fontWeight.bold,
   },
 });

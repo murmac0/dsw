@@ -70,6 +70,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 renderProps.isHovered &&
                 hoveredStyleByVariant[variant],
               !isVisuallyDisabled && renderProps.isPressed && styles.pressed,
+              !isVisuallyDisabled &&
+                renderProps.isPressed &&
+                variant === "primary" &&
+                styles.pressedPrimary,
               renderProps.isFocusVisible && styles.focusVisible,
               isVisuallyDisabled && styles.disabled,
             ).className ?? "";

@@ -1,5 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { borderWidth, color, focus, fontSize, motion, radius, size, space } from "@dsw/tokens/semantic.stylex";
+import { selectionTokens as t } from "@dsw/tokens/components.stylex";
 
 /**
  * Shared by Checkbox and Radio: both are "box + label" selection controls,
@@ -11,13 +12,13 @@ export const selectionStyles = stylex.create({
     alignItems: "center",
     gap: space.sm,
     fontSize: fontSize.sm,
-    color: color.fgDefault,
+    color: t.label,
     cursor: "pointer",
     userSelect: "none",
   },
   rootDisabled: {
     cursor: "not-allowed",
-    color: color.fgDisabled,
+    color: t.disabledLabel,
   },
   indicator: {
     boxSizing: "border-box",
@@ -29,9 +30,9 @@ export const selectionStyles = stylex.create({
     height: size.indicator,
     borderWidth: borderWidth.thick,
     borderStyle: "solid",
-    borderColor: color.borderStrong,
-    backgroundColor: color.bgSurface,
-    color: color.fgOnAccent,
+    borderColor: t.border,
+    backgroundColor: t.bg,
+    color: t.mark,
     transitionProperty: "background-color, border-color",
     transitionDuration: motion.fast,
     transitionTimingFunction: motion.easeOut,
@@ -43,26 +44,26 @@ export const selectionStyles = stylex.create({
     borderRadius: radius.full,
   },
   indicatorHovered: {
-    borderColor: color.fgMuted,
+    borderColor: t.borderHover,
   },
   indicatorSelected: {
-    backgroundColor: color.accentDefault,
-    borderColor: color.accentDefault,
+    backgroundColor: t.checkedBg,
+    borderColor: t.checkedBg,
   },
   indicatorSelectedHovered: {
-    backgroundColor: color.accentHover,
-    borderColor: color.accentHover,
+    backgroundColor: t.checkedBgHover,
+    borderColor: t.checkedBgHover,
   },
   indicatorPressed: {
     transform: "scale(0.94)", // token-exempt: press micro-interaction
   },
   indicatorInvalid: {
-    borderColor: color.dangerDefault,
+    borderColor: t.borderInvalid,
   },
   indicatorDisabled: {
-    backgroundColor: color.bgSurfaceRaised,
-    borderColor: color.borderDefault,
-    color: color.fgDisabled,
+    backgroundColor: t.disabledBg,
+    borderColor: t.disabledBorder,
+    color: t.disabledMark,
   },
   indicatorFocusVisible: {
     outlineStyle: "solid",

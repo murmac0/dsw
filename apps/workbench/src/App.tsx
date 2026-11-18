@@ -30,7 +30,13 @@ export function App() {
   return (
     <Tabs>
       <header {...stylex.props(styles.header)}>
-        <h1 {...stylex.props(styles.title)}>Design System Workbench</h1>
+        <div {...stylex.props(styles.brand)}>
+          <span {...stylex.props(styles.logo)} aria-hidden="true" />
+          <h1 {...stylex.props(styles.title)}>
+            Design System{" "}
+            <span {...stylex.props(styles.titleAccent)}>Workbench</span>
+          </h1>
+        </div>
         <Button variant="ghost" size="sm" onPress={toggleTheme}>
           {theme === "light" ? "Dark mode" : "Light mode"}
         </Button>

@@ -12,10 +12,10 @@ import {
   fontSize,
   motion,
   radius,
-  shadow,
   size,
   space,
 } from "@dsw/tokens/semantic.stylex";
+import { switchTokens as t } from "@dsw/tokens/components.stylex";
 
 const styles = stylex.create({
   root: {
@@ -23,13 +23,13 @@ const styles = stylex.create({
     alignItems: "center",
     gap: space.sm,
     fontSize: fontSize.sm,
-    color: color.fgDefault,
+    color: t.label,
     cursor: "pointer",
     userSelect: "none",
   },
   rootDisabled: {
     cursor: "not-allowed",
-    color: color.fgDisabled,
+    color: t.disabledLabel,
   },
   track: {
     boxSizing: "border-box",
@@ -38,22 +38,22 @@ const styles = stylex.create({
     width: size.switchTrackWidth,
     height: size.switchTrackHeight,
     borderRadius: radius.full,
-    backgroundColor: color.borderStrong,
+    backgroundColor: t.trackOff,
     transitionProperty: "background-color",
     transitionDuration: motion.medium,
     transitionTimingFunction: motion.easeOut,
   },
   trackHovered: {
-    backgroundColor: color.fgMuted,
+    backgroundColor: t.trackOffHover,
   },
   trackSelected: {
-    backgroundColor: color.accentDefault,
+    backgroundColor: t.trackOn,
   },
   trackSelectedHovered: {
-    backgroundColor: color.accentHover,
+    backgroundColor: t.trackOnHover,
   },
   trackDisabled: {
-    backgroundColor: color.accentDisabled,
+    backgroundColor: t.trackDisabled,
   },
   trackFocusVisible: {
     outlineStyle: "solid",
@@ -68,8 +68,8 @@ const styles = stylex.create({
     width: size.switchThumb,
     height: size.switchThumb,
     borderRadius: radius.full,
-    backgroundColor: color.fgOnAccent,
-    boxShadow: shadow.thumb,
+    backgroundColor: t.thumb,
+    boxShadow: t.thumbShadow,
     transitionProperty: "transform",
     // Reduced motion is handled by the motion token itself.
     transitionDuration: motion.medium,

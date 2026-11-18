@@ -44,5 +44,5 @@ pnpm --filter @dsw/workbench test:e2e
 |---|---|
 | [`apps/workbench`](./apps/workbench) | Interactive docs site: Components / Foundations / Playground |
 | [`packages/ui`](./packages/ui) | Accessible React components: Button, TextField, Select, Checkbox, Switch, RadioGroup, Dialog |
-| [`packages/tokens`](./packages/tokens) | Design tokens + light/dark themes, no React dependency |
+| [`packages/tokens`](./packages/tokens) | Three-tier tokens (primitive → semantic → component), light/dark themes, fonts, contrast audit; no React dependency |
 | [`packages/eslint-config`](./packages/eslint-config) | Shared flat ESLint config |

@@ -13,37 +13,66 @@ import {
 } from "./primitives.stylex";
 
 /**
- * Semantic tokens: the only vocabulary components are allowed to consume.
- * Values here are the light theme (the default). Other themes override
- * this contract via stylex.createTheme — see ./themes.
+ * Semantic tokens: the vocabulary components (via component tokens) and
+ * apps consume. Values here are the light theme (the default). Other
+ * themes override this contract via stylex.createTheme — see ./themes.
  */
 export const color = stylex.defineVars({
-  bgCanvas: colorPrimitives.white,
+  // Surfaces, back to front
+  bgCanvas: colorPrimitives.ink50,
   bgSurface: colorPrimitives.white,
-  bgSurfaceRaised: colorPrimitives.gray50,
-  bgOverlay: "rgba(5, 7, 10, 0.5)",
+  bgSurfaceRaised: colorPrimitives.ink100,
+  /** Hover wash for rows, menu items, ghost buttons. */
+  bgHover: colorPrimitives.ink100,
+  /** Tinted wash for selected / highlighted items. */
+  bgAccentSubtle: colorPrimitives.iris100,
+  bgOverlay: "rgba(14, 14, 25, 0.48)",
 
-  fgDefault: colorPrimitives.gray900,
-  fgMuted: colorPrimitives.gray600,
+  // Text
+  fgDefault: colorPrimitives.ink950,
+  fgMuted: colorPrimitives.ink700,
+  fgDisabled: colorPrimitives.ink400,
+  fgAccent: colorPrimitives.iris700,
   fgOnAccent: colorPrimitives.white,
-  fgDisabled: colorPrimitives.gray400,
+  fgDanger: colorPrimitives.rose700,
+  fgOnDanger: colorPrimitives.white,
+  fgSuccess: colorPrimitives.mint700,
+  /**
+   * Gradient text (display headings, wordmark). Both ends meet 4.5:1 on
+   * canvas and surface, so the whole gradient is readable.
+   */
+  fgGradientStart: colorPrimitives.iris600,
+  fgGradientEnd: colorPrimitives.coral600,
 
-  borderDefault: colorPrimitives.gray200,
-  borderStrong: colorPrimitives.gray300,
-  borderFocus: colorPrimitives.blue500,
+  // Borders
+  /** Decorative dividers and surface edges (no contrast requirement). */
+  borderDefault: colorPrimitives.ink200,
+  /** Boundaries that identify a control: ≥3:1 against canvas and surface. */
+  borderStrong: colorPrimitives.ink500,
+  borderFocus: colorPrimitives.iris600,
 
-  accentDefault: colorPrimitives.blue500,
-  accentHover: colorPrimitives.blue600,
-  accentActive: colorPrimitives.blue700,
-  accentDisabled: colorPrimitives.gray200,
+  // Accent (primary actions, selected controls)
+  accentDefault: colorPrimitives.iris600,
+  accentHover: colorPrimitives.iris700,
+  accentActive: colorPrimitives.iris800,
+  accentDisabled: colorPrimitives.ink100,
 
-  dangerDefault: colorPrimitives.red500,
-  dangerHover: colorPrimitives.red600,
-  // Text-on-surface variant of danger. red500 on white is ~3.8:1, below
-  // WCAG AA for body text, so error messages use the darker step.
-  fgDanger: colorPrimitives.red600,
+  // Status
+  dangerDefault: colorPrimitives.rose600,
+  dangerHover: colorPrimitives.rose700,
+  successDefault: colorPrimitives.mint600,
+});
 
-  successDefault: colorPrimitives.green500,
+/**
+ * Brand colours for decoration and illustration: wordmarks, gradients,
+ * empty states, charts. Never for text or control boundaries; those use
+ * `color`, which is contrast-audited.
+ */
+export const brand = stylex.defineVars({
+  iris: colorPrimitives.iris500,
+  coral: colorPrimitives.coral400,
+  mint: colorPrimitives.mint400,
+  amber: colorPrimitives.amber300,
 });
 
 export const space = stylex.defineVars({
@@ -69,6 +98,8 @@ export const radius = stylex.defineVars({
   sm: radiusPrimitives.sm,
   md: radiusPrimitives.md,
   lg: radiusPrimitives.lg,
+  /** Dialogs and hero cards. */
+  xl: radiusPrimitives.xl,
   full: radiusPrimitives.full,
 });
 
@@ -79,6 +110,18 @@ export const fontSize = stylex.defineVars({
   lg: fontSizePrimitives.lg,
   xl: fontSizePrimitives.xl,
   xxl: fontSizePrimitives.xxl,
+  /** Display sizes: Bricolage Grotesque headings. */
+  display1: fontSizePrimitives.display1,
+  display2: fontSizePrimitives.display2,
+  display3: fontSizePrimitives.display3,
+});
+
+export const letterSpacing = stylex.defineVars({
+  /** Display type is optically loose at large sizes; tighten it. */
+  tight: "-0.02em",
+  normal: "0",
+  /** Small caps / overline labels. */
+  wide: "0.06em",
 });
 
 /**
@@ -87,10 +130,14 @@ export const fontSize = stylex.defineVars({
  * reads correctly in both light and dark themes.
  */
 export const shadow = stylex.defineVars({
-  popover: "0 4px 16px rgba(5, 7, 10, 0.12), 0 1px 3px rgba(5, 7, 10, 0.08)",
-  dialog: "0 16px 48px rgba(5, 7, 10, 0.24), 0 2px 6px rgba(5, 7, 10, 0.12)",
+  popover:
+    "0 12px 32px -8px rgba(36, 24, 96, 0.18), 0 2px 6px rgba(14, 14, 25, 0.06)",
+  dialog:
+    "0 32px 64px -16px rgba(36, 24, 96, 0.32), 0 4px 12px rgba(14, 14, 25, 0.08)",
   /** Switch thumb: lifts it off the track. */
-  thumb: "0 1px 2px rgba(5, 7, 10, 0.3)",
+  thumb: "0 1px 3px rgba(14, 14, 25, 0.28)",
+  /** Raised cards on the canvas. */
+  card: "0 1px 2px rgba(14, 14, 25, 0.04), 0 8px 24px -12px rgba(36, 24, 96, 0.12)",
 });
 
 /**
@@ -194,7 +241,16 @@ export const zIndex = stylex.defineVars({
   popover: "110",
 });
 
+/**
+ * Self-hosted variable fonts (see @dsw/tokens/fonts). Each stack falls back
+ * to system fonts with similar metrics so text doesn't reflow badly if a
+ * font fails to load.
+ */
 export const fontFamily = stylex.defineVars({
-  sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-  mono: 'ui-monospace, "SF Mono", Menlo, Consolas, monospace',
+  /** Headings and display text: expressive, with an optical-size axis. */
+  display:
+    '"Bricolage Grotesque Variable", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  /** UI and body text: neutral and crisp at small sizes. */
+  sans: '"Geist Variable", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  mono: '"Geist Mono Variable", ui-monospace, "SF Mono", Menlo, Consolas, monospace',
 });

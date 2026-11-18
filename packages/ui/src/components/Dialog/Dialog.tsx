@@ -9,17 +9,18 @@ import {
 } from "react-aria-components";
 import {
   borderWidth,
-  color,
+  fontFamily,
   fontSize,
   fontWeight,
+  letterSpacing,
   lineHeight,
   motion,
   radius,
-  shadow,
   size,
   space,
   zIndex,
 } from "@dsw/tokens/semantic.stylex";
+import { dialogTokens as t } from "@dsw/tokens/components.stylex";
 import { breakpoints } from "@dsw/tokens/breakpoints.stylex";
 
 const fadeIn = stylex.keyframes({
@@ -40,7 +41,9 @@ const styles = stylex.create({
     zIndex: zIndex.overlay,
     display: "flex",
     justifyContent: "center",
-    backgroundColor: color.bgOverlay,
+    backgroundColor: t.overlay,
+    // Frosted backdrop: keeps context visible but out of focus.
+    backdropFilter: "blur(6px)", // token-exempt: backdrop blur radius
     // Phones: dock to the bottom edge like a sheet, where thumbs can reach
     // the actions.
     alignItems: { default: "center", [breakpoints.mobile]: "flex-end" },
@@ -57,13 +60,13 @@ const styles = stylex.create({
     width: "100%",
     maxHeight: `calc(100dvh - 2 * ${space.lg})`,
     overflowY: "auto",
-    borderRadius: radius.lg,
+    borderRadius: radius.xl,
     borderWidth: borderWidth.thin,
     borderStyle: "solid",
-    borderColor: color.borderDefault,
-    backgroundColor: color.bgSurface,
-    color: color.fgDefault,
-    boxShadow: shadow.dialog,
+    borderColor: t.border,
+    backgroundColor: t.bg,
+    color: t.title,
+    boxShadow: t.shadow,
   },
   modalEntering: {
     animationName: riseIn,
@@ -82,14 +85,16 @@ const styles = stylex.create({
   },
   title: {
     margin: 0,
-    fontSize: fontSize.xl,
+    fontFamily: fontFamily.display,
+    fontSize: fontSize.display3,
     fontWeight: fontWeight.bold,
+    letterSpacing: letterSpacing.tight,
     lineHeight: lineHeight.tight,
   },
   body: {
     fontSize: fontSize.md,
     lineHeight: lineHeight.normal,
-    color: color.fgMuted,
+    color: t.body,
   },
   footer: {
     display: "flex",
