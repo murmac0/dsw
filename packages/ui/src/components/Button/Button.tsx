@@ -36,6 +36,16 @@ export interface ButtonProps
   children: ReactNode;
 }
 
+/**
+ * Triggers an action. Use `primary` for the one main action in a view,
+ * `secondary` for alternatives, `ghost` for low-emphasis actions and
+ * `danger` for destructive ones (pair those with an alertdialog confirm).
+ *
+ * Press handling is React Aria's (mouse, touch, keyboard, AT unified). Use
+ * `isLoading` rather than `isDisabled` while an action is in flight: it
+ * keeps focus on the button and announces "Loading" without renaming it.
+ * Inside a disabled Fieldset it disables automatically.
+ */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
     {

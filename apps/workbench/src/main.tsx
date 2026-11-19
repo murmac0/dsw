@@ -10,10 +10,16 @@ if (!rootElement) {
   throw new Error("Root element not found");
 }
 
-createRoot(rootElement).render(
-  <StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
-  </StrictMode>,
-);
+if (new URLSearchParams(location.search).has("token-probe")) {
+  // Test fixture for e2e/token-export.spec.ts: lazy-loaded (not in the app
+  // bundle) and run against the app's own compiled stylesheet.
+  void import("./token-probe");
+} else {
+  createRoot(rootElement).render(
+    <StrictMode>
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </StrictMode>,
+  );
+}

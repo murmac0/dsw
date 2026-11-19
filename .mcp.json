@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "dsw": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["packages/mcp/src/stdio.ts"]
+    },
+    "storybook": {
+      "type": "http",
+      "url": "http://localhost:6006/mcp"
+    }
+  }
+}

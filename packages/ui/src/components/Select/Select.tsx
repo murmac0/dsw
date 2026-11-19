@@ -203,6 +203,11 @@ export type SelectItemProps<T extends object = object> = Omit<
   "className" | "style" | "children"
 > & { children: ReactNode };
 
+/**
+ * One option in a Select's menu. Give it an `id` (the value Select reports)
+ * and plain-text children; for rich children also pass `textValue` so
+ * typeahead and the selected-value label still work.
+ */
 export function SelectItem<T extends object>({
   children,
   ...rest

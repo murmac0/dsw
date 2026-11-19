@@ -57,7 +57,7 @@ Earlier rounds also fixed:
 
 - axe-core: **0 violations** at WCAG 2.2 A/AA, across all pages, open
   overlays, brands and modes.
-- Contrast audit: **all 65 pairings pass** in all 6 combinations.
+- Contrast audit: **all 66 pairings pass** in all 6 combinations.
 - Forced colours: switch, radio, tab and menu-focus states are painted.
   These tests were checked: they fail with the fixes disabled.
 - Reflow and zoom: no horizontal scroll at 320px and 640px in any brand.

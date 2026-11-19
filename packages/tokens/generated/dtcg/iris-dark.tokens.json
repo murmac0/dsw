@@ -1,0 +1,3492 @@
+{
+  "$description": "@dsw design tokens — iris dark",
+  "color": {
+    "$description": "Semantic tokens: the vocabulary components (via component tokens) and apps consume. Values here are the light theme (the default). Other themes override this contract via stylex.createTheme — see ./themes.",
+    "bgCanvas": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0549,
+          0.0549,
+          0.098
+        ],
+        "alpha": 1,
+        "hex": "#0e0e19"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.bgCanvas",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "bgSurface": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0863,
+          0.0863,
+          0.1333
+        ],
+        "alpha": 1,
+        "hex": "#161622"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.bgSurface",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "bgSurfaceRaised": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.bgSurfaceRaised",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "bgHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$description": "Hover wash for rows, menu items, ghost buttons.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.bgHover",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "bgAccentSubtle": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1059,
+          0.1098,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#1b1c35"
+      },
+      "$description": "Tinted wash for selected / highlighted items.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.bgAccentSubtle",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "bgOverlay": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0157,
+          0.0157,
+          0.0392
+        ],
+        "alpha": 0.66
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.bgOverlay",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "fgDefault": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.fgDefault",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "fgMuted": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.fgMuted",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "fgDisabled": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.451,
+          0.4549,
+          0.5373
+        ],
+        "alpha": 1,
+        "hex": "#737489"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.fgDisabled",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "fgAccent": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.fgAccent",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "fgOnAccent": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0549,
+          0.0549,
+          0.098
+        ],
+        "alpha": 1,
+        "hex": "#0e0e19"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.fgOnAccent",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "fgDanger": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9961,
+          0.6824,
+          0.7137
+        ],
+        "alpha": 1,
+        "hex": "#feaeb6"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.fgDanger",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "fgOnDanger": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0549,
+          0.0549,
+          0.098
+        ],
+        "alpha": 1,
+        "hex": "#0e0e19"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.fgOnDanger",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "fgSuccess": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3804,
+          0.8902,
+          0.7059
+        ],
+        "alpha": 1,
+        "hex": "#61e3b4"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.fgSuccess",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "fgGradientStart": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$description": "Gradient text (display headings, wordmark). Both ends meet 4.5:1 on canvas and surface, so the whole gradient is readable.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.fgGradientStart",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "fgGradientEnd": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.6902,
+          0.6392
+        ],
+        "alpha": 1,
+        "hex": "#ffb0a3"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.fgGradientEnd",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "borderDefault": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2039,
+          0.2039,
+          0.2392
+        ],
+        "alpha": 1,
+        "hex": "#34343d"
+      },
+      "$description": "Decorative dividers and surface edges (no contrast requirement).",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.borderDefault",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "borderStrong": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5294,
+          0.5333,
+          0.6118
+        ],
+        "alpha": 1,
+        "hex": "#87889c"
+      },
+      "$description": "Boundaries that identify a control: ≥3:1 against canvas and surface.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.borderStrong",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "borderFocus": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6353,
+          0.6275,
+          0.9961
+        ],
+        "alpha": 1,
+        "hex": "#a2a0fe"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.borderFocus",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "accentDefault": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6353,
+          0.6275,
+          0.9961
+        ],
+        "alpha": 1,
+        "hex": "#a2a0fe"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.accentDefault",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "accentHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.accentHover",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "accentActive": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8471,
+          0.8471,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#d8d8ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.accentActive",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "accentDisabled": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.accentDisabled",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "dangerDefault": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.4941,
+          0.5608
+        ],
+        "alpha": 1,
+        "hex": "#ff7e8f"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.dangerDefault",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "dangerHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9961,
+          0.6824,
+          0.7137
+        ],
+        "alpha": 1,
+        "hex": "#feaeb6"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.dangerHover",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "successDefault": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1412,
+          0.7882,
+          0.5882
+        ],
+        "alpha": 1,
+        "hex": "#24c996"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.successDefault",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "brand": {
+    "$description": "Brand colours for decoration and illustration: wordmarks, gradients, empty states, charts. Never for text or control boundaries; those use `color`, which is contrast-audited.",
+    "iris": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6353,
+          0.6275,
+          0.9961
+        ],
+        "alpha": 1,
+        "hex": "#a2a0fe"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "brand.iris",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "coral": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.5137,
+          0.4314
+        ],
+        "alpha": 1,
+        "hex": "#ff836e"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "brand.coral",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "mint": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1412,
+          0.7882,
+          0.5882
+        ],
+        "alpha": 1,
+        "hex": "#24c996"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "brand.mint",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "amber": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9922,
+          0.7255,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#fdb93f"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "brand.amber",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "space": {
+    "xxs": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "space.xxs",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "space.xs",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "space.sm",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "space.md",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "space.lg",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "space.xl",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "xxl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "space.xxl",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "gutter": {
+      "$type": "dimension",
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "Responsive: horizontal page padding. Tighter on phones so content keeps its width; components never need their own breakpoint for this.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "space.gutter",
+          "import": "@dsw/tokens/semantic.stylex",
+          "conditions": {
+            "@media (max-width: 639.98px)": "16px"
+          }
+        }
+      }
+    }
+  },
+  "radius": {
+    "none": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "radius.none",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "radius.sm",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "radius.md",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "radius.lg",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 22,
+        "unit": "px"
+      },
+      "$description": "Dialogs and hero cards.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "radius.xl",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": {
+        "value": 9999,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "radius.full",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "fontSize": {
+    "xs": {
+      "$type": "dimension",
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontSize.xs",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": {
+        "value": 13,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontSize.sm",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontSize.md",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontSize.lg",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 18,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontSize.xl",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "xxl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 22,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontSize.xxl",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "display1": {
+      "$type": "dimension",
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      },
+      "$description": "Display sizes: Bricolage Grotesque headings.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontSize.display1",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "display2": {
+      "$type": "dimension",
+      "$value": {
+        "value": 36,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontSize.display2",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "display3": {
+      "$type": "dimension",
+      "$value": {
+        "value": 28,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontSize.display3",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "letterSpacing": {
+    "tight": {
+      "$type": "dimension",
+      "$value": {
+        "value": -0.02,
+        "unit": "em"
+      },
+      "$description": "Display type is optically loose at large sizes; tighten it.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "letterSpacing.tight",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "normal": {
+      "$type": "number",
+      "$value": 0,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "letterSpacing.normal",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "wide": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0.06,
+        "unit": "em"
+      },
+      "$description": "Small caps / overline labels.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "letterSpacing.wide",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "shadow": {
+    "$description": "Elevation for floating surfaces (popovers, dialogs). Shadows are deliberately subtle and rely on a border for definition, so one value reads correctly in both light and dark themes.",
+    "popover": {
+      "$value": "0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.02)",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "shadow.popover",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "dialog": {
+      "$value": "0 32px 64px -16px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.03)",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "shadow.dialog",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "thumb": {
+      "$value": "0 1px 3px rgba(0, 0, 0, 0.5)",
+      "$description": "Switch thumb: lifts it off the track.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "shadow.thumb",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "card": {
+      "$value": "0 1px 2px rgba(0, 0, 0, 0.3)",
+      "$description": "Raised cards on the canvas.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "shadow.card",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "size": {
+    "$description": "Fixed dimensions. Control heights are responsive: on coarse (touch) pointers they grow to 44px, the WCAG 2.5.5 / Apple HIG target size, so every Button, TextField and Select gets touch-friendly hit areas without a single component-level media query.",
+    "controlSm": {
+      "$type": "dimension",
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.controlSm",
+          "import": "@dsw/tokens/semantic.stylex",
+          "conditions": {
+            "@media (pointer: coarse)": "40px"
+          }
+        }
+      }
+    },
+    "controlMd": {
+      "$type": "dimension",
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.controlMd",
+          "import": "@dsw/tokens/semantic.stylex",
+          "conditions": {
+            "@media (pointer: coarse)": "44px"
+          }
+        }
+      }
+    },
+    "controlLg": {
+      "$type": "dimension",
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.controlLg",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "indicator": {
+      "$type": "dimension",
+      "$value": {
+        "value": 18,
+        "unit": "px"
+      },
+      "$description": "Checkbox / radio box.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.indicator",
+          "import": "@dsw/tokens/semantic.stylex",
+          "conditions": {
+            "@media (pointer: coarse)": "22px"
+          }
+        }
+      }
+    },
+    "indicatorDot": {
+      "$type": "dimension",
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.indicatorDot",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "icon": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.icon",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "switchTrackWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 36,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.switchTrackWidth",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "switchTrackHeight": {
+      "$type": "dimension",
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.switchTrackHeight",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "switchThumb": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.switchThumb",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "popoverMaxHeight": {
+      "$type": "dimension",
+      "$value": {
+        "value": 300,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.popoverMaxHeight",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "dialogSm": {
+      "$type": "dimension",
+      "$value": {
+        "value": 400,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.dialogSm",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "dialogMd": {
+      "$type": "dimension",
+      "$value": {
+        "value": 520,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.dialogMd",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "dialogLg": {
+      "$type": "dimension",
+      "$value": {
+        "value": 720,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.dialogLg",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "contentMax": {
+      "$type": "dimension",
+      "$value": {
+        "value": 960,
+        "unit": "px"
+      },
+      "$description": "Layout widths for app shells consuming the system.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.contentMax",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "formMax": {
+      "$type": "dimension",
+      "$value": {
+        "value": 440,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.formMax",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "sidebar": {
+      "$type": "dimension",
+      "$value": {
+        "value": 280,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.sidebar",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "gridMin": {
+      "$type": "dimension",
+      "$value": {
+        "value": 240,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "size.gridMin",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "borderWidth": {
+    "thin": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$description": "Surfaces, inputs, dividers.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "borderWidth.thin",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "thick": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1.5,
+        "unit": "px"
+      },
+      "$description": "Small selection controls, where 1px reads as too faint.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "borderWidth.thick",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "focus": {
+    "$description": "One focus ring for the whole system.",
+    "width": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "focus.width",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "offset": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "focus.offset",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "fontWeight": {
+    "regular": {
+      "$type": "fontWeight",
+      "$value": 400,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontWeight.regular",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "medium": {
+      "$type": "fontWeight",
+      "$value": 500,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontWeight.medium",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "semibold": {
+      "$type": "fontWeight",
+      "$value": 600,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontWeight.semibold",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "bold": {
+      "$type": "fontWeight",
+      "$value": 700,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontWeight.bold",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "lineHeight": {
+    "none": {
+      "$type": "number",
+      "$value": 1,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "lineHeight.none",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "tight": {
+      "$type": "number",
+      "$value": 1.3,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "lineHeight.tight",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "normal": {
+      "$type": "number",
+      "$value": 1.5,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "lineHeight.normal",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "motion": {
+    "$description": "Motion. Durations collapse to 0ms under prefers-reduced-motion here, at the token level, so every transition and entrance animation in the system respects it automatically. `spin` slows rather than stops: a loading spinner is a functional status indicator, not decoration.",
+    "fast": {
+      "$type": "duration",
+      "$value": {
+        "value": 120,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "motion.fast",
+          "import": "@dsw/tokens/semantic.stylex",
+          "conditions": {
+            "@media (prefers-reduced-motion: reduce)": "0ms"
+          }
+        }
+      }
+    },
+    "medium": {
+      "$type": "duration",
+      "$value": {
+        "value": 150,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "motion.medium",
+          "import": "@dsw/tokens/semantic.stylex",
+          "conditions": {
+            "@media (prefers-reduced-motion: reduce)": "0ms"
+          }
+        }
+      }
+    },
+    "slow": {
+      "$type": "duration",
+      "$value": {
+        "value": 180,
+        "unit": "ms"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "motion.slow",
+          "import": "@dsw/tokens/semantic.stylex",
+          "conditions": {
+            "@media (prefers-reduced-motion: reduce)": "0ms"
+          }
+        }
+      }
+    },
+    "spin": {
+      "$type": "duration",
+      "$value": {
+        "value": 700,
+        "unit": "ms"
+      },
+      "$description": "Loading spinners keep turning under reduced motion (they're a status indicator, so stopping them would hide that work is happening), but at less than half the speed.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "motion.spin",
+          "import": "@dsw/tokens/semantic.stylex",
+          "conditions": {
+            "@media (prefers-reduced-motion: reduce)": "1800ms"
+          }
+        }
+      }
+    },
+    "easeOut": {
+      "$value": "ease-out",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "motion.easeOut",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "emphasized": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.2,
+        0.8,
+        0.2,
+        1
+      ],
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "motion.emphasized",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "linear": {
+      "$value": "linear",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "motion.linear",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "opacity": {
+    "pressed": {
+      "$type": "number",
+      "$value": 0.85,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "opacity.pressed",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "zIndex": {
+    "overlay": {
+      "$type": "number",
+      "$value": 100,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "zIndex.overlay",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "popover": {
+      "$type": "number",
+      "$value": 110,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "zIndex.popover",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "fontFamily": {
+    "$description": "Self-hosted variable fonts (see",
+    "display": {
+      "$type": "fontFamily",
+      "$value": [
+        "Bricolage Grotesque Variable",
+        "ui-sans-serif",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "sans-serif"
+      ],
+      "$description": "Headings and display text: expressive, with an optical-size axis.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontFamily.display",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "sans": {
+      "$type": "fontFamily",
+      "$value": [
+        "Geist Variable",
+        "ui-sans-serif",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "sans-serif"
+      ],
+      "$description": "UI and body text: neutral and crisp at small sizes.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontFamily.sans",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "mono": {
+      "$type": "fontFamily",
+      "$value": [
+        "Geist Mono Variable",
+        "ui-monospace",
+        "SF Mono",
+        "Menlo",
+        "Consolas",
+        "monospace"
+      ],
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fontFamily.mono",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    }
+  },
+  "buttonTokens": {
+    "$description": "Component tokens: the third tier (primitive → semantic → component). Every colour a component paints comes from its own group here. Defaults alias semantic tokens, so they follow the active theme automatically. A theme overrides a component token directly only where the semantic alias isn't right for that component (see themes/dark.ts: the switch). This is what lets a brand restyle one component, e.g. pill-shaped secondary buttons with a tinted background, without touching the semantic layer every other component shares. Each component has two groups: `*Tokens` (colour, themed per mode) and `*Shape` (radius, border weight, type, shadow, motion: themed per brand). Splitting them is what lets a brand change a button's whole character (pill vs square, uppercase mono vs sentence case) once, while light/dark stays a colour-only concern. Aliases resolve where they're declared (:root), which is why themes are applied to <html>. A theme class on a nested element would re-skin semantic tokens but not the component aliases computed above it.",
+    "primaryBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6353,
+          0.6275,
+          0.9961
+        ],
+        "alpha": 1,
+        "hex": "#a2a0fe"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.primaryBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.accentDefault"
+        }
+      }
+    },
+    "primaryBgHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.primaryBgHover",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.accentHover"
+        }
+      }
+    },
+    "primaryBgPressed": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8471,
+          0.8471,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#d8d8ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.primaryBgPressed",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.accentActive"
+        }
+      }
+    },
+    "primaryFg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0549,
+          0.0549,
+          0.098
+        ],
+        "alpha": 1,
+        "hex": "#0e0e19"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.primaryFg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgOnAccent"
+        }
+      }
+    },
+    "primaryBorder": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6353,
+          0.6275,
+          0.9961
+        ],
+        "alpha": 1,
+        "hex": "#a2a0fe"
+      },
+      "$description": "Invisible by default (matches the fill); brands can outline it.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.primaryBorder",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.accentDefault"
+        }
+      }
+    },
+    "secondaryBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0863,
+          0.0863,
+          0.1333
+        ],
+        "alpha": 1,
+        "hex": "#161622"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.secondaryBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSurface"
+        }
+      }
+    },
+    "secondaryBgHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.secondaryBgHover",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgHover"
+        }
+      }
+    },
+    "secondaryBorder": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2039,
+          0.2039,
+          0.2392
+        ],
+        "alpha": 1,
+        "hex": "#34343d"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.secondaryBorder",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderDefault"
+        }
+      }
+    },
+    "secondaryBorderHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5294,
+          0.5333,
+          0.6118
+        ],
+        "alpha": 1,
+        "hex": "#87889c"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.secondaryBorderHover",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderStrong"
+        }
+      }
+    },
+    "secondaryFg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.secondaryFg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "ghostBgHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.ghostBgHover",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgHover"
+        }
+      }
+    },
+    "ghostFg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.ghostFg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "dangerBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.4941,
+          0.5608
+        ],
+        "alpha": 1,
+        "hex": "#ff7e8f"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.dangerBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.dangerDefault"
+        }
+      }
+    },
+    "dangerBgHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9961,
+          0.6824,
+          0.7137
+        ],
+        "alpha": 1,
+        "hex": "#feaeb6"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.dangerBgHover",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.dangerHover"
+        }
+      }
+    },
+    "dangerFg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0549,
+          0.0549,
+          0.098
+        ],
+        "alpha": 1,
+        "hex": "#0e0e19"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.dangerFg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgOnDanger"
+        }
+      }
+    },
+    "dangerBorder": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.4941,
+          0.5608
+        ],
+        "alpha": 1,
+        "hex": "#ff7e8f"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.dangerBorder",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.dangerDefault"
+        }
+      }
+    },
+    "disabledBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.disabledBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.accentDisabled"
+        }
+      }
+    },
+    "disabledFg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.451,
+          0.4549,
+          0.5373
+        ],
+        "alpha": 1,
+        "hex": "#737489"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonTokens.disabledFg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDisabled"
+        }
+      }
+    }
+  },
+  "fieldTokens": {
+    "$description": "TextField input and Select trigger: the \"text-like control\" surface.",
+    "bg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0863,
+          0.0863,
+          0.1333
+        ],
+        "alpha": 1,
+        "hex": "#161622"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.bg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSurface"
+        }
+      }
+    },
+    "fg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.fg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "placeholder": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.placeholder",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "icon": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$description": "Trailing icons (Select chevron).",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.icon",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5294,
+          0.5333,
+          0.6118
+        ],
+        "alpha": 1,
+        "hex": "#87889c"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.border",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderStrong"
+        }
+      }
+    },
+    "borderHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.borderHover",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "borderFocus": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6353,
+          0.6275,
+          0.9961
+        ],
+        "alpha": 1,
+        "hex": "#a2a0fe"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.borderFocus",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderFocus"
+        }
+      }
+    },
+    "borderInvalid": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.4941,
+          0.5608
+        ],
+        "alpha": 1,
+        "hex": "#ff7e8f"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.borderInvalid",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.dangerDefault"
+        }
+      }
+    },
+    "label": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.label",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "description": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.description",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "error": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9961,
+          0.6824,
+          0.7137
+        ],
+        "alpha": 1,
+        "hex": "#feaeb6"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.error",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDanger"
+        }
+      }
+    },
+    "required": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9961,
+          0.6824,
+          0.7137
+        ],
+        "alpha": 1,
+        "hex": "#feaeb6"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.required",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDanger"
+        }
+      }
+    },
+    "disabledBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.disabledBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSurfaceRaised"
+        }
+      }
+    },
+    "disabledBorder": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2039,
+          0.2039,
+          0.2392
+        ],
+        "alpha": 1,
+        "hex": "#34343d"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.disabledBorder",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderDefault"
+        }
+      }
+    },
+    "disabledFg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.451,
+          0.4549,
+          0.5373
+        ],
+        "alpha": 1,
+        "hex": "#737489"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldTokens.disabledFg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDisabled"
+        }
+      }
+    }
+  },
+  "selectionTokens": {
+    "$description": "Checkbox and Radio.",
+    "bg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0863,
+          0.0863,
+          0.1333
+        ],
+        "alpha": 1,
+        "hex": "#161622"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.bg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSurface"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5294,
+          0.5333,
+          0.6118
+        ],
+        "alpha": 1,
+        "hex": "#87889c"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.border",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderStrong"
+        }
+      }
+    },
+    "borderHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.borderHover",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "checkedBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6353,
+          0.6275,
+          0.9961
+        ],
+        "alpha": 1,
+        "hex": "#a2a0fe"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.checkedBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.accentDefault"
+        }
+      }
+    },
+    "checkedBgHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.checkedBgHover",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.accentHover"
+        }
+      }
+    },
+    "checkedBorder": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6353,
+          0.6275,
+          0.9961
+        ],
+        "alpha": 1,
+        "hex": "#a2a0fe"
+      },
+      "$description": "The checked box's boundary: what carries 3:1 against the surface. Matches the fill by default; brands with pale fills outline instead.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.checkedBorder",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.accentDefault"
+        }
+      }
+    },
+    "mark": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0549,
+          0.0549,
+          0.098
+        ],
+        "alpha": 1,
+        "hex": "#0e0e19"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.mark",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgOnAccent"
+        }
+      }
+    },
+    "borderInvalid": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.4941,
+          0.5608
+        ],
+        "alpha": 1,
+        "hex": "#ff7e8f"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.borderInvalid",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.dangerDefault"
+        }
+      }
+    },
+    "label": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.label",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "disabledBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.disabledBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSurfaceRaised"
+        }
+      }
+    },
+    "disabledBorder": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2039,
+          0.2039,
+          0.2392
+        ],
+        "alpha": 1,
+        "hex": "#34343d"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.disabledBorder",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderDefault"
+        }
+      }
+    },
+    "disabledMark": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.451,
+          0.4549,
+          0.5373
+        ],
+        "alpha": 1,
+        "hex": "#737489"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.disabledMark",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDisabled"
+        }
+      }
+    },
+    "disabledLabel": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.451,
+          0.4549,
+          0.5373
+        ],
+        "alpha": 1,
+        "hex": "#737489"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionTokens.disabledLabel",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDisabled"
+        }
+      }
+    }
+  },
+  "switchTokens": {
+    "trackOff": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.451,
+          0.4549,
+          0.5373
+        ],
+        "alpha": 1,
+        "hex": "#737489"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchTokens.trackOff",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "trackOffHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5294,
+          0.5333,
+          0.6118
+        ],
+        "alpha": 1,
+        "hex": "#87889c"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchTokens.trackOffHover",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "trackOn": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5176,
+          0.4824,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#847bff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchTokens.trackOn",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "trackOnHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5176,
+          0.4824,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#847bff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchTokens.trackOnHover",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "thumb": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          1,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#ffffff"
+      },
+      "$description": "Thumb on the off track; ≥3:1 against it (WCAG 1.4.11).",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchTokens.thumb",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "thumbOn": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          1,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#ffffff"
+      },
+      "$description": "Thumb on the on track; may differ when no colour suits both.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchTokens.thumbOn",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "trackOffEdge": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.451,
+          0.4549,
+          0.5373
+        ],
+        "alpha": 1,
+        "hex": "#737489"
+      },
+      "$description": "Track boundaries: what carries 3:1 against the surface. Drawn with width `switchShape.edgeWidth` (0 by default, so the fill is the edge).",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchTokens.trackOffEdge",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "trackOnEdge": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5176,
+          0.4824,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#847bff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchTokens.trackOnEdge",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "thumbShadow": {
+      "$value": "0 1px 3px rgba(0, 0, 0, 0.5)",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchTokens.thumbShadow",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "shadow.thumb"
+        }
+      }
+    },
+    "label": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchTokens.label",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "trackDisabled": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchTokens.trackDisabled",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.accentDisabled"
+        }
+      }
+    },
+    "disabledLabel": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.451,
+          0.4549,
+          0.5373
+        ],
+        "alpha": 1,
+        "hex": "#737489"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchTokens.disabledLabel",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDisabled"
+        }
+      }
+    }
+  },
+  "menuTokens": {
+    "$description": "Select's popover + listbox.",
+    "bg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0863,
+          0.0863,
+          0.1333
+        ],
+        "alpha": 1,
+        "hex": "#161622"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "menuTokens.bg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSurface"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2039,
+          0.2039,
+          0.2392
+        ],
+        "alpha": 1,
+        "hex": "#34343d"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "menuTokens.border",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderDefault"
+        }
+      }
+    },
+    "shadow": {
+      "$value": "0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.02)",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "menuTokens.shadow",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "shadow.popover"
+        }
+      }
+    },
+    "itemFg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "menuTokens.itemFg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "itemBgHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "menuTokens.itemBgHover",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgHover"
+        }
+      }
+    },
+    "itemFgSelected": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "menuTokens.itemFgSelected",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgAccent"
+        }
+      }
+    },
+    "itemBgSelected": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1059,
+          0.1098,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#1b1c35"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "menuTokens.itemBgSelected",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgAccentSubtle"
+        }
+      }
+    },
+    "check": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "menuTokens.check",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgAccent"
+        }
+      }
+    },
+    "itemFgDisabled": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.451,
+          0.4549,
+          0.5373
+        ],
+        "alpha": 1,
+        "hex": "#737489"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "menuTokens.itemFgDisabled",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDisabled"
+        }
+      }
+    }
+  },
+  "dialogTokens": {
+    "bg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0863,
+          0.0863,
+          0.1333
+        ],
+        "alpha": 1,
+        "hex": "#161622"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "dialogTokens.bg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSurface"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2039,
+          0.2039,
+          0.2392
+        ],
+        "alpha": 1,
+        "hex": "#34343d"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "dialogTokens.border",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderDefault"
+        }
+      }
+    },
+    "shadow": {
+      "$value": "0 32px 64px -16px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.03)",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "dialogTokens.shadow",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "shadow.dialog"
+        }
+      }
+    },
+    "overlay": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0157,
+          0.0157,
+          0.0392
+        ],
+        "alpha": 0.66
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "dialogTokens.overlay",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgOverlay"
+        }
+      }
+    },
+    "title": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "dialogTokens.title",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "body": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "dialogTokens.body",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    }
+  },
+  "fieldsetTokens": {
+    "$description": "Fieldset: a labelled group of related fields.",
+    "legend": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetTokens.legend",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "description": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetTokens.description",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "error": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9961,
+          0.6824,
+          0.7137
+        ],
+        "alpha": 1,
+        "hex": "#feaeb6"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetTokens.error",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDanger"
+        }
+      }
+    },
+    "bg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0863,
+          0.0863,
+          0.1333
+        ],
+        "alpha": 1,
+        "hex": "#161622"
+      },
+      "$description": "Boxed variant only. Decorative: the legend identifies the group.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetTokens.bg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSurface"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2039,
+          0.2039,
+          0.2392
+        ],
+        "alpha": 1,
+        "hex": "#34343d"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetTokens.border",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderDefault"
+        }
+      }
+    },
+    "borderInvalid": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.4941,
+          0.5608
+        ],
+        "alpha": 1,
+        "hex": "#ff7e8f"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetTokens.borderInvalid",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.dangerDefault"
+        }
+      }
+    },
+    "disabledLegend": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.451,
+          0.4549,
+          0.5373
+        ],
+        "alpha": 1,
+        "hex": "#737489"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetTokens.disabledLegend",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDisabled"
+        }
+      }
+    }
+  },
+  "buttonShape": {
+    "radius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonShape.radius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.md"
+        }
+      }
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonShape.borderWidth",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "borderWidth.thin"
+        }
+      }
+    },
+    "fontFamily": {
+      "$type": "fontFamily",
+      "$value": [
+        "Geist Variable",
+        "ui-sans-serif",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "sans-serif"
+      ],
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonShape.fontFamily",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontFamily.sans"
+        }
+      }
+    },
+    "fontWeight": {
+      "$type": "fontWeight",
+      "$value": 600,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonShape.fontWeight",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontWeight.semibold"
+        }
+      }
+    },
+    "letterSpacing": {
+      "$type": "number",
+      "$value": 0,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonShape.letterSpacing",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "letterSpacing.normal"
+        }
+      }
+    },
+    "textTransform": {
+      "$value": "none",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonShape.textTransform",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "shadow": {
+      "$value": "none",
+      "$description": "Resting elevation; brutalist brands use a hard offset shadow.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonShape.shadow",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "shadowPressed": {
+      "$value": "none",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonShape.shadowPressed",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "pressTransform": {
+      "$value": "scale(0.98)",
+      "$description": "How the button moves when pressed.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "buttonShape.pressTransform",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    }
+  },
+  "fieldShape": {
+    "radius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldShape.radius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.md"
+        }
+      }
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldShape.borderWidth",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "borderWidth.thin"
+        }
+      }
+    }
+  },
+  "selectionShape": {
+    "boxRadius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 5,
+        "unit": "px"
+      },
+      "$description": "Checkbox corner. Deliberately *not* the brand radius scale: a rounder brand (Bloom's sm is 8px) would turn an 18px box into a near-circle that reads as a radio button. The square-vs-round shape is how users tell multi-select from single-select, so it stays square-ish everywhere. Radios are always circles.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionShape.boxRadius",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1.5,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "selectionShape.borderWidth",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "borderWidth.thick"
+        }
+      }
+    }
+  },
+  "switchShape": {
+    "trackRadius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 9999,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchShape.trackRadius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.full"
+        }
+      }
+    },
+    "thumbRadius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 9999,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchShape.thumbRadius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.full"
+        }
+      }
+    },
+    "edgeWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0,
+        "unit": "px"
+      },
+      "$description": "Outline around the track, drawn outside it so layout never shifts.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "switchShape.edgeWidth",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    }
+  },
+  "menuShape": {
+    "radius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "menuShape.radius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.lg"
+        }
+      }
+    },
+    "itemRadius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "menuShape.itemRadius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.md"
+        }
+      }
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "menuShape.borderWidth",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "borderWidth.thin"
+        }
+      }
+    }
+  },
+  "dialogShape": {
+    "radius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 22,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "dialogShape.radius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.xl"
+        }
+      }
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "dialogShape.borderWidth",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "borderWidth.thin"
+        }
+      }
+    }
+  },
+  "fieldsetShape": {
+    "radius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Boxed variant.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetShape.radius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.lg"
+        }
+      }
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetShape.borderWidth",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "borderWidth.thin"
+        }
+      }
+    },
+    "shadow": {
+      "$value": "none",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetShape.shadow",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "legendFont": {
+      "$type": "fontFamily",
+      "$value": [
+        "Bricolage Grotesque Variable",
+        "ui-sans-serif",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "sans-serif"
+      ],
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetShape.legendFont",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontFamily.display"
+        }
+      }
+    },
+    "legendWeight": {
+      "$type": "number",
+      "$value": 700,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetShape.legendWeight",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontWeight.bold"
+        }
+      }
+    },
+    "legendLetterSpacing": {
+      "$type": "dimension",
+      "$value": {
+        "value": -0.02,
+        "unit": "em"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "fieldsetShape.legendLetterSpacing",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "letterSpacing.tight"
+        }
+      }
+    }
+  }
+}

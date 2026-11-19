@@ -393,11 +393,58 @@ dark mode and checks its surface colour.
   this project's own tooling needs. Not a blanket bypass — only the specific
   packages listed.
 
+## Machine-readable system: token export and MCP server
+
+The token sources stay the single source of truth. Everything else is
+generated from them and checked against them.
+
+**Token export (`pnpm --filter @dsw/tokens export`).** `defineVars()` throws
+outside the StyleX compiler, so the tokens can't simply be imported by a
+Node tool. `scripts/export-tokens.ts` reads them the way the compiler does:
+TypeScript AST, constant folding and alias resolution. It applies each
+`themes[brand][mode]` list with the same rules as the runtime (one
+override per group per theme, or it fails). It writes:
+
+- `generated/tokens.json`: every token with its value in all 6 themes,
+  alias, media-query variants and description, plus the contrast audit
+  with ratios per theme.
+- `generated/dtcg/<brand>-<mode>.tokens.json`: W3C Design Tokens (DTCG)
+  files for Figma / Tokens Studio. These carry structured colour and
+  dimension values, with the token's JS reference and import path in
+  `$extensions`.
+
+Static analysis can drift from what the compiler emits, so
+`e2e/token-export.spec.ts` checks all 208 tokens × 6 themes against the
+browser's computed custom properties. It loads the app with `?token-probe`,
+which lazy-loads a fixture that never enters the app bundle. Values are
+compared through the browser's CSS parser, because StyleX minifies
+(`120ms` → `.12s`).
+
+**Component manifest (`pnpm --filter @dsw/ui manifest`).** It's built
+from the TypeScript checker:
+
+- Props with readable types: literal unions spelled out, own annotations
+  kept.
+- Inherited React Aria props filtered to the common ones.
+- Doc comments, the token groups each component imports, and its stories.
+
+Story ids follow Storybook's own rules: the title is only lowercased, while
+export names are split into words. They're verified against its
+`index.json`. Both generators have `--check` modes, wired into each
+package's `test`, so a stale export fails CI.
+
+**MCP server (`packages/mcp`).** This gives coding agents the system:
+component reference, token search, value → token mapping, contrast checks,
+guidelines, and `lint_styles`, which runs the real
+`dsw/no-raw-style-values` rule with token suggestions. It reads the
+generated manifests and runs on Node's built-in TypeScript stripping,
+consistent with the repo's no-build-step packages. `.mcp.json` registers
+it alongside Storybook's own MCP server, which handles story previews.
+Tests drive it through a real MCP client, including the stdio entry
+point.
+
 ## What's deliberately not here yet
 
-- No design-token build pipeline (e.g. Style Dictionary) — the token files
-  themselves are already the single source of truth; automating export to
-  other platforms is a real Phase 2, not scope creep to bolt on now.
 - No visual regression testing (Chromatic/Percy) — flagged as a Phase 2
   addition, not needed to prove the component architecture.
 - No router in the workbench app — three sections switched by local state

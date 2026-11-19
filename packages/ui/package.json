@@ -6,12 +6,14 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./generated/components.json": "./generated/components.json"
   },
   "scripts": {
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "node scripts/build-manifest.ts --check && vitest run",
+    "manifest": "node scripts/build-manifest.ts"
   },
   "dependencies": {
     "@dsw/tokens": "workspace:*",
@@ -38,6 +40,9 @@
     "react-dom": "^19.3.1",
     "storybook": "10.6.7",
     "vite": "^8.3.7",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.0",
+    "@types/node": "^26.6.6",
+    "typescript": "^5.9.3",
+    "globals": "^17.14.0"
   }
 }

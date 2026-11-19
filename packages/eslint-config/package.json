@@ -5,7 +5,8 @@
   "type": "module",
   "main": "./index.js",
   "exports": {
-    ".": "./index.js"
+    ".": "./index.js",
+    "./no-raw-style-values": "./no-raw-style-values.js"
   },
   "scripts": {
     "lint": "echo \"@dsw/eslint-config has no lintable source\""

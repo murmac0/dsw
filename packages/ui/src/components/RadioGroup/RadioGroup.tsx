@@ -66,6 +66,10 @@ export interface RadioProps
   children?: ReactNode;
 }
 
+/**
+ * One option in a RadioGroup. Must be a descendant of RadioGroup, which
+ * owns the value, label and keyboard behaviour; give each a unique `value`.
+ */
 export const Radio = forwardRef<HTMLLabelElement, RadioProps>(function Radio(
   { children, ...rest },
   ref,

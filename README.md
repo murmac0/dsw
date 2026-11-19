@@ -45,4 +45,5 @@ pnpm --filter @dsw/workbench test:e2e
 | [`apps/workbench`](./apps/workbench) | Interactive docs site: Components / Foundations / Playground |
 | [`packages/ui`](./packages/ui) | Accessible React components: Button, TextField, Select, Checkbox, CheckboxGroup, Switch, RadioGroup, Fieldset, Dialog |
 | [`packages/tokens`](./packages/tokens) | Three-tier tokens (primitive → semantic → component), three brands (Iris, Volt, Bloom) × light/dark, fonts, contrast audit; no React dependency |
-| [`packages/eslint-config`](./packages/eslint-config) | Shared flat ESLint config |
+| [`packages/mcp`](./packages/mcp) | MCP server for coding agents: components, tokens per brand × mode, contrast, style linting |
+| [`packages/eslint-config`](./packages/eslint-config) | Shared flat ESLint config, including the `dsw/no-raw-style-values` token rule |
