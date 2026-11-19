@@ -1,4 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
+import { useId } from "react";
 import { ToggleButton, ToggleButtonGroup } from "react-aria-components";
 import {
   bloomPalette,
@@ -56,8 +57,15 @@ const styles = stylex.create({
     color: color.fgDefault,
   },
   itemSelected: {
-    color: color.fgDefault,
-    backgroundColor: color.bgSurface,
+    forcedColorAdjust: "none",
+    color: {
+      default: color.fgDefault,
+      [breakpoints.forcedColors]: "HighlightText",
+    },
+    backgroundColor: {
+      default: color.bgSurface,
+      [breakpoints.forcedColors]: "Highlight",
+    },
     boxShadow: shadow.card,
   },
   itemFocusVisible: {
@@ -65,6 +73,14 @@ const styles = stylex.create({
     outlineWidth: focus.width,
     outlineOffset: focus.offset,
     outlineColor: color.borderFocus,
+  },
+  visuallyHidden: {
+    position: "absolute",
+    width: "1px", // token-exempt: visually-hidden technique
+    height: "1px", // token-exempt: visually-hidden technique
+    overflow: "hidden",
+    clip: "rect(0 0 0 0)",
+    whiteSpace: "nowrap",
   },
   // Each brand's own signature colour, fixed regardless of the active
   // theme, so the control previews what you're switching to.
@@ -86,40 +102,55 @@ const swatches: Record<BrandName, [fill: string, ring: string]> = {
 
 export function BrandSwitcher() {
   const { brand, setBrand } = useTheme();
+  const id = useId();
+  const descriptionId = (brandId: BrandName) => `${id}-${brandId}-description`;
 
   return (
-    <ToggleButtonGroup
-      aria-label="Brand"
-      selectionMode="single"
-      disallowEmptySelection
-      selectedKeys={[brand]}
-      onSelectionChange={(keys) => {
-        const [next] = [...keys];
-        if (next) setBrand(next as BrandName);
-      }}
-      {...stylex.props(styles.group)}
-    >
+    <>
+      <ToggleButtonGroup
+        aria-label="Brand"
+        selectionMode="single"
+        disallowEmptySelection
+        selectedKeys={[brand]}
+        onSelectionChange={(keys) => {
+          const [next] = [...keys];
+          if (next) setBrand(next as BrandName);
+        }}
+        {...stylex.props(styles.group)}
+      >
+        {brands.map((b) => (
+          <ToggleButton
+            key={b.id}
+            id={b.id}
+            // aria-describedby, not the ARIA 1.3 draft aria-description,
+            // which screen readers outside Chromium + NVDA/JAWS don't read.
+            aria-describedby={descriptionId(b.id)}
+            className={(rp) =>
+              stylex.props(
+                styles.item,
+                rp.isHovered && styles.itemHovered,
+                rp.isSelected && styles.itemSelected,
+                rp.isFocusVisible && styles.itemFocusVisible,
+              ).className ?? ""
+            }
+          >
+            <span
+              aria-hidden="true"
+              {...stylex.props(styles.swatch(...swatches[b.id]))}
+            />
+            {b.label}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
       {brands.map((b) => (
-        <ToggleButton
+        <span
           key={b.id}
-          id={b.id}
-          aria-description={b.tagline}
-          className={(rp) =>
-            stylex.props(
-              styles.item,
-              rp.isHovered && styles.itemHovered,
-              rp.isSelected && styles.itemSelected,
-              rp.isFocusVisible && styles.itemFocusVisible,
-            ).className ?? ""
-          }
+          id={descriptionId(b.id)}
+          {...stylex.props(styles.visuallyHidden)}
         >
-          <span
-            aria-hidden="true"
-            {...stylex.props(styles.swatch(...swatches[b.id]))}
-          />
-          {b.label}
-        </ToggleButton>
+          {b.tagline}
+        </span>
       ))}
-    </ToggleButtonGroup>
+    </>
   );
 }

@@ -88,10 +88,34 @@ export const fieldStyles = stylex.create({
     color: t.disabledFg,
   },
 
+  visuallyHidden: {
+    position: "absolute",
+    width: "1px", // token-exempt: visually-hidden technique
+    height: "1px", // token-exempt: visually-hidden technique
+    overflow: "hidden",
+    clip: "rect(0 0 0 0)",
+    whiteSpace: "nowrap",
+  },
+
   focusRing: {
     outlineStyle: "solid",
     outlineWidth: focus.width,
     outlineOffset: focus.offset,
     outlineColor: color.borderFocus,
+  },
+});
+
+/** Layout for a group's options (RadioGroup, CheckboxGroup). */
+export const optionGroupStyles = stylex.create({
+  options: {
+    display: "flex",
+    flexDirection: "column",
+    gap: space.sm,
+    paddingBlock: space.xxs,
+  },
+  horizontal: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    columnGap: space.xl,
   },
 });

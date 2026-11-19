@@ -1,5 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
-import { buttonShape, switchTokens } from "../components.stylex";
+import { buttonShape, fieldsetShape, switchTokens } from "../components.stylex";
 import { bloomPalette as b } from "../primitives.stylex";
 import {
   brand,
@@ -169,12 +169,22 @@ const switchBloom = stylex.createTheme(switchTokens, {
   disabledLabel: color.fgDisabled,
 });
 
+const fieldsetShapeBloom = stylex.createTheme(fieldsetShape, {
+  radius: radius.xl,
+  borderWidth: "1px",
+  shadow: shadow.card,
+  legendFont: fontFamily.display,
+  legendWeight: fontWeight.semibold,
+  legendLetterSpacing: letterSpacing.tight,
+});
+
 const shared = [
   radiusBloom,
   fontFamilyBloom,
   letterSpacingBloom,
   buttonShapeBloom,
   switchBloom,
+  fieldsetShapeBloom,
 ] as const;
 
 export const bloomTheme = {

@@ -1,4 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
+import { breakpoints } from "@dsw/tokens/breakpoints.stylex";
 import { color, focus, fontSize, motion, radius, size, space } from "@dsw/tokens/semantic.stylex";
 import { selectionShape as shape, selectionTokens as t } from "@dsw/tokens/components.stylex";
 
@@ -74,6 +75,9 @@ export const selectionStyles = stylex.create({
     width: size.indicatorDot,
     height: size.indicatorDot,
     borderRadius: radius.full,
-    backgroundColor: "currentColor",
+    // A fill, so forced-colour modes would strip it and every radio would
+    // look unselected. Opt out and paint it in the system text colour.
+    forcedColorAdjust: "none",
+    backgroundColor: { default: "currentColor", [breakpoints.forcedColors]: "CanvasText" },
   },
 });

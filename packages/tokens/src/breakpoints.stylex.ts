@@ -16,4 +16,11 @@ export const breakpoints = stylex.defineConsts({
   /** Touch-first devices: larger hit targets regardless of width. */
   coarsePointer: "@media (pointer: coarse)",
   reducedMotion: "@media (prefers-reduced-motion: reduce)",
+  /**
+   * Windows High Contrast and other forced-colour modes. The browser
+   * strips background colours and box-shadows, so any state shown only by
+   * a fill (switch tracks, radio dots, selected/focused items) needs an
+   * explicit treatment in system colours (Canvas, CanvasText, Highlight…).
+   */
+  forcedColors: "@media (forced-colors: active)",
 });

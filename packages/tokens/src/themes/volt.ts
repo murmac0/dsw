@@ -2,6 +2,8 @@ import * as stylex from "@stylexjs/stylex";
 import {
   buttonShape,
   buttonTokens,
+  fieldsetShape,
+  selectionShape,
   fieldTokens,
   selectionTokens,
   switchShape,
@@ -243,6 +245,20 @@ const switchVolt = stylex.createTheme(switchTokens, {
   disabledLabel: color.fgDisabled,
 });
 
+const fieldsetShapeVolt = stylex.createTheme(fieldsetShape, {
+  radius: radius.none,
+  borderWidth: borderWidth.thin,
+  shadow: shadow.card,
+  legendFont: fontFamily.display,
+  legendWeight: fontWeight.bold,
+  legendLetterSpacing: letterSpacing.tight,
+});
+
+const selectionShapeVolt = stylex.createTheme(selectionShape, {
+  boxRadius: "0px",
+  borderWidth: borderWidth.thin,
+});
+
 const switchShapeVolt = stylex.createTheme(switchShape, {
   trackRadius: "0px",
   thumbRadius: "0px",
@@ -261,6 +277,8 @@ const shared = [
   selectionVolt,
   switchVolt,
   switchShapeVolt,
+  fieldsetShapeVolt,
+  selectionShapeVolt,
 ] as const;
 
 export const voltTheme = {

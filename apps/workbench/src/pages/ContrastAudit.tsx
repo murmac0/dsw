@@ -40,6 +40,7 @@ const styles = stylex.create({
   },
   groupTitle: {
     margin: 0,
+    textAlign: "start",
     paddingBlock: space.sm,
     paddingInline: space.md,
     fontSize: fontSize.xs,
@@ -47,17 +48,39 @@ const styles = stylex.create({
     color: color.fgMuted,
     backgroundColor: color.bgSurfaceRaised,
   },
+  table: {
+    width: "100%",
+    borderCollapse: "collapse",
+  },
+  visuallyHidden: {
+    position: "absolute",
+    width: "1px", // token-exempt: visually-hidden technique
+    height: "1px", // token-exempt: visually-hidden technique
+    overflow: "hidden",
+    clip: "rect(0 0 0 0)",
+    whiteSpace: "nowrap",
+  },
   row: {
-    display: "grid",
-    gridTemplateColumns: `${size.controlLg} minmax(0, 1fr) auto auto`,
-    alignItems: "center",
-    columnGap: { default: space.md, [breakpoints.mobile]: space.sm },
-    paddingBlock: space.sm,
-    paddingInline: space.md,
     borderTopWidth: borderWidth.thin,
     borderTopStyle: "solid",
     borderTopColor: color.borderDefault,
     fontSize: fontSize.sm,
+  },
+  cell: {
+    paddingBlock: space.sm,
+    paddingInline: { default: space.md, [breakpoints.mobile]: space.xs },
+    verticalAlign: "middle",
+  },
+  sampleCell: {
+    width: size.controlLg,
+  },
+  rowHeader: {
+    textAlign: "start",
+    fontWeight: fontWeight.regular,
+  },
+  resultCell: {
+    width: "1%",
+    whiteSpace: "nowrap",
   },
   sample: (fg: string, bg: string) => ({
     display: "flex",
@@ -163,35 +186,58 @@ export function ContrastAudit() {
       </p>
       {groups.map((group) => (
         <div key={group} {...stylex.props(styles.group)}>
-          <h3 {...stylex.props(styles.groupTitle)}>{group}</h3>
-          {results
-            .filter((r) => r.component === group)
-            .map((r) => (
-              <div
-                key={r.usage}
-                {...stylex.props(styles.row)}
-                data-testid="contrast-row"
-                data-pass={r.pass}
-                data-ratio={r.ratio.toFixed(2)}
-              >
-                <div {...stylex.props(styles.sample(r.fg, r.bg))} aria-hidden="true">
-                  {r.kind === "text" ? "Aa" : <span {...stylex.props(styles.uiSample(r.fg))} />}
-                </div>
-                <div>
-                  <div {...stylex.props(styles.usage)}>{r.usage}</div>
-                  <div {...stylex.props(styles.requirement)}>
-                    {r.kind === "text" ? "Text" : "Non-text"} · needs {AA[r.kind]}:1
-                  </div>
-                </div>
-                <div {...stylex.props(styles.ratio)}>{r.ratio.toFixed(2)}:1</div>
-                <span
-                  {...stylex.props(styles.badge, !r.pass && styles.badgeFail)}
-                  aria-label={r.pass ? "Passes AA" : "Fails AA"}
-                >
-                  {r.pass ? "AA" : "Fail"}
-                </span>
-              </div>
-            ))}
+          {/* A real table, so screen readers get row/column relationships
+              (WCAG 1.3.1), not a run of unrelated text. */}
+          <table {...stylex.props(styles.table)}>
+            <caption {...stylex.props(styles.groupTitle)}>{group}</caption>
+            <thead {...stylex.props(styles.visuallyHidden)}>
+              <tr>
+                <th scope="col">Sample</th>
+                <th scope="col">Pairing</th>
+                <th scope="col">Contrast ratio</th>
+                <th scope="col">Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              {results
+                .filter((r) => r.component === group)
+                .map((r) => (
+                  <tr
+                    key={r.usage}
+                    {...stylex.props(styles.row)}
+                    data-testid="contrast-row"
+                    data-pass={r.pass}
+                    data-ratio={r.ratio.toFixed(2)}
+                  >
+                    <td {...stylex.props(styles.cell, styles.sampleCell)}>
+                      <div {...stylex.props(styles.sample(r.fg, r.bg))} aria-hidden="true">
+                        {r.kind === "text" ? (
+                          "Aa"
+                        ) : (
+                          <span {...stylex.props(styles.uiSample(r.fg))} />
+                        )}
+                      </div>
+                    </td>
+                    <th scope="row" {...stylex.props(styles.cell, styles.rowHeader)}>
+                      <div {...stylex.props(styles.usage)} data-usage>
+                        {r.usage}
+                      </div>
+                      <div {...stylex.props(styles.requirement)}>
+                        {r.kind === "text" ? "Text" : "Non-text"} · needs {AA[r.kind]}:1
+                      </div>
+                    </th>
+                    <td {...stylex.props(styles.cell, styles.ratio)}>
+                      {r.ratio.toFixed(2)}:1
+                    </td>
+                    <td {...stylex.props(styles.cell, styles.resultCell)}>
+                      <span {...stylex.props(styles.badge, !r.pass && styles.badgeFail)}>
+                        {r.pass ? "Pass" : "Fail"}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
         </div>
       ))}
     </div>

@@ -307,6 +307,45 @@ the browser blocks submit before your handler runs.
 and documented as "applies immediately", since `role="switch"` announces
 on/off rather than checked.
 
+### Grouping: Fieldset and CheckboxGroup
+
+There's deliberately **no generic `FormField` wrapper.** Every control
+wires its own label, description and error through React Aria, and tests
+prove it. A wrapper around arbitrary children can't guarantee that wiring,
+and fails silently when it doesn't hold. New input types become dedicated
+components on the shared `Field` pieces instead.
+
+**`Fieldset`** groups *different* controls under one announced legend
+(WCAG 1.3.1): shipping vs billing "Street", or the sections of a long form.
+
+- It's a native `<fieldset>`/`<legend>`, the most reliably announced
+  grouping pattern.
+- The description, and the group error while `isInvalid`, are linked via
+  `aria-describedby`.
+- The error sits in a polite live region that's always rendered (empty
+  when valid, never `display: none`), so an error that appears after
+  submit is announced.
+- `isDisabled` sets native `disabled` *and* flows through
+  `FieldsetContext`. Native disabling makes inputs inert but React Aria
+  doesn't know, so without the context the controls would still look
+  enabled.
+- `useInheritedDisabled` ORs the two, so a disabled fieldset always wins,
+  matching what the browser does.
+- Nested fieldsets inherit too.
+- Variants: `plain` (a titled section) and `boxed` (a panel). Brands
+  restyle it through `fieldsetShape`: Volt gets a hard shadow, Bloom soft
+  curves.
+
+**`CheckboxGroup`** is RadioGroup's sibling for multi-select. It has the
+same field pieces and layout (`optionGroupStyles`), one `string[]` value,
+and a group error. `isRequired` means "at least one": React Aria marks
+the checkboxes required only while none is selected, so native validation
+blocks submit and clears as soon as one is ticked. That's tested in a real
+browser.
+
+Radio and checkbox options group themselves. Use `Fieldset` around mixed
+controls, not around a single RadioGroup or CheckboxGroup.
+
 ### Controlled and uncontrolled
 
 Every stateful component supports both, following React's convention and

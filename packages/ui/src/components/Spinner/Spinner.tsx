@@ -7,8 +7,11 @@ export interface SpinnerProps {
 }
 
 /**
- * Purely decorative. The busy state it represents is announced through
- * `aria-busy` on the control that renders it, not through this element.
+ * Purely decorative (aria-hidden). The busy state it represents is
+ * announced by the control that renders it. Button uses a polite
+ * `role="status"` sibling, because react-aria-components doesn't forward
+ * `aria-busy` (see ARCHITECTURE.md, "The loading-state accessibility
+ * detail").
  */
 export function Spinner({ size = "md", style }: SpinnerProps) {
   const pixels = sizeToPixels[size];

@@ -6,8 +6,8 @@ async function auditResults(page: Page) {
   await expect(audit).toBeVisible();
   return page.getByTestId("contrast-row").evaluateAll((rows) =>
     rows.map((row) => ({
-      usage: row.querySelector("div:nth-child(2) > div")?.textContent ?? "",
-      group: row.parentElement?.querySelector("h3")?.textContent ?? "",
+      usage: row.querySelector("[data-usage]")?.textContent ?? "",
+      group: row.closest("table")?.querySelector("caption")?.textContent ?? "",
       ratio: Number(row.getAttribute("data-ratio")),
       pass: row.getAttribute("data-pass") === "true",
     })),
@@ -49,4 +49,12 @@ test("themes actually differ (audit re-measures on switch)", async ({ page }) =>
   await expect
     .poll(async () => (await auditResults(page))[0]?.ratio)
     .not.toBe(light[0]?.ratio);
+});
+
+test("the audit is a real table screen readers can navigate", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("tab", { name: "Foundations" }).click();
+  const buttonTable = page.getByRole("table", { name: "Button" });
+  await expect(buttonTable.getByRole("columnheader", { name: "Contrast ratio" })).toBeAttached();
+  await expect(buttonTable.getByRole("rowheader", { name: /Primary label/ }).first()).toBeVisible();
 });

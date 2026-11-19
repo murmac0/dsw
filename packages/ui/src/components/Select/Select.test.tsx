@@ -41,4 +41,13 @@ describe("Select", () => {
       "Portugal",
     );
   });
+
+  it("announces required on the trigger (a button can't carry `required`)", () => {
+    render(
+      <Select label="Country" isRequired>
+        <SelectItem id="ie">Ireland</SelectItem>
+      </Select>,
+    );
+    expect(screen.getByRole("button", { name: /Country, required/ })).toBeInTheDocument();
+  });
 });

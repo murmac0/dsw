@@ -3,10 +3,12 @@ import { useState } from "react";
 import {
   Button,
   Checkbox,
+  CheckboxGroup,
   Dialog,
   DialogBody,
   DialogFooter,
   DialogTrigger,
+  Fieldset,
   Radio,
   RadioGroup,
   Select,
@@ -63,7 +65,7 @@ const styles = stylex.create({
   card: {
     display: "flex",
     flexDirection: "column",
-    gap: space.lg,
+    gap: space.xl,
     maxWidth: size.formMax,
     padding: { default: space.xl, [breakpoints.mobile]: space.lg },
     borderRadius: radius.lg,
@@ -126,7 +128,7 @@ function ControlledExample() {
   return (
     <div {...stylex.props(styles.grid)}>
       <div {...stylex.props(styles.stack)}>
-        <TextField label="Name" value={name} onChange={setName} />
+        <TextField label="Name" autoComplete="name" value={name} onChange={setName} />
         <Select label="Country" value={country} onChange={setCountry}>
           <SelectItem id="ie">Ireland</SelectItem>
           <SelectItem id="nz">New Zealand</SelectItem>
@@ -186,6 +188,65 @@ function ControlledExample() {
 }
 
 /**
+ * A real loading interaction rather than a button stuck spinning forever:
+ * moving content that runs over 5s needs a pause control (WCAG 2.2.2),
+ * and in real use a spinner only shows while work is in progress.
+ */
+function LoadingDemo() {
+  const [isLoading, setIsLoading] = useState(false);
+  return (
+    <Button
+      variant="secondary"
+      isLoading={isLoading}
+      onPress={() => {
+        setIsLoading(true);
+        window.setTimeout(() => setIsLoading(false), 3000);
+      }}
+    >
+      Save draft
+    </Button>
+  );
+}
+
+/** `section` scopes autocomplete so browsers fill the right address (1.3.5). */
+function AddressFields({ section }: { section: "shipping" | "billing" }) {
+  return (
+    <>
+      <TextField label="Street" autoComplete={`${section} street-address`} />
+      <TextField label="City" autoComplete={`${section} address-level2`} />
+    </>
+  );
+}
+
+/**
+ * Two groups that both contain "Street" and "City": the legend is what
+ * tells a screen reader user which one they're in. One prop disables the
+ * whole billing group.
+ */
+function FieldsetExample() {
+  const [sameAsShipping, setSameAsShipping] = useState(true);
+  return (
+    <div {...stylex.props(styles.grid)}>
+      <Fieldset
+        legend="Shipping address"
+        description="Where we send your order."
+        variant="boxed"
+      >
+        <AddressFields section="shipping" />
+      </Fieldset>
+      <div {...stylex.props(styles.stack)}>
+        <Checkbox isSelected={sameAsShipping} onChange={setSameAsShipping}>
+          Billing address is the same as shipping
+        </Checkbox>
+        <Fieldset legend="Billing address" variant="boxed" isDisabled={sameAsShipping}>
+          <AddressFields section="billing" />
+        </Fieldset>
+      </div>
+    </div>
+  );
+}
+
+/**
  * Every control in one realistic flow — the test of whether these read as
  * one system: shared label/description/error anatomy, one focus ring, one
  * set of tokens.
@@ -205,26 +266,50 @@ function ComposedExample() {
       }}
     >
       <h3 {...stylex.props(styles.cardTitle)}>Workspace settings</h3>
-      <TextField label="Workspace name" defaultValue="Acme" isRequired />
-      <TextField
-        label="Billing email"
-        name="email"
-        type="email"
-        isRequired
-        description="Invoices are sent here."
-        errorMessage="Enter a valid email address."
-      />
-      <Select label="Region" defaultValue="eu">
-        <SelectItem id="eu">Europe (Frankfurt)</SelectItem>
-        <SelectItem id="us">United States (Virginia)</SelectItem>
-        <SelectItem id="ap">Asia Pacific (Sydney)</SelectItem>
-      </Select>
-      <RadioGroup label="Plan" defaultValue="pro" orientation="horizontal">
-        <Radio value="free">Free</Radio>
-        <Radio value="pro">Pro</Radio>
-        <Radio value="team">Team</Radio>
-      </RadioGroup>
-      <Switch defaultSelected>Email me product updates</Switch>
+      <Fieldset legend="Workspace">
+        <TextField
+          label="Workspace name"
+          autoComplete="organization"
+          defaultValue="Acme"
+          isRequired
+        />
+        <Select label="Region" defaultValue="eu">
+          <SelectItem id="eu">Europe (Frankfurt)</SelectItem>
+          <SelectItem id="us">United States (Virginia)</SelectItem>
+          <SelectItem id="ap">Asia Pacific (Sydney)</SelectItem>
+        </Select>
+      </Fieldset>
+      <Fieldset legend="Billing">
+        <TextField
+          label="Billing email"
+          name="email"
+          type="email"
+          autoComplete="billing email"
+          isRequired
+          description="Invoices are sent here."
+          errorMessage="Enter a valid email address."
+        />
+        <RadioGroup label="Plan" defaultValue="pro" orientation="horizontal">
+          <Radio value="free">Free</Radio>
+          <Radio value="pro">Pro</Radio>
+          <Radio value="team">Team</Radio>
+        </RadioGroup>
+      </Fieldset>
+      <Fieldset legend="Notifications">
+        <CheckboxGroup
+          label="Notify me by"
+          name="channels"
+          defaultValue={["email"]}
+          isRequired
+          orientation="horizontal"
+          errorMessage="Choose at least one channel."
+        >
+          <Checkbox value="email">Email</Checkbox>
+          <Checkbox value="sms">SMS</Checkbox>
+          <Checkbox value="push">Push</Checkbox>
+        </CheckboxGroup>
+        <Switch defaultSelected>Email me product updates</Switch>
+      </Fieldset>
       <Checkbox isRequired>I agree to the terms</Checkbox>
       <div {...stylex.props(styles.row)}>
         <Button type="submit">Save changes</Button>
@@ -285,14 +370,14 @@ export function ComponentsPage() {
         <div {...stylex.props(styles.row)}>
           <Button>Default</Button>
           <Button isDisabled>Disabled</Button>
-          <Button isLoading>Loading</Button>
+          <LoadingDemo />
         </div>
       </section>
 
       <section {...stylex.props(styles.section)}>
         <h2 {...stylex.props(styles.heading)}>TextField</h2>
         <div {...stylex.props(styles.grid)}>
-          <TextField label="Name" placeholder="Ada Lovelace" />
+          <TextField label="Name" autoComplete="name" placeholder="Ada Lovelace" />
           <TextField label="Email" description="We never share it." isRequired />
           <TextField
             label="Username"
@@ -340,6 +425,40 @@ export function ComponentsPage() {
             </Radio>
           </RadioGroup>
         </div>
+      </section>
+
+      <section {...stylex.props(styles.section)}>
+        <h2 {...stylex.props(styles.heading)}>CheckboxGroup</h2>
+        <div {...stylex.props(styles.grid)}>
+          <CheckboxGroup
+            label="Notify me by"
+            description="We'll only message you about your orders."
+            defaultValue={["email"]}
+          >
+            <Checkbox value="email">Email</Checkbox>
+            <Checkbox value="sms">SMS</Checkbox>
+            <Checkbox value="push">Push notifications</Checkbox>
+          </CheckboxGroup>
+          <CheckboxGroup
+            label="Interests"
+            isInvalid
+            errorMessage="Choose at least one."
+            orientation="horizontal"
+          >
+            <Checkbox value="design">Design</Checkbox>
+            <Checkbox value="code">Code</Checkbox>
+            <Checkbox value="ops">Ops</Checkbox>
+          </CheckboxGroup>
+        </div>
+      </section>
+
+      <section {...stylex.props(styles.section)}>
+        <h2 {...stylex.props(styles.heading)}>Fieldset</h2>
+        <p {...stylex.props(styles.note)}>
+          Groups related fields under one announced legend. Tick and untick
+          the checkbox: one prop disables every control in the group.
+        </p>
+        <FieldsetExample />
       </section>
 
       <section {...stylex.props(styles.section)}>

@@ -72,4 +72,13 @@ describe("Button", () => {
       expect(screen.getByRole("button", { name: variant })).toBeVisible();
     }
   });
+
+  it("only renders a loading live region for buttons that can load", () => {
+    const { rerender } = render(<Button>Save</Button>);
+    expect(screen.queryByRole("status")).not.toBeInTheDocument();
+
+    // Present (and empty) before loading starts, so the change is announced.
+    rerender(<Button isLoading={false}>Save</Button>);
+    expect(screen.getByRole("status")).toBeEmptyDOMElement();
+  });
 });

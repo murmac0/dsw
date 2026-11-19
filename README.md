@@ -5,7 +5,7 @@ two-tier design token system with light/dark theming, and an interactive
 documentation/playground app — built as a demonstration of frontend
 platform engineering.
 
-See [ARCHITECTURE.md](./ARCHITECTURE.md) for the reasoning behind the
+See [ACCESSIBILITY.md](./ACCESSIBILITY.md) for the WCAG 2.2 AA review and how it's enforced, and [ARCHITECTURE.md](./ARCHITECTURE.md) for the reasoning behind the
 non-obvious decisions (StyleX's compiler constraints, token tiering, the
 accessibility pattern behind `Button`'s loading state, and the environment
 version pins).
@@ -43,6 +43,6 @@ pnpm --filter @dsw/workbench test:e2e
 | Package | What it is |
 |---|---|
 | [`apps/workbench`](./apps/workbench) | Interactive docs site: Components / Foundations / Playground |
-| [`packages/ui`](./packages/ui) | Accessible React components: Button, TextField, Select, Checkbox, Switch, RadioGroup, Dialog |
+| [`packages/ui`](./packages/ui) | Accessible React components: Button, TextField, Select, Checkbox, CheckboxGroup, Switch, RadioGroup, Fieldset, Dialog |
 | [`packages/tokens`](./packages/tokens) | Three-tier tokens (primitive → semantic → component), three brands (Iris, Volt, Bloom) × light/dark, fonts, contrast audit; no React dependency |
 | [`packages/eslint-config`](./packages/eslint-config) | Shared flat ESLint config |

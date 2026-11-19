@@ -6,6 +6,7 @@ import {
   type CheckboxProps as AriaCheckboxProps,
 } from "react-aria-components";
 import { selectionStyles as s } from "./Checkbox.styles";
+import { useInheritedDisabled } from "../Fieldset/FieldsetContext";
 
 export interface CheckboxProps
   extends Omit<AriaCheckboxProps, "children" | "className" | "style"> {
@@ -22,9 +23,11 @@ export interface CheckboxProps
  */
 export const Checkbox = forwardRef<HTMLLabelElement, CheckboxProps>(
   function Checkbox({ children, ...rest }, ref) {
+    const isDisabled = useInheritedDisabled(rest.isDisabled);
     return (
       <AriaCheckbox
         {...rest}
+        {...(isDisabled !== undefined && { isDisabled })}
         ref={ref}
         className={(rp) =>
           stylex.props(s.root, rp.isDisabled && s.rootDisabled).className ?? ""

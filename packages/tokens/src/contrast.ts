@@ -1,6 +1,7 @@
 import {
   buttonTokens,
   dialogTokens,
+  fieldsetTokens,
   fieldTokens,
   menuTokens,
   selectionTokens,
@@ -88,6 +89,17 @@ export const contrastPairs: readonly ContrastPair[] = [
   pair("Field", "Invalid border", "ui", fieldTokens.borderInvalid, fieldTokens.bg),
   pair("Field", "Focus border", "ui", fieldTokens.borderFocus, fieldTokens.bg),
   pair("Field", "Chevron icon", "ui", fieldTokens.icon, fieldTokens.bg),
+
+  // Fieldset (plain on canvas; boxed on its own bg)
+  pair("Fieldset", "Legend on canvas", "text", fieldsetTokens.legend, color.bgCanvas),
+  pair("Fieldset", "Legend, boxed", "text", fieldsetTokens.legend, fieldsetTokens.bg),
+  pair("Fieldset", "Description on canvas", "text", fieldsetTokens.description, color.bgCanvas),
+  pair("Fieldset", "Description, boxed", "text", fieldsetTokens.description, fieldsetTokens.bg),
+  pair("Fieldset", "Group error on canvas", "text", fieldsetTokens.error, color.bgCanvas),
+  pair("Fieldset", "Group error, boxed", "text", fieldsetTokens.error, fieldsetTokens.bg),
+  // Form controls also sit on a boxed fieldset's background.
+  pair("Fieldset", "Field border, boxed", "ui", fieldTokens.border, fieldsetTokens.bg),
+  pair("Fieldset", "Checkbox border, boxed", "ui", selectionTokens.border, fieldsetTokens.bg),
 
   // Checkbox / Radio
   pair("Selection", "Label on canvas", "text", selectionTokens.label, color.bgCanvas),

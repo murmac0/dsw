@@ -7,7 +7,6 @@ import {
   type RadioGroupProps as AriaRadioGroupProps,
   type RadioProps as AriaRadioProps,
 } from "react-aria-components";
-import { space } from "@dsw/tokens/semantic.stylex";
 import { selectionStyles as s } from "../Checkbox/Checkbox.styles";
 import {
   FieldDescription,
@@ -15,21 +14,8 @@ import {
   FieldLabel,
   type FieldProps,
 } from "../Field/Field";
-import { fieldStyles } from "../Field/Field.styles";
-
-const groupStyles = stylex.create({
-  options: {
-    display: "flex",
-    flexDirection: "column",
-    gap: space.sm,
-    paddingBlock: space.xxs,
-  },
-  horizontal: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    columnGap: space.xl,
-  },
-});
+import { fieldStyles, optionGroupStyles as groupStyles } from "../Field/Field.styles";
+import { useInheritedDisabled } from "../Fieldset/FieldsetContext";
 
 export interface RadioGroupProps
   extends Omit<AriaRadioGroupProps, "children" | "className" | "style">,
@@ -48,14 +34,16 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
     { label, description, errorMessage, children, orientation = "vertical", ...rest },
     ref,
   ) {
+    const isDisabled = useInheritedDisabled(rest.isDisabled);
     return (
       <AriaRadioGroup
         {...rest}
+        {...(isDisabled !== undefined && { isDisabled })}
         ref={ref}
         orientation={orientation}
         {...stylex.props(fieldStyles.root)}
       >
-        <FieldLabel isRequired={rest.isRequired} isDisabled={rest.isDisabled}>
+        <FieldLabel isRequired={rest.isRequired} isDisabled={isDisabled}>
           {label}
         </FieldLabel>
         <div

@@ -16,12 +16,19 @@ async function primaryButtonStyle(page: Page) {
 }
 
 test("each brand restyles components, not just colours", async ({ page }) => {
+  // Reduced motion zeroes the colour transitions, and each read waits for
+  // the brand to land on <html>, so nothing is measured mid-transition.
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
+  const html = page.locator("html");
 
+  await expect(html).toHaveAttribute("data-brand", "iris");
   const iris = await primaryButtonStyle(page);
   await page.getByRole("radio", { name: "Volt", exact: true }).click();
+  await expect(html).toHaveAttribute("data-brand", "volt");
   const volt = await primaryButtonStyle(page);
   await page.getByRole("radio", { name: "Bloom", exact: true }).click();
+  await expect(html).toHaveAttribute("data-brand", "bloom");
   const bloom = await primaryButtonStyle(page);
 
   // Volt: square, 2px outline, uppercase mono, hard offset shadow.
@@ -61,4 +68,19 @@ test("dialogs and menus pick up the brand (portaled content)", async ({ page }) 
     .getByRole("dialog", { name: "Invite teammates" })
     .evaluate((el) => getComputedStyle(el.parentElement!).borderTopLeftRadius);
   expect(radius).toBe("0px");
+});
+
+test("checkboxes stay distinguishable from radios in every brand", async ({ page }) => {
+  await page.goto("/");
+  for (const brand of ["Iris", "Volt", "Bloom"]) {
+    await page.getByRole("radio", { name: brand, exact: true }).click();
+    // The visible box is the label's aria-hidden indicator span.
+    const box = page
+      .getByRole("checkbox", { name: "Checked", exact: true })
+      .locator("xpath=ancestor::label[1]/span[@aria-hidden='true'][1]");
+    const radius = await box.evaluate((el) => parseFloat(getComputedStyle(el).borderTopLeftRadius));
+    const width = await box.evaluate((el) => el.getBoundingClientRect().width);
+    // Well short of a circle (radius ≥ half the width).
+    expect(radius, brand).toBeLessThan(width / 3);
+  }
 });

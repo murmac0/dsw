@@ -147,6 +147,18 @@ export const dialogTokens = stylex.defineVars({
   body: color.fgMuted,
 });
 
+/** Fieldset: a labelled group of related fields. */
+export const fieldsetTokens = stylex.defineVars({
+  legend: color.fgDefault,
+  description: color.fgMuted,
+  error: color.fgDanger,
+  /** Boxed variant only. Decorative: the legend identifies the group. */
+  bg: color.bgSurface,
+  border: color.borderDefault,
+  borderInvalid: color.dangerDefault,
+  disabledLegend: color.fgDisabled,
+});
+
 /* ------------------------------------------------------------------ */
 /* Shape: per-brand, mode-independent                                  */
 /* ------------------------------------------------------------------ */
@@ -171,8 +183,14 @@ export const fieldShape = stylex.defineVars({
 });
 
 export const selectionShape = stylex.defineVars({
-  /** Checkbox corner. Radios are always circles. */
-  boxRadius: radius.sm,
+  /**
+   * Checkbox corner. Deliberately *not* the brand radius scale: a rounder
+   * brand (Bloom's sm is 8px) would turn an 18px box into a near-circle
+   * that reads as a radio button. The square-vs-round shape is how users
+   * tell multi-select from single-select, so it stays square-ish
+   * everywhere. Radios are always circles.
+   */
+  boxRadius: "5px",
   borderWidth: borderWidth.thick,
 });
 
@@ -192,4 +210,14 @@ export const menuShape = stylex.defineVars({
 export const dialogShape = stylex.defineVars({
   radius: radius.xl,
   borderWidth: borderWidth.thin,
+});
+
+export const fieldsetShape = stylex.defineVars({
+  /** Boxed variant. */
+  radius: radius.lg,
+  borderWidth: borderWidth.thin,
+  shadow: "none",
+  legendFont: fontFamily.display,
+  legendWeight: fontWeight.bold,
+  legendLetterSpacing: letterSpacing.tight,
 });

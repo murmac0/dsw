@@ -7,6 +7,7 @@ import {
   useLocale,
 } from "react-aria-components";
 import {
+  borderWidth,
   color,
   focus,
   fontSize,
@@ -15,6 +16,8 @@ import {
   space,
 } from "@dsw/tokens/semantic.stylex";
 import { switchShape as shape, switchTokens as t } from "@dsw/tokens/components.stylex";
+import { breakpoints } from "@dsw/tokens/breakpoints.stylex";
+import { useInheritedDisabled } from "../Fieldset/FieldsetContext";
 
 const styles = stylex.create({
   root: {
@@ -37,31 +40,44 @@ const styles = stylex.create({
     width: size.switchTrackWidth,
     height: size.switchTrackHeight,
     borderRadius: shape.trackRadius,
-    backgroundColor: t.trackOff,
+    // The track and thumb are pure fills, which forced-colour modes strip.
+    // Opt out and redraw them in system colours so state stays visible.
+    forcedColorAdjust: "none",
+    backgroundColor: { default: t.trackOff, [breakpoints.forcedColors]: "Canvas" },
     // Edge drawn outside the track (spread shadow) so layout never shifts.
-    boxShadow: `0 0 0 ${shape.edgeWidth} ${t.trackOffEdge}`,
+    boxShadow: {
+      default: `0 0 0 ${shape.edgeWidth} ${t.trackOffEdge}`,
+      [breakpoints.forcedColors]: `inset 0 0 0 ${borderWidth.thin} CanvasText`,
+    },
     transitionProperty: "background-color",
     transitionDuration: motion.medium,
     transitionTimingFunction: motion.easeOut,
   },
   trackHovered: {
-    backgroundColor: t.trackOffHover,
+    backgroundColor: { default: t.trackOffHover, [breakpoints.forcedColors]: "Canvas" },
   },
   trackSelected: {
-    backgroundColor: t.trackOn,
-    boxShadow: `0 0 0 ${shape.edgeWidth} ${t.trackOnEdge}`,
+    backgroundColor: { default: t.trackOn, [breakpoints.forcedColors]: "Highlight" },
+    boxShadow: {
+      default: `0 0 0 ${shape.edgeWidth} ${t.trackOnEdge}`,
+      [breakpoints.forcedColors]: "none",
+    },
   },
   trackSelectedHovered: {
-    backgroundColor: t.trackOnHover,
+    backgroundColor: { default: t.trackOnHover, [breakpoints.forcedColors]: "Highlight" },
   },
   trackDisabled: {
-    backgroundColor: t.trackDisabled,
+    backgroundColor: { default: t.trackDisabled, [breakpoints.forcedColors]: "Canvas" },
+    boxShadow: {
+      default: null,
+      [breakpoints.forcedColors]: `inset 0 0 0 ${borderWidth.thin} GrayText`,
+    },
   },
   trackFocusVisible: {
     outlineStyle: "solid",
     outlineWidth: focus.width,
     outlineOffset: focus.offset,
-    outlineColor: color.borderFocus,
+    outlineColor: { default: color.borderFocus, [breakpoints.forcedColors]: "Highlight" },
   },
   thumb: {
     position: "absolute",
@@ -70,8 +86,9 @@ const styles = stylex.create({
     width: size.switchThumb,
     height: size.switchThumb,
     borderRadius: shape.thumbRadius,
-    backgroundColor: t.thumb,
-    boxShadow: t.thumbShadow,
+    forcedColorAdjust: "none",
+    backgroundColor: { default: t.thumb, [breakpoints.forcedColors]: "CanvasText" },
+    boxShadow: { default: t.thumbShadow, [breakpoints.forcedColors]: "none" },
     transitionProperty: "transform",
     // Reduced motion is handled by the motion token itself.
     transitionDuration: motion.medium,
@@ -80,7 +97,10 @@ const styles = stylex.create({
   // Travel = track width − thumb − 2 × inset, derived from tokens so the
   // thumb stays aligned if the switch size tokens change.
   thumbOn: {
-    backgroundColor: t.thumbOn,
+    backgroundColor: { default: t.thumbOn, [breakpoints.forcedColors]: "HighlightText" },
+  },
+  thumbDisabled: {
+    backgroundColor: { default: null, [breakpoints.forcedColors]: "GrayText" },
   },
   thumbSelected: {
     transform: `translateX(calc(${size.switchTrackWidth} - ${size.switchThumb} - 2 * ${space.xxs}))`,
@@ -108,9 +128,11 @@ export const Switch = forwardRef<HTMLLabelElement, SwitchProps>(function Switch(
   ref,
 ) {
   const { direction } = useLocale();
+  const isDisabled = useInheritedDisabled(rest.isDisabled);
   return (
     <AriaSwitch
       {...rest}
+      {...(isDisabled !== undefined && { isDisabled })}
       ref={ref}
       className={(rp) =>
         stylex.props(styles.root, rp.isDisabled && styles.rootDisabled).className ?? ""
@@ -133,6 +155,7 @@ export const Switch = forwardRef<HTMLLabelElement, SwitchProps>(function Switch(
               {...stylex.props(
                 styles.thumb,
                 rp.isSelected && styles.thumbOn,
+                rp.isDisabled && styles.thumbDisabled,
                 rp.isSelected &&
                   (direction === "rtl" ? styles.thumbSelectedRtl : styles.thumbSelected),
               )}

@@ -200,15 +200,19 @@ const ramps = ["iris", "coral", "rose", "mint", "amber", "ink"] as const;
 const rampValue = (family: string, step: number) =>
   (colorPrimitives as Record<string, string>)[`${family}${step}`] ?? "";
 
-/** Chip label: whichever of white / ink950 contrasts more with the chip. */
+/**
+ * Chip label: pure black or pure white, whichever contrasts more. One of
+ * the two always reaches ≥4.58:1 against any colour, so this can never
+ * fail 4.5:1. (A softer ink950 can: mint600 tops out at 4.3:1.)
+ */
 function labelFor(bg: string): string {
   const b = parseColor(bg);
   const light = parseColor(colorPrimitives.white);
-  const dark = parseColor(colorPrimitives.ink950);
-  if (!b || !light || !dark) return colorPrimitives.ink950;
+  const dark = parseColor(colorPrimitives.black);
+  if (!b || !light || !dark) return colorPrimitives.black;
   return contrastRatio(light, b) >= contrastRatio(dark, b)
     ? colorPrimitives.white
-    : colorPrimitives.ink950;
+    : colorPrimitives.black;
 }
 
 const colorSwatches: Step[] = [

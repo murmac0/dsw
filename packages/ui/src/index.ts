@@ -8,10 +8,16 @@ export type {
 export { Checkbox } from "./components/Checkbox";
 export type { CheckboxProps } from "./components/Checkbox";
 
+export { CheckboxGroup } from "./components/CheckboxGroup";
+export type { CheckboxGroupProps } from "./components/CheckboxGroup";
+
 export { Dialog, DialogBody, DialogFooter, DialogTrigger } from "./components/Dialog";
 export type { DialogProps, DialogSize } from "./components/Dialog";
 
 export type { FieldProps } from "./components/Field";
+
+export { Fieldset, useInheritedDisabled } from "./components/Fieldset";
+export type { FieldsetProps, FieldsetVariant } from "./components/Fieldset";
 
 export { Radio, RadioGroup } from "./components/RadioGroup";
 export type { RadioGroupProps, RadioProps } from "./components/RadioGroup";

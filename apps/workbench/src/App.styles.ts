@@ -65,9 +65,9 @@ export const styles = stylex.create({
     margin: 0,
     paddingBlock: space.sm,
     paddingInline: space.gutter,
-    // Phones: tabs scroll sideways rather than wrapping or overflowing.
-    overflowX: "auto",
-    scrollbarWidth: "none",
+    // Wrap rather than scroll: a hidden-scrollbar strip gave no cue that a
+    // tab was off-screen at 320px (WCAG 1.4.10 reflow).
+    flexWrap: "wrap",
     borderBottomWidth: borderWidth.thin,
     borderBottomStyle: "solid",
     borderBottomColor: color.borderDefault,
@@ -89,8 +89,14 @@ export const styles = stylex.create({
     backgroundColor: color.bgHover,
   },
   tabSelected: {
-    color: color.fgAccent,
-    backgroundColor: color.bgAccentSubtle,
+    // Selection is a fill, which forced-colour modes strip: repaint it in
+    // system Highlight colours there.
+    forcedColorAdjust: "none",
+    color: { default: color.fgAccent, [breakpoints.forcedColors]: "HighlightText" },
+    backgroundColor: {
+      default: color.bgAccentSubtle,
+      [breakpoints.forcedColors]: "Highlight",
+    },
   },
   tabFocusVisible: {
     outlineStyle: "solid",

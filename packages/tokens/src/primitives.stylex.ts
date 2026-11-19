@@ -185,6 +185,7 @@ export const durationPrimitives = stylex.defineConsts({
   ms150: "150ms",
   ms180: "180ms",
   ms700: "700ms",
+  ms1800: "1800ms",
 });
 
 export const easingPrimitives = stylex.defineConsts({

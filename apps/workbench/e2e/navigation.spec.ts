@@ -46,12 +46,20 @@ test("blocks a loading button from activating while staying focusable", async ({
   // specific, deliberate part of this component's contract: the native
   // `disabled` IDL property stays false, so the element remains
   // focusable/tabbable even though it reads as disabled semantically.
-  const loadingButton = page.getByRole("button", { name: "Loading" });
+  const loadingButton = page.getByRole("button", { name: "Save draft" });
+  await loadingButton.click();
+  // Name unchanged while loading ("Save draft", not "Save draft Loading").
+  await expect(loadingButton).toHaveAttribute("aria-disabled", "true");
+  await expect(page.getByRole("status").filter({ hasText: "Loading" })).toHaveCount(1);
   await expect(loadingButton).toHaveJSProperty("disabled", false);
 
   await loadingButton.focus();
   await expect(loadingButton).toBeFocused();
 
   await loadingButton.click({ force: true });
+  await expect(loadingButton).toBeFocused();
+
+  // The demo stops on its own in under 5s (WCAG 2.2.2), keeping focus.
+  await expect(loadingButton).not.toHaveAttribute("aria-disabled", "true", { timeout: 4000 });
   await expect(loadingButton).toBeFocused();
 });

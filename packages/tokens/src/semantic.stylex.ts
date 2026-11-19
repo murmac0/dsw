@@ -210,8 +210,8 @@ export const lineHeight = stylex.defineVars({
 /**
  * Motion. Durations collapse to 0ms under prefers-reduced-motion here, at
  * the token level, so every transition and entrance animation in the
- * system respects it automatically. `spin` is exempt: a loading spinner
- * is a functional status indicator, not decorative motion.
+ * system respects it automatically. `spin` slows rather than stops: a
+ * loading spinner is a functional status indicator, not decoration.
  */
 export const motion = stylex.defineVars({
   fast: {
@@ -226,7 +226,15 @@ export const motion = stylex.defineVars({
     default: durationPrimitives.ms180,
     "@media (prefers-reduced-motion: reduce)": durationPrimitives.ms0,
   },
-  spin: durationPrimitives.ms700,
+  /**
+   * Loading spinners keep turning under reduced motion (they're a status
+   * indicator, so stopping them would hide that work is happening), but
+   * at less than half the speed.
+   */
+  spin: {
+    default: durationPrimitives.ms700,
+    "@media (prefers-reduced-motion: reduce)": durationPrimitives.ms1800,
+  },
   easeOut: easingPrimitives.easeOut,
   emphasized: easingPrimitives.emphasized,
   linear: easingPrimitives.linear,

@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "react-aria-components";
 import {
+  focus,
   fontSize,
   fontWeight,
   motion,
@@ -20,6 +21,7 @@ import {
   zIndex,
 } from "@dsw/tokens/semantic.stylex";
 import { fieldTokens, menuShape as shape, menuTokens as t } from "@dsw/tokens/components.stylex";
+import { breakpoints } from "@dsw/tokens/breakpoints.stylex";
 import {
   FieldDescription,
   FieldError,
@@ -27,6 +29,7 @@ import {
   type FieldProps,
 } from "../Field/Field";
 import { fieldStyles } from "../Field/Field.styles";
+import { useInheritedDisabled } from "../Fieldset/FieldsetContext";
 
 const styles = stylex.create({
   trigger: {
@@ -95,6 +98,11 @@ const styles = stylex.create({
   // selected row.
   itemFocused: {
     backgroundColor: t.itemBgHover,
+    // Keyboard focus in the listbox is otherwise only a background, which
+    // forced-colour modes strip. An inset outline survives (as CanvasText).
+    outlineStyle: { default: null, [breakpoints.forcedColors]: "solid" },
+    outlineWidth: { default: null, [breakpoints.forcedColors]: focus.width },
+    outlineOffset: { default: null, [breakpoints.forcedColors]: `calc(-1 * ${focus.width})` },
   },
   itemDisabled: {
     cursor: "not-allowed",
@@ -117,11 +125,17 @@ function SelectInner<T extends object>(
   { label, description, errorMessage, items, children, ...rest }: SelectProps<T>,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
+  const inheritedDisabled = useInheritedDisabled(rest.isDisabled);
   return (
-    <AriaSelect {...rest} ref={ref} {...stylex.props(fieldStyles.root)}>
+    <AriaSelect
+      {...rest}
+      {...(inheritedDisabled !== undefined && { isDisabled: inheritedDisabled })}
+      ref={ref}
+      {...stylex.props(fieldStyles.root)}
+    >
       {({ isOpen, isDisabled, isInvalid }) => (
         <>
-          <FieldLabel isRequired={rest.isRequired} isDisabled={isDisabled}>
+          <FieldLabel isRequired={rest.isRequired} isDisabled={isDisabled} announceRequired>
             {label}
           </FieldLabel>
           <AriaButton
