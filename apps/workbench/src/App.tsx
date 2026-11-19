@@ -11,6 +11,7 @@ import { styles } from "./App.styles";
 import { ComponentsPage } from "./pages/ComponentsPage";
 import { FoundationsPage } from "./pages/FoundationsPage";
 import { PlaygroundPage } from "./pages/PlaygroundPage";
+import { SettingsPage } from "./pages/SettingsPage";
 import { BrandSwitcher } from "./theme/BrandSwitcher";
 import { useTheme } from "./theme/ThemeProvider";
 
@@ -56,6 +57,9 @@ export function App() {
         <Tab id="playground" className={getTabClassName}>
           Playground
         </Tab>
+        <Tab id="example" className={getTabClassName}>
+          Example page
+        </Tab>
       </TabList>
 
       <main {...stylex.props(styles.main)}>
@@ -67,6 +71,9 @@ export function App() {
         </TabPanel>
         <TabPanel id="playground">
           <PlaygroundPage />
+        </TabPanel>
+        <TabPanel id="example">
+          <SettingsPage />
         </TabPanel>
       </main>
     </Tabs>

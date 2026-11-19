@@ -45,6 +45,22 @@ test("the selected tab is painted differently from an unselected one", async ({
   expect((await shot(tab)).equals(selected)).toBe(false);
 });
 
+test("a @dsw/ui Tab's selected state is painted", async ({ page }) => {
+  await page.getByRole("tab", { name: "Example page" }).click();
+  const tab = page.getByRole("tab", { name: "General" });
+  const selected = await shot(tab);
+  await page.getByRole("tab", { name: "Members" }).click();
+  await expect(tab).toHaveAttribute("aria-selected", "false");
+  expect((await shot(tab)).equals(selected)).toBe(false);
+});
+
+test("a Badge keeps a visible outline", async ({ page }) => {
+  await page.getByRole("tab", { name: "Example page" }).click();
+  const badge = page.getByText("Pro plan", { exact: true });
+  const width = await badge.evaluate((el) => getComputedStyle(el).borderTopWidth);
+  expect(parseFloat(width)).toBeGreaterThan(0);
+});
+
 test("the selected brand is painted differently", async ({ page }) => {
   const iris = page.getByRole("radio", { name: "Iris", exact: true });
   const selected = await shot(iris);

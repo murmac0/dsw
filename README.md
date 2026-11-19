@@ -43,7 +43,7 @@ pnpm --filter @dsw/workbench test:e2e
 | Package | What it is |
 |---|---|
 | [`apps/workbench`](./apps/workbench) | Interactive docs site: Components / Foundations / Playground |
-| [`packages/ui`](./packages/ui) | Accessible React components: Button, TextField, Select, Checkbox, CheckboxGroup, Switch, RadioGroup, Fieldset, Dialog |
+| [`packages/ui`](./packages/ui) | Accessible React components. Layout: Container, Stack, Inline, Grid. Type: Heading, Text. Controls: Button, Link, TextField, Select, Checkbox, CheckboxGroup, Switch, RadioGroup, Fieldset. Content: Card, Badge, Alert, Tabs, Dialog |
 | [`packages/tokens`](./packages/tokens) | Three-tier tokens (primitive → semantic → component), three brands (Iris, Volt, Bloom) × light/dark, fonts, contrast audit; no React dependency |
 | [`packages/mcp`](./packages/mcp) | MCP server for coding agents: components, tokens per brand × mode, contrast, style linting |
 | [`packages/eslint-config`](./packages/eslint-config) | Shared flat ESLint config, including the `dsw/no-raw-style-values` token rule |

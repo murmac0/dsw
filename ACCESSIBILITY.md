@@ -53,11 +53,32 @@ Earlier rounds also fixed:
 - Low-contrast text in several places: the dark danger button, gradient
   text, and the Volt invalid border.
 
+## Page-building components: decisions
+
+Layout, typography, Card, Link, Badge, Alert and Tabs were added to
+compose whole pages. Each choice is tested in the E2E suite, and the
+example settings page is scanned by axe in every brand and mode.
+
+| Component | Decision | WCAG |
+|---|---|---|
+| Heading | `level` is required and separate from `size`, so a design can't pick a level for its looks | 1.3.1, 2.4.6 |
+| Link | Always underlined, so links are found without colour. `isExternal` adds "(opens in a new tab)" to the accessible name and `rel="noopener noreferrer"` | 1.4.1, 3.2.5 |
+| Alert | Tone carried three ways: colour, a different icon *shape*, and a visually hidden "Warning:" prefix (localisable). Not a live region by default; `announce` gives `role="status"` (info, success) or `role="alert"` (warning, danger) for messages that appear after an action | 1.4.1, 4.1.3 |
+| Badge | Plain text, never a live region. Gets an outline under forced colours, where its wash disappears | 1.4.1, 1.4.11 |
+| Tabs | React Aria keyboard model (arrows, Home/End, disabled tabs skipped). The selected bar is a border with `forced-color-adjust: none`, painted `Highlight` under forced colours. Tabs wrap instead of scrolling | 1.4.10, 1.4.11, 2.1.1 |
+| Card | Not a landmark unless `as="section"` with a title, so a page of cards doesn't flood the landmark list. Form controls inside a card are contrast-checked against the card surface | 1.3.1, 1.4.11 |
+| Stack / Inline / Grid | Rendering as `ul`/`ol` keeps list semantics (item counts announced) without bullets. Inline wraps by default and Grid collapses to one column on phones | 1.3.1, 1.4.10 |
+
+Status colours (`fgWarning`, and success, warning and danger washes) were
+added to the semantic layer in every theme, each carrying its text at
+4.5:1. Volt's acid lime is ~1.1:1 on paper, so Volt's selected-tab bar is
+ink, not lime.
+
 ## Results
 
 - axe-core: **0 violations** at WCAG 2.2 A/AA, across all pages, open
   overlays, brands and modes.
-- Contrast audit: **all 66 pairings pass** in all 6 combinations.
+- Contrast audit: **all 109 pairings pass** in all 6 combinations.
 - Forced colours: switch, radio, tab and menu-focus states are painted.
   These tests were checked: they fail with the fixes disabled.
 - Reflow and zoom: no horizontal scroll at 320px and 640px in any brand.

@@ -1,7 +1,14 @@
 import * as stylex from "@stylexjs/stylex";
 import {
+  alertShape,
+  alertTokens,
+  badgeShape,
+  badgeTokens,
   buttonShape,
   buttonTokens,
+  linkShape,
+  tabsShape,
+  tabsTokens,
   fieldsetShape,
   selectionShape,
   fieldTokens,
@@ -39,6 +46,9 @@ const colorLight = stylex.createTheme(color, {
   bgSurfaceRaised: v.paperDeep,
   bgHover: v.paperDeep,
   bgAccentSubtle: v.limeWash,
+  bgSuccessSubtle: v.greenWash,
+  bgWarningSubtle: v.orangeWash,
+  bgDangerSubtle: v.redWash,
   bgOverlay: "rgba(10, 10, 10, 0.55)",
 
   fgDefault: v.ink,
@@ -49,6 +59,7 @@ const colorLight = stylex.createTheme(color, {
   fgDanger: v.redText,
   fgOnDanger: v.ink,
   fgSuccess: v.green,
+  fgWarning: v.orangeText,
   fgGradientStart: v.ink,
   fgGradientEnd: v.blue,
 
@@ -72,6 +83,9 @@ const colorDark = stylex.createTheme(color, {
   bgSurfaceRaised: v.nightRaised,
   bgHover: v.nightRaised,
   bgAccentSubtle: v.limeNight,
+  bgSuccessSubtle: v.greenWashNight,
+  bgWarningSubtle: v.orangeWashNight,
+  bgDangerSubtle: v.redWashNight,
   bgOverlay: "rgba(0, 0, 0, 0.7)",
 
   fgDefault: v.bone,
@@ -82,6 +96,7 @@ const colorDark = stylex.createTheme(color, {
   fgDanger: v.redTextNight,
   fgOnDanger: v.ink,
   fgSuccess: v.greenNight,
+  fgWarning: v.orange,
   fgGradientStart: v.lime,
   fgGradientEnd: v.blueBright,
 
@@ -265,6 +280,79 @@ const switchShapeVolt = stylex.createTheme(switchShape, {
   edgeWidth: "2px",
 });
 
+// Badges become solid stickers: bright fills, ink text, ink outline.
+const badgeVolt = stylex.createTheme(badgeTokens, {
+  neutralBg: color.bgSurfaceRaised,
+  neutralFg: color.fgDefault,
+  accentBg: color.accentDefault,
+  accentFg: color.fgOnAccent,
+  successBg: v.greenNight,
+  successFg: v.ink,
+  warningBg: v.orange,
+  warningFg: v.ink,
+  dangerBg: v.red,
+  dangerFg: v.ink,
+  border: color.borderStrong,
+});
+
+const badgeShapeVolt = stylex.createTheme(badgeShape, {
+  radius: radius.none,
+  borderWidth: borderWidth.thin,
+  fontFamily: fontFamily.mono,
+  fontWeight: fontWeight.bold,
+  letterSpacing: letterSpacing.wide,
+  textTransform: "uppercase",
+});
+
+// Ink outlines on every tone; the wash and icon carry the status.
+const alertVolt = stylex.createTheme(alertTokens, {
+  fg: color.fgDefault,
+  infoBg: color.bgAccentSubtle,
+  infoBorder: color.borderStrong,
+  infoIcon: color.fgAccent,
+  successBg: color.bgSuccessSubtle,
+  successBorder: color.borderStrong,
+  successIcon: color.fgSuccess,
+  warningBg: color.bgWarningSubtle,
+  warningBorder: color.borderStrong,
+  warningIcon: color.fgWarning,
+  dangerBg: color.bgDangerSubtle,
+  dangerBorder: color.borderStrong,
+  dangerIcon: color.fgDanger,
+});
+
+const alertShapeVolt = stylex.createTheme(alertShape, {
+  radius: radius.none,
+  borderWidth: borderWidth.thin,
+  shadow: `4px 4px 0 0 ${color.borderStrong}`,
+});
+
+// A lime bar is ~1.1:1 on paper, so the selected indicator is ink.
+const tabsVolt = stylex.createTheme(tabsTokens, {
+  fg: color.fgMuted,
+  fgHover: color.fgDefault,
+  bgHover: color.bgHover,
+  fgSelected: color.fgDefault,
+  indicator: color.borderStrong,
+  border: color.borderDefault,
+  fgDisabled: color.fgDisabled,
+});
+
+const tabsShapeVolt = stylex.createTheme(tabsShape, {
+  indicatorWidth: "4px",
+  fontFamily: fontFamily.mono,
+  fontWeight: fontWeight.bold,
+  letterSpacing: letterSpacing.wide,
+  textTransform: "uppercase",
+});
+
+const linkShapeVolt = stylex.createTheme(linkShape, {
+  fontWeight: fontWeight.bold,
+  underlineThickness: "2px",
+  underlineThicknessHover: "4px",
+  underlineOffset: "0.18em",
+});
+
 const shared = [
   radiusVolt,
   borderWidthVolt,
@@ -279,6 +367,13 @@ const shared = [
   switchShapeVolt,
   fieldsetShapeVolt,
   selectionShapeVolt,
+  badgeVolt,
+  badgeShapeVolt,
+  alertVolt,
+  alertShapeVolt,
+  tabsVolt,
+  tabsShapeVolt,
+  linkShapeVolt,
 ] as const;
 
 export const voltTheme = {

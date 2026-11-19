@@ -1,5 +1,13 @@
 import * as stylex from "@stylexjs/stylex";
-import { buttonShape, fieldsetShape, switchTokens } from "../components.stylex";
+import {
+  badgeShape,
+  buttonShape,
+  cardShape,
+  fieldsetShape,
+  headingShape,
+  switchTokens,
+  tabsShape,
+} from "../components.stylex";
 import { bloomPalette as b } from "../primitives.stylex";
 import {
   brand,
@@ -29,6 +37,9 @@ const colorLight = stylex.createTheme(color, {
   bgSurfaceRaised: b.creamDeep,
   bgHover: b.creamHover,
   bgAccentSubtle: b.forestWash,
+  bgSuccessSubtle: b.forestWash,
+  bgWarningSubtle: b.goldWash,
+  bgDangerSubtle: b.clayWash,
   bgOverlay: "rgba(28, 36, 32, 0.42)",
 
   fgDefault: b.ink,
@@ -39,6 +50,7 @@ const colorLight = stylex.createTheme(color, {
   fgDanger: b.terracottaText,
   fgOnDanger: b.white,
   fgSuccess: b.forest,
+  fgWarning: b.goldText,
   fgGradientStart: b.forest,
   fgGradientEnd: b.gradientEnd,
 
@@ -62,6 +74,9 @@ const colorDark = stylex.createTheme(color, {
   bgSurfaceRaised: b.nightRaised,
   bgHover: b.nightRaised,
   bgAccentSubtle: b.sageNight,
+  bgSuccessSubtle: b.sageNight,
+  bgWarningSubtle: b.goldNight,
+  bgDangerSubtle: b.clayNight,
   bgOverlay: "rgba(4, 8, 6, 0.66)",
 
   fgDefault: b.parchment,
@@ -72,6 +87,7 @@ const colorDark = stylex.createTheme(color, {
   fgDanger: b.salmonText,
   fgOnDanger: b.night,
   fgSuccess: b.sage,
+  fgWarning: b.gold,
   fgGradientStart: b.sage,
   fgGradientEnd: b.salmonText,
 
@@ -178,6 +194,36 @@ const fieldsetShapeBloom = stylex.createTheme(fieldsetShape, {
   legendLetterSpacing: letterSpacing.tight,
 });
 
+// Fraunces is heavy at bold; semibold keeps headings soft.
+const headingShapeBloom = stylex.createTheme(headingShape, {
+  fontFamily: fontFamily.display,
+  fontWeight: fontWeight.semibold,
+  letterSpacing: letterSpacing.tight,
+});
+
+const cardShapeBloom = stylex.createTheme(cardShape, {
+  radius: radius.xl,
+  borderWidth: "1px",
+  shadow: shadow.card,
+});
+
+const badgeShapeBloom = stylex.createTheme(badgeShape, {
+  radius: radius.full,
+  borderWidth: "0px",
+  fontFamily: fontFamily.sans,
+  fontWeight: fontWeight.medium,
+  letterSpacing: letterSpacing.normal,
+  textTransform: "none",
+});
+
+const tabsShapeBloom = stylex.createTheme(tabsShape, {
+  indicatorWidth: "3px",
+  fontFamily: fontFamily.sans,
+  fontWeight: fontWeight.medium,
+  letterSpacing: letterSpacing.normal,
+  textTransform: "none",
+});
+
 const shared = [
   radiusBloom,
   fontFamilyBloom,
@@ -185,6 +231,10 @@ const shared = [
   buttonShapeBloom,
   switchBloom,
   fieldsetShapeBloom,
+  headingShapeBloom,
+  cardShapeBloom,
+  badgeShapeBloom,
+  tabsShapeBloom,
 ] as const;
 
 export const bloomTheme = {

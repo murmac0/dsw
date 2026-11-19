@@ -7,7 +7,7 @@ import { assertTheme, contrastReport, findTokens, searchTokens, tokenLine } from
 
 const INSTRUCTIONS = `You're working in the @dsw design system (React + StyleX + React Aria). Follow this workflow when building or changing UI:
 
-1. Use existing components. Call list_components, then get_component before using one: it gives real prop types, controlled/uncontrolled pairs, accessibility rules and the stories that show it.
+1. Use existing components. Call list_components, then get_component before using one: it gives real prop types, controlled/uncontrolled pairs, accessibility rules and the stories that show it. Build screens from components alone: Container, Stack, Inline and Grid for layout (gaps from the spacing scale), Heading (pick its level from the page outline) and Text for type, Card for sections. Needing stylex.create() in app code usually means a component is missing.
 2. Style with tokens only. Never write raw colours, px, ms, font weights or z-indexes in stylex.create(). Find tokens with search_tokens, or turn a value from a design into a token with find_token_for_value. Import tokens from their origin file (e.g. @dsw/tokens/semantic.stylex), never primitives.
 3. Don't invent colour pairings. A new foreground/background combination must pass check_contrast (4.5:1 text, 3:1 boundaries and indicators) in every theme; audited pairs are listed in get_token.
 4. Before finishing, run lint_styles on every file you changed that calls stylex.create(), and fix all findings.

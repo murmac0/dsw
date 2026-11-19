@@ -359,6 +359,13 @@ const COMPONENT_OF: Record<string, string> = {
   menu: "Select (menu)",
   dialog: "Dialog",
   fieldset: "Fieldset",
+  text: "Heading, Text",
+  heading: "Heading",
+  link: "Link",
+  card: "Card",
+  badge: "Badge",
+  alert: "Alert",
+  tabs: "Tabs",
 };
 
 function tierOf(g: VarsGroup) {

@@ -68,7 +68,12 @@ function originOf(sym: ts.Symbol): string {
  */
 function typeText(sym: ts.Symbol, at: ts.Node): string {
   const t = checker.getNonNullableType(checker.getTypeOfSymbolAtLocation(sym, at));
-  if (t.isUnion() && t.types.every((m) => m.isStringLiteral() || m.flags & ts.TypeFlags.BooleanLiteral)) {
+  if (t.isUnion() && t.types.every((m) => m.isStringLiteral() || m.isNumberLiteral() || m.flags & ts.TypeFlags.BooleanLiteral)) {
+    // Prefer the union as declared: the checker orders members by internal
+    // type id, which shifts whenever other code creates the same literal
+    // first ("danger" | "primary" … instead of "primary" | … | "danger").
+    const declared = declaredLiteralUnion(sym);
+    if (declared) return declared;
     const literal = checker.typeToString(t, at, ts.TypeFormatFlags.NoTruncation | ts.TypeFormatFlags.InTypeAlias);
     if (literal.length <= 160) return literal;
   }
@@ -79,6 +84,27 @@ function typeText(sym: ts.Symbol, at: ts.Node): string {
   }
   const text = checker.typeToString(t, at, ts.TypeFormatFlags.NoTruncation | ts.TypeFormatFlags.UseAliasDefinedOutsideCurrentScope);
   return text.length > 160 ? `${text.slice(0, 157)}...` : text;
+}
+
+/**
+ * A literal union in source order, following one type alias if needed
+ * (`variant?: ButtonVariant` → its declaration). Undefined when the prop's
+ * declared type isn't a plain literal union.
+ */
+function declaredLiteralUnion(sym: ts.Symbol): string | undefined {
+  const decl = sym.declarations?.[0];
+  if (!decl || !(ts.isPropertySignature(decl) || ts.isPropertyDeclaration(decl)) || !decl.type) return undefined;
+  let node: ts.TypeNode = decl.type;
+  if (ts.isTypeReferenceNode(node)) {
+    const target = checker.getSymbolAtLocation(node.typeName);
+    const resolved = target && target.flags & ts.SymbolFlags.Alias ? checker.getAliasedSymbol(target) : target;
+    const alias = resolved?.declarations?.find(ts.isTypeAliasDeclaration);
+    if (!alias) return undefined;
+    node = alias.type;
+  }
+  if (!ts.isUnionTypeNode(node) || !node.types.every((m) => ts.isLiteralTypeNode(m))) return undefined;
+  const text = node.types.map((m) => m.getText()).join(" | ");
+  return text.length <= 160 ? text.replaceAll("'", '"') : undefined;
 }
 
 /** Token groups a component's source imports from @dsw/tokens/components. */

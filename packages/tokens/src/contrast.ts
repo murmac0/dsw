@@ -1,12 +1,18 @@
 import type { ContrastKind } from "./color-math";
 import {
+  alertTokens,
+  badgeTokens,
   buttonTokens,
+  cardTokens,
   dialogTokens,
   fieldsetTokens,
   fieldTokens,
   menuTokens,
   selectionTokens,
   switchTokens,
+  linkTokens,
+  tabsTokens,
+  textTokens,
 } from "./components.stylex";
 import { color } from "./semantic.stylex";
 
@@ -124,6 +130,62 @@ export const contrastPairs: readonly ContrastPair[] = [
   // Dialog
   pair("Dialog", "Title", "text", dialogTokens.title, dialogTokens.bg),
   pair("Dialog", "Body", "text", dialogTokens.body, dialogTokens.bg),
+
+  // Heading / Text
+  pair("Text", "Heading on canvas", "text", textTokens.heading, color.bgCanvas),
+  pair("Text", "Heading on surface", "text", textTokens.heading, color.bgSurface),
+  pair("Text", "Text tone: body on surface", "text", textTokens.body, color.bgSurface),
+  pair("Text", "Text tone: muted on surface", "text", textTokens.muted, color.bgSurface),
+  pair("Text", "Text tone: accent on surface", "text", textTokens.accent, color.bgSurface),
+  pair("Text", "Text tone: success on canvas", "text", textTokens.success, color.bgCanvas),
+  pair("Text", "Text tone: warning on canvas", "text", textTokens.warning, color.bgCanvas),
+  pair("Text", "Text tone: warning on surface", "text", textTokens.warning, color.bgSurface),
+  pair("Text", "Text tone: danger on canvas", "text", textTokens.danger, color.bgCanvas),
+  pair("Text", "Text tone: danger on surface", "text", textTokens.danger, color.bgSurface),
+
+  // Link
+  pair("Link", "Link on canvas", "text", linkTokens.fg, color.bgCanvas),
+  pair("Link", "Link on surface", "text", linkTokens.fg, color.bgSurface),
+  pair("Link", "Link, hover, on canvas", "text", linkTokens.fgHover, color.bgCanvas),
+  pair("Link", "Link, hover, on surface", "text", linkTokens.fgHover, color.bgSurface),
+
+  // Card: its content, including form controls placed inside it
+  pair("Card", "Heading on card", "text", textTokens.heading, cardTokens.bg),
+  pair("Card", "Muted text on card", "text", textTokens.muted, cardTokens.bg),
+  pair("Card", "Link on card", "text", linkTokens.fg, cardTokens.bg),
+  pair("Card", "Field border on card", "ui", fieldTokens.border, cardTokens.bg),
+  pair("Card", "Checkbox border on card", "ui", selectionTokens.border, cardTokens.bg),
+  pair("Card", "Switch off edge on card", "ui", switchTokens.trackOffEdge, cardTokens.bg),
+  pair("Card", "Field label on card", "text", fieldTokens.label, cardTokens.bg),
+
+  // Badge
+  pair("Badge", "Neutral", "text", badgeTokens.neutralFg, badgeTokens.neutralBg),
+  pair("Badge", "Accent", "text", badgeTokens.accentFg, badgeTokens.accentBg),
+  pair("Badge", "Success", "text", badgeTokens.successFg, badgeTokens.successBg),
+  pair("Badge", "Warning", "text", badgeTokens.warningFg, badgeTokens.warningBg),
+  pair("Badge", "Danger", "text", badgeTokens.dangerFg, badgeTokens.dangerBg),
+
+  // Alert
+  pair("Alert", "Info text", "text", alertTokens.fg, alertTokens.infoBg),
+  pair("Alert", "Info icon", "ui", alertTokens.infoIcon, alertTokens.infoBg),
+  pair("Alert", "Success text", "text", alertTokens.fg, alertTokens.successBg),
+  pair("Alert", "Success icon", "ui", alertTokens.successIcon, alertTokens.successBg),
+  pair("Alert", "Warning text", "text", alertTokens.fg, alertTokens.warningBg),
+  pair("Alert", "Warning icon", "ui", alertTokens.warningIcon, alertTokens.warningBg),
+  pair("Alert", "Danger text", "text", alertTokens.fg, alertTokens.dangerBg),
+  pair("Alert", "Danger icon", "ui", alertTokens.dangerIcon, alertTokens.dangerBg),
+  // Links inside alerts sit on the wash.
+  pair("Alert", "Link on info", "text", linkTokens.fg, alertTokens.infoBg),
+  pair("Alert", "Link on warning", "text", linkTokens.fg, alertTokens.warningBg),
+
+  // Tabs
+  pair("Tabs", "Tab on canvas", "text", tabsTokens.fg, color.bgCanvas),
+  pair("Tabs", "Tab on surface", "text", tabsTokens.fg, color.bgSurface),
+  pair("Tabs", "Tab, hover", "text", tabsTokens.fgHover, tabsTokens.bgHover),
+  pair("Tabs", "Selected tab on canvas", "text", tabsTokens.fgSelected, color.bgCanvas),
+  pair("Tabs", "Selected tab on surface", "text", tabsTokens.fgSelected, color.bgSurface),
+  pair("Tabs", "Indicator vs canvas", "ui", tabsTokens.indicator, color.bgCanvas),
+  pair("Tabs", "Indicator vs surface", "ui", tabsTokens.indicator, color.bgSurface),
 ];
 
 

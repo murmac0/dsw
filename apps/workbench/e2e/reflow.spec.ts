@@ -6,7 +6,7 @@ import { expect, test, type Page } from "@playwright/test";
  * WCAG reflow width), so emulating those widths tests zoom behaviour.
  */
 const brands = ["Iris", "Volt", "Bloom"] as const;
-const tabs = ["Components", "Foundations", "Playground"] as const;
+const tabs = ["Components", "Foundations", "Playground", "Example page"] as const;
 
 async function overflow(page: Page) {
   return page.evaluate(() => {
@@ -37,6 +37,14 @@ for (const [width, zoom] of [[320, "400%"], [640, "200%"]] as const) {
         expect(pageScroll, `${brand}/${tab}`).toBeLessThanOrEqual(0);
         expect(offenders, `${brand}/${tab}`).toEqual([]);
       }
+      // The example page's other sections (members list, plan grid).
+      for (const section of ["Members", "Billing"]) {
+        await page.getByRole("tab", { name: section }).click();
+        const { pageScroll, offenders } = await overflow(page);
+        expect(pageScroll, `${brand}/Example page/${section}`).toBeLessThanOrEqual(0);
+        expect(offenders, `${brand}/Example page/${section}`).toEqual([]);
+      }
+      await page.getByRole("tab", { name: "General" }).click();
     }
   });
 }

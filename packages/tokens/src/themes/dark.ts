@@ -20,6 +20,9 @@ const colorDark = stylex.createTheme(color, {
   bgSurfaceRaised: colorPrimitives.ink925,
   bgHover: colorPrimitives.ink925,
   bgAccentSubtle: colorPrimitives.iris950,
+  bgSuccessSubtle: colorPrimitives.mint950,
+  bgWarningSubtle: colorPrimitives.amber950,
+  bgDangerSubtle: colorPrimitives.rose950,
   bgOverlay: "rgba(4, 4, 10, 0.66)",
 
   fgDefault: colorPrimitives.ink50,
@@ -30,6 +33,7 @@ const colorDark = stylex.createTheme(color, {
   fgDanger: colorPrimitives.rose300,
   fgOnDanger: colorPrimitives.ink975,
   fgSuccess: colorPrimitives.mint300,
+  fgWarning: colorPrimitives.amber300,
   fgGradientStart: colorPrimitives.iris300,
   fgGradientEnd: colorPrimitives.coral300,
 

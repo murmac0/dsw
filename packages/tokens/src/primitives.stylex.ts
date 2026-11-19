@@ -230,6 +230,14 @@ export const voltPalette = stylex.defineConsts({
   greenNight: "#5ee69a",
   pink: "#ff5cc8",
   orange: "#ff8a00",
+  orangeText: "#8a4200",
+  // Status washes: pale on paper, deep on night.
+  greenWash: "#d4f5df",
+  orangeWash: "#ffe4c2",
+  redWash: "#ffdcd6",
+  greenWashNight: "#0e2a1a",
+  orangeWashNight: "#2e1c03",
+  redWashNight: "#3a1410",
 });
 
 /**
@@ -269,5 +277,10 @@ export const bloomPalette = stylex.defineConsts({
   salmonText: "#f2a48f",
   white: "#ffffff",
   gold: "#d9a441",
+  goldText: "#7a5212",
+  goldWash: "#f6e8c8",
+  goldNight: "#2f2510",
+  clayWash: "#f7e0d8",
+  clayNight: "#3a1f18",
   sky: "#7fb3d5",
 });

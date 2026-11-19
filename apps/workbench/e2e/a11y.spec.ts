@@ -5,6 +5,11 @@ import { expect, test, type Page } from "@playwright/test";
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
 async function scan(page: Page, label: string) {
+  // Let entrance animations finish: mid-fade text is semi-transparent,
+  // and axe would measure a colour the user never settles on.
+  await page.waitForFunction(() =>
+    document.getAnimations().every((a) => a.playState !== "running"),
+  );
   const { violations } = await new AxeBuilder({ page }).withTags(TAGS).analyze();
   const summary = violations.map(
     (v) =>
@@ -44,6 +49,18 @@ for (const brand of brands) {
         await page.getByRole("tab", { name: tab }).click();
         problems.push(...(await scan(page, tab)));
       }
+
+      // The example page, every section, plus its invite dialog.
+      await page.getByRole("tab", { name: "Example page" }).click();
+      for (const section of ["General", "Members", "Billing"]) {
+        await page.getByRole("tab", { name: section }).click();
+        problems.push(...(await scan(page, `Example page / ${section}`)));
+      }
+      await page.getByRole("tab", { name: "Members" }).click();
+      await page.getByRole("button", { name: "Invite member" }).click();
+      await expect(page.getByRole("dialog")).toBeVisible();
+      problems.push(...(await scan(page, "Invite dialog open")));
+      await page.keyboard.press("Escape");
 
       expect(problems, problems.join("\n")).toEqual([]);
     });

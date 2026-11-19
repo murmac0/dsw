@@ -159,9 +159,127 @@ export const fieldsetTokens = stylex.defineVars({
   disabledLegend: color.fgDisabled,
 });
 
+/** Heading and Text. One tone per role, so a brand can retint headings alone. */
+export const textTokens = stylex.defineVars({
+  heading: color.fgDefault,
+  body: color.fgDefault,
+  muted: color.fgMuted,
+  accent: color.fgAccent,
+  success: color.fgSuccess,
+  warning: color.fgWarning,
+  danger: color.fgDanger,
+});
+
+/** Link. Always underlined, so colour alone never marks it (WCAG 1.4.1). */
+export const linkTokens = stylex.defineVars({
+  fg: color.fgAccent,
+  fgHover: color.fgDefault,
+});
+
+/** Card: a surface that groups content. Its edge is decorative. */
+export const cardTokens = stylex.defineVars({
+  bg: color.bgSurface,
+  border: color.borderDefault,
+  /** Danger-zone cards. Decorative: the card's title says what it is. */
+  borderDanger: color.dangerDefault,
+});
+
+/** Badge: a short status label. Each `*Fg` carries 4.5:1 on its `*Bg`. */
+export const badgeTokens = stylex.defineVars({
+  neutralBg: color.bgSurfaceRaised,
+  neutralFg: color.fgMuted,
+  accentBg: color.bgAccentSubtle,
+  accentFg: color.fgAccent,
+  successBg: color.bgSuccessSubtle,
+  successFg: color.fgSuccess,
+  warningBg: color.bgWarningSubtle,
+  warningFg: color.fgWarning,
+  dangerBg: color.bgDangerSubtle,
+  dangerFg: color.fgDanger,
+  /** Drawn only where a brand gives badges a border (`badgeShape.borderWidth`). */
+  border: color.borderStrong,
+});
+
+/**
+ * Alert: an inline message. Body text is `fg` on each tone's wash; the
+ * icon (its shape differs per tone, so meaning never rests on colour)
+ * carries 3:1. Borders are decorative.
+ */
+export const alertTokens = stylex.defineVars({
+  fg: color.fgDefault,
+  infoBg: color.bgAccentSubtle,
+  infoBorder: color.fgAccent,
+  infoIcon: color.fgAccent,
+  successBg: color.bgSuccessSubtle,
+  successBorder: color.fgSuccess,
+  successIcon: color.fgSuccess,
+  warningBg: color.bgWarningSubtle,
+  warningBorder: color.fgWarning,
+  warningIcon: color.fgWarning,
+  dangerBg: color.bgDangerSubtle,
+  dangerBorder: color.fgDanger,
+  dangerIcon: color.fgDanger,
+});
+
+/** Tabs. The selected indicator carries 3:1 against the surface it sits on. */
+export const tabsTokens = stylex.defineVars({
+  fg: color.fgMuted,
+  fgHover: color.fgDefault,
+  bgHover: color.bgHover,
+  fgSelected: color.fgAccent,
+  indicator: color.accentDefault,
+  /** The rule under the tab list. Decorative. */
+  border: color.borderDefault,
+  fgDisabled: color.fgDisabled,
+});
+
 /* ------------------------------------------------------------------ */
 /* Shape: per-brand, mode-independent                                  */
 /* ------------------------------------------------------------------ */
+
+export const headingShape = stylex.defineVars({
+  fontFamily: fontFamily.display,
+  fontWeight: fontWeight.bold,
+  letterSpacing: letterSpacing.tight,
+});
+
+export const linkShape = stylex.defineVars({
+  fontWeight: fontWeight.medium,
+  underlineThickness: "1px",
+  underlineThicknessHover: "2px",
+  underlineOffset: "0.2em",
+});
+
+export const cardShape = stylex.defineVars({
+  radius: radius.lg,
+  borderWidth: borderWidth.thin,
+  shadow: shadow.card,
+});
+
+export const badgeShape = stylex.defineVars({
+  radius: radius.full,
+  /** 0 by default: the wash is the shape. */
+  borderWidth: "0px",
+  fontFamily: fontFamily.sans,
+  fontWeight: fontWeight.semibold,
+  letterSpacing: letterSpacing.normal,
+  textTransform: "none",
+});
+
+export const alertShape = stylex.defineVars({
+  radius: radius.md,
+  borderWidth: borderWidth.thin,
+  shadow: "none",
+});
+
+export const tabsShape = stylex.defineVars({
+  /** Selected-tab bar. Drawn as a border so forced-colour modes keep it. */
+  indicatorWidth: "2px",
+  fontFamily: fontFamily.sans,
+  fontWeight: fontWeight.semibold,
+  letterSpacing: letterSpacing.normal,
+  textTransform: "none",
+});
 
 export const buttonShape = stylex.defineVars({
   radius: radius.md,

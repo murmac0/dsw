@@ -26,6 +26,13 @@ export const color = stylex.defineVars({
   bgHover: colorPrimitives.ink100,
   /** Tinted wash for selected / highlighted items. */
   bgAccentSubtle: colorPrimitives.iris100,
+  /**
+   * Status washes (alerts, badges). Each carries its matching `fg*` status
+   * colour and `fgDefault` at 4.5:1.
+   */
+  bgSuccessSubtle: colorPrimitives.mint50,
+  bgWarningSubtle: colorPrimitives.amber50,
+  bgDangerSubtle: colorPrimitives.rose50,
   bgOverlay: "rgba(14, 14, 25, 0.48)",
 
   // Text
@@ -37,6 +44,7 @@ export const color = stylex.defineVars({
   fgDanger: colorPrimitives.rose700,
   fgOnDanger: colorPrimitives.white,
   fgSuccess: colorPrimitives.mint700,
+  fgWarning: colorPrimitives.amber700,
   /**
    * Gradient text (display headings, wordmark). Both ends meet 4.5:1 on
    * canvas and surface, so the whole gradient is readable.

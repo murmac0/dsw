@@ -99,6 +99,64 @@
         }
       }
     },
+    "bgSuccessSubtle": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0706,
+          0.1412,
+          0.1059
+        ],
+        "alpha": 1,
+        "hex": "#12241b"
+      },
+      "$description": "Status washes (alerts, badges). Each carries its matching `fg*` status colour and `fgDefault` at 4.5:1.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.bgSuccessSubtle",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "bgWarningSubtle": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1765,
+          0.1059,
+          0.0275
+        ],
+        "alpha": 1,
+        "hex": "#2d1b07"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.bgWarningSubtle",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "bgDangerSubtle": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1882,
+          0.0863,
+          0.0941
+        ],
+        "alpha": 1,
+        "hex": "#301618"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.bgDangerSubtle",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
     "bgOverlay": {
       "$type": "color",
       "$value": {
@@ -265,6 +323,25 @@
       "$extensions": {
         "dev.dsw": {
           "ref": "color.fgSuccess",
+          "import": "@dsw/tokens/semantic.stylex"
+        }
+      }
+    },
+    "fgWarning": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9922,
+          0.7255,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#fdb93f"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "color.fgWarning",
           "import": "@dsw/tokens/semantic.stylex"
         }
       }
@@ -3115,6 +3192,1209 @@
           "ref": "fieldsetTokens.disabledLegend",
           "import": "@dsw/tokens/components.stylex",
           "alias": "color.fgDisabled"
+        }
+      }
+    }
+  },
+  "textTokens": {
+    "$description": "Heading and Text. One tone per role, so a brand can retint headings alone.",
+    "heading": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "textTokens.heading",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "body": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "textTokens.body",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "muted": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "textTokens.muted",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "accent": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "textTokens.accent",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgAccent"
+        }
+      }
+    },
+    "success": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3804,
+          0.8902,
+          0.7059
+        ],
+        "alpha": 1,
+        "hex": "#61e3b4"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "textTokens.success",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgSuccess"
+        }
+      }
+    },
+    "warning": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9922,
+          0.7255,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#fdb93f"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "textTokens.warning",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgWarning"
+        }
+      }
+    },
+    "danger": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9961,
+          0.6824,
+          0.7137
+        ],
+        "alpha": 1,
+        "hex": "#feaeb6"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "textTokens.danger",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDanger"
+        }
+      }
+    }
+  },
+  "linkTokens": {
+    "$description": "Link. Always underlined, so colour alone never marks it (WCAG 1.4.1).",
+    "fg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "linkTokens.fg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgAccent"
+        }
+      }
+    },
+    "fgHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "linkTokens.fgHover",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    }
+  },
+  "cardTokens": {
+    "$description": "Card: a surface that groups content. Its edge is decorative.",
+    "bg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0863,
+          0.0863,
+          0.1333
+        ],
+        "alpha": 1,
+        "hex": "#161622"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "cardTokens.bg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSurface"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2039,
+          0.2039,
+          0.2392
+        ],
+        "alpha": 1,
+        "hex": "#34343d"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "cardTokens.border",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderDefault"
+        }
+      }
+    },
+    "borderDanger": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.4941,
+          0.5608
+        ],
+        "alpha": 1,
+        "hex": "#ff7e8f"
+      },
+      "$description": "Danger-zone cards. Decorative: the card's title says what it is.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "cardTokens.borderDanger",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.dangerDefault"
+        }
+      }
+    }
+  },
+  "badgeTokens": {
+    "$description": "Badge: a short status label. Each `*Fg` carries 4.5:1 on its `*Bg`.",
+    "neutralBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeTokens.neutralBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSurfaceRaised"
+        }
+      }
+    },
+    "neutralFg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeTokens.neutralFg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "accentBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1059,
+          0.1098,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#1b1c35"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeTokens.accentBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgAccentSubtle"
+        }
+      }
+    },
+    "accentFg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeTokens.accentFg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgAccent"
+        }
+      }
+    },
+    "successBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0706,
+          0.1412,
+          0.1059
+        ],
+        "alpha": 1,
+        "hex": "#12241b"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeTokens.successBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSuccessSubtle"
+        }
+      }
+    },
+    "successFg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3804,
+          0.8902,
+          0.7059
+        ],
+        "alpha": 1,
+        "hex": "#61e3b4"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeTokens.successFg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgSuccess"
+        }
+      }
+    },
+    "warningBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1765,
+          0.1059,
+          0.0275
+        ],
+        "alpha": 1,
+        "hex": "#2d1b07"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeTokens.warningBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgWarningSubtle"
+        }
+      }
+    },
+    "warningFg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9922,
+          0.7255,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#fdb93f"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeTokens.warningFg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgWarning"
+        }
+      }
+    },
+    "dangerBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1882,
+          0.0863,
+          0.0941
+        ],
+        "alpha": 1,
+        "hex": "#301618"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeTokens.dangerBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgDangerSubtle"
+        }
+      }
+    },
+    "dangerFg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9961,
+          0.6824,
+          0.7137
+        ],
+        "alpha": 1,
+        "hex": "#feaeb6"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeTokens.dangerFg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDanger"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5294,
+          0.5333,
+          0.6118
+        ],
+        "alpha": 1,
+        "hex": "#87889c"
+      },
+      "$description": "Drawn only where a brand gives badges a border (`badgeShape.borderWidth`).",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeTokens.border",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderStrong"
+        }
+      }
+    }
+  },
+  "alertTokens": {
+    "$description": "Alert: an inline message. Body text is `fg` on each tone's wash; the icon (its shape differs per tone, so meaning never rests on colour) carries 3:1. Borders are decorative.",
+    "fg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.fg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "infoBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1059,
+          0.1098,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#1b1c35"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.infoBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgAccentSubtle"
+        }
+      }
+    },
+    "infoBorder": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.infoBorder",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgAccent"
+        }
+      }
+    },
+    "infoIcon": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.infoIcon",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgAccent"
+        }
+      }
+    },
+    "successBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0706,
+          0.1412,
+          0.1059
+        ],
+        "alpha": 1,
+        "hex": "#12241b"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.successBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSuccessSubtle"
+        }
+      }
+    },
+    "successBorder": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3804,
+          0.8902,
+          0.7059
+        ],
+        "alpha": 1,
+        "hex": "#61e3b4"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.successBorder",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgSuccess"
+        }
+      }
+    },
+    "successIcon": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3804,
+          0.8902,
+          0.7059
+        ],
+        "alpha": 1,
+        "hex": "#61e3b4"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.successIcon",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgSuccess"
+        }
+      }
+    },
+    "warningBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1765,
+          0.1059,
+          0.0275
+        ],
+        "alpha": 1,
+        "hex": "#2d1b07"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.warningBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgWarningSubtle"
+        }
+      }
+    },
+    "warningBorder": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9922,
+          0.7255,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#fdb93f"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.warningBorder",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgWarning"
+        }
+      }
+    },
+    "warningIcon": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9922,
+          0.7255,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#fdb93f"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.warningIcon",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgWarning"
+        }
+      }
+    },
+    "dangerBg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1882,
+          0.0863,
+          0.0941
+        ],
+        "alpha": 1,
+        "hex": "#301618"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.dangerBg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgDangerSubtle"
+        }
+      }
+    },
+    "dangerBorder": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9961,
+          0.6824,
+          0.7137
+        ],
+        "alpha": 1,
+        "hex": "#feaeb6"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.dangerBorder",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDanger"
+        }
+      }
+    },
+    "dangerIcon": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9961,
+          0.6824,
+          0.7137
+        ],
+        "alpha": 1,
+        "hex": "#feaeb6"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertTokens.dangerIcon",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDanger"
+        }
+      }
+    }
+  },
+  "tabsTokens": {
+    "$description": "Tabs. The selected indicator carries 3:1 against the surface it sits on.",
+    "fg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "tabsTokens.fg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "fgHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "tabsTokens.fgHover",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "bgHover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "tabsTokens.bgHover",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgHover"
+        }
+      }
+    },
+    "fgSelected": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "tabsTokens.fgSelected",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgAccent"
+        }
+      }
+    },
+    "indicator": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6353,
+          0.6275,
+          0.9961
+        ],
+        "alpha": 1,
+        "hex": "#a2a0fe"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "tabsTokens.indicator",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.accentDefault"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2039,
+          0.2039,
+          0.2392
+        ],
+        "alpha": 1,
+        "hex": "#34343d"
+      },
+      "$description": "The rule under the tab list. Decorative.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "tabsTokens.border",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderDefault"
+        }
+      }
+    },
+    "fgDisabled": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.451,
+          0.4549,
+          0.5373
+        ],
+        "alpha": 1,
+        "hex": "#737489"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "tabsTokens.fgDisabled",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDisabled"
+        }
+      }
+    }
+  },
+  "headingShape": {
+    "fontFamily": {
+      "$type": "fontFamily",
+      "$value": [
+        "Bricolage Grotesque Variable",
+        "ui-sans-serif",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "sans-serif"
+      ],
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "headingShape.fontFamily",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontFamily.display"
+        }
+      }
+    },
+    "fontWeight": {
+      "$type": "fontWeight",
+      "$value": 700,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "headingShape.fontWeight",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontWeight.bold"
+        }
+      }
+    },
+    "letterSpacing": {
+      "$type": "dimension",
+      "$value": {
+        "value": -0.02,
+        "unit": "em"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "headingShape.letterSpacing",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "letterSpacing.tight"
+        }
+      }
+    }
+  },
+  "linkShape": {
+    "fontWeight": {
+      "$type": "fontWeight",
+      "$value": 500,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "linkShape.fontWeight",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontWeight.medium"
+        }
+      }
+    },
+    "underlineThickness": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "linkShape.underlineThickness",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "underlineThicknessHover": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "linkShape.underlineThicknessHover",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "underlineOffset": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0.2,
+        "unit": "em"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "linkShape.underlineOffset",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    }
+  },
+  "cardShape": {
+    "radius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "cardShape.radius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.lg"
+        }
+      }
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "cardShape.borderWidth",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "borderWidth.thin"
+        }
+      }
+    },
+    "shadow": {
+      "$value": "0 1px 2px rgba(0, 0, 0, 0.3)",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "cardShape.shadow",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "shadow.card"
+        }
+      }
+    }
+  },
+  "badgeShape": {
+    "radius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 9999,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeShape.radius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.full"
+        }
+      }
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0,
+        "unit": "px"
+      },
+      "$description": "0 by default: the wash is the shape.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeShape.borderWidth",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "fontFamily": {
+      "$type": "fontFamily",
+      "$value": [
+        "Geist Variable",
+        "ui-sans-serif",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "sans-serif"
+      ],
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeShape.fontFamily",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontFamily.sans"
+        }
+      }
+    },
+    "fontWeight": {
+      "$type": "fontWeight",
+      "$value": 600,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeShape.fontWeight",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontWeight.semibold"
+        }
+      }
+    },
+    "letterSpacing": {
+      "$type": "number",
+      "$value": 0,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeShape.letterSpacing",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "letterSpacing.normal"
+        }
+      }
+    },
+    "textTransform": {
+      "$value": "none",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "badgeShape.textTransform",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    }
+  },
+  "alertShape": {
+    "radius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertShape.radius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.md"
+        }
+      }
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertShape.borderWidth",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "borderWidth.thin"
+        }
+      }
+    },
+    "shadow": {
+      "$value": "none",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "alertShape.shadow",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    }
+  },
+  "tabsShape": {
+    "indicatorWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$description": "Selected-tab bar. Drawn as a border so forced-colour modes keep it.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "tabsShape.indicatorWidth",
+          "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    },
+    "fontFamily": {
+      "$type": "fontFamily",
+      "$value": [
+        "Geist Variable",
+        "ui-sans-serif",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "sans-serif"
+      ],
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "tabsShape.fontFamily",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontFamily.sans"
+        }
+      }
+    },
+    "fontWeight": {
+      "$type": "fontWeight",
+      "$value": 600,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "tabsShape.fontWeight",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontWeight.semibold"
+        }
+      }
+    },
+    "letterSpacing": {
+      "$type": "number",
+      "$value": 0,
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "tabsShape.letterSpacing",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "letterSpacing.normal"
+        }
+      }
+    },
+    "textTransform": {
+      "$value": "none",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "tabsShape.textTransform",
+          "import": "@dsw/tokens/components.stylex"
         }
       }
     }

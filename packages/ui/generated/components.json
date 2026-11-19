@@ -3,6 +3,239 @@
   "package": "@dsw/ui",
   "components": [
     {
+      "name": "Alert",
+      "kind": "component",
+      "import": "import { Alert } from \"@dsw/ui\";",
+      "description": "An inline message about the page or an action: info, success, warning\nor error. Status is carried by the icon's shape and a hidden prefix as\nwell as colour (WCAG 1.4.1). For a single field's error, use the\nfield's own `errorMessage` instead.",
+      "source": "packages/ui/src/components/Alert/Alert.tsx",
+      "propsType": "AlertProps",
+      "props": [
+        {
+          "name": "announce",
+          "type": "boolean",
+          "required": false,
+          "description": "Announce the alert to screen readers when it appears or changes:\nrole=\"alert\" for warning/danger, role=\"status\" otherwise. Use it for\nmessages that appear in response to an action (\"Saved\"). Leave it\noff for alerts present on page load, which would interrupt.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Detail: what happened and what to do next.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "dismissLabel",
+          "type": "string",
+          "required": false,
+          "description": "Accessible name of the dismiss button. Defaults to \"Dismiss\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "onDismiss",
+          "type": "() => void",
+          "required": false,
+          "description": "Shows a dismiss button.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Short summary in bold, e.g. \"Payment failed\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "tone",
+          "type": "\"info\" | \"success\" | \"warning\" | \"danger\"",
+          "required": false,
+          "description": "Defaults to \"info\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "toneLabel",
+          "type": "string",
+          "required": false,
+          "description": "Visually hidden prefix announced before the title (\"Warning:\"). Override to localise.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-label",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[] | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "inputMode",
+          "type": "\"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | \"search\"",
+          "required": false,
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents",
+          "from": "@types/react"
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<T> | undefined",
+          "required": false,
+          "from": "@types/react"
+        }
+      ],
+      "inheritedProps": "266 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [
+        "alertShape",
+        "alertTokens",
+        "fieldShape",
+        "fieldTokens"
+      ],
+      "stories": [
+        {
+          "id": "components-alert--default",
+          "name": "Default"
+        },
+        {
+          "id": "components-alert--tones",
+          "name": "Tones"
+        },
+        {
+          "id": "components-alert--dismissible",
+          "name": "Dismissible"
+        },
+        {
+          "id": "components-alert--announced",
+          "name": "Announced"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Alert/Alert.test.tsx"
+      ]
+    },
+    {
+      "name": "Badge",
+      "kind": "component",
+      "import": "import { Badge } from \"@dsw/ui\";",
+      "description": "A short, non-interactive status label. For a message, use Alert; for\nsomething clickable, a Button or Link. Keep the text self-explanatory,\nsince the colour isn't announced.",
+      "source": "packages/ui/src/components/Badge/Badge.tsx",
+      "propsType": "BadgeProps",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "A word or two: \"Active\", \"Admin\", \"Beta\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "tone",
+          "type": "\"neutral\" | \"accent\" | \"success\" | \"warning\" | \"danger\"",
+          "required": false,
+          "description": "Colour role. Defaults to \"neutral\". The text must say the status too: tone is a reinforcement.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-label",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[] | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "inputMode",
+          "type": "\"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | \"search\"",
+          "required": false,
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents",
+          "from": "@types/react"
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<T> | undefined",
+          "required": false,
+          "from": "@types/react"
+        }
+      ],
+      "inheritedProps": "267 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [
+        "badgeShape",
+        "badgeTokens"
+      ],
+      "stories": [
+        {
+          "id": "components-badge--default",
+          "name": "Default"
+        },
+        {
+          "id": "components-badge--tones",
+          "name": "Tones"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Badge/Badge.test.tsx"
+      ]
+    },
+    {
       "name": "Button",
       "kind": "component",
       "import": "import { Button } from \"@dsw/ui\";",
@@ -160,6 +393,156 @@
       ],
       "tests": [
         "packages/ui/src/components/Button/Button.test.tsx"
+      ]
+    },
+    {
+      "name": "Card",
+      "kind": "component",
+      "import": "import { Card } from \"@dsw/ui\";",
+      "description": "A surface that groups related content: a settings section, a summary,\nan item in a grid. Forms inside a card sit on its surface, and every\nform control is contrast-checked against it.",
+      "source": "packages/ui/src/components/Card/Card.tsx",
+      "propsType": "CardProps",
+      "props": [
+        {
+          "name": "actions",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Controls beside the title (a Button, a Badge). Wrap underneath on narrow cards.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "as",
+          "type": "\"div\" | \"section\" | \"article\" | \"li\"",
+          "required": false,
+          "description": "Defaults to \"div\". \"section\" makes a named region landmark when there's a title.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false,
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "description",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Supporting text under the title.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode",
+          "required": false,
+          "description": "A footer row, right-aligned with a divider above: the card's Save/Cancel.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "padding",
+          "type": "\"md\" | \"lg\"",
+          "required": false,
+          "description": "Inner spacing. Defaults to \"lg\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Card heading. With `as=\"section\"` it also names the region.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "titleLevel",
+          "type": "1 | 2 | 3 | 4 | 5 | 6",
+          "required": false,
+          "description": "Outline level for `title`. Defaults to 2; pick it from the page outline.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "tone",
+          "type": "\"default\" | \"danger\"",
+          "required": false,
+          "description": "\"danger\" outlines a danger zone. The title must say so too.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-label",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[] | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "inputMode",
+          "type": "\"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | \"search\"",
+          "required": false,
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents",
+          "from": "@types/react"
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<T> | undefined",
+          "required": false,
+          "from": "@types/react"
+        }
+      ],
+      "inheritedProps": "266 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [
+        "cardShape",
+        "cardTokens"
+      ],
+      "stories": [
+        {
+          "id": "components-card--default",
+          "name": "Default"
+        },
+        {
+          "id": "components-card--with-footer",
+          "name": "WithFooter"
+        },
+        {
+          "id": "components-card--with-actions",
+          "name": "WithActions"
+        },
+        {
+          "id": "components-card--danger-zone",
+          "name": "DangerZone"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Card/Card.test.tsx"
       ]
     },
     {
@@ -535,6 +918,110 @@
       ]
     },
     {
+      "name": "Container",
+      "kind": "component",
+      "import": "import { Container } from \"@dsw/ui\";",
+      "description": "Centres page content at a readable maximum width, with side padding\nthat tightens on phones. Use one per page region, outermost.",
+      "source": "packages/ui/src/components/Container/Container.tsx",
+      "propsType": "ContainerProps",
+      "props": [
+        {
+          "name": "as",
+          "type": "\"div\" | \"section\" | \"article\" | \"aside\" | \"header\" | \"footer\" | \"nav\" | \"main\" | \"form\" | \"ul\" | \"ol\" | \"li\"",
+          "required": false,
+          "description": "Element to render. Defaults to \"div\"; \"main\" for the page's main landmark.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false,
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "padded",
+          "type": "boolean",
+          "required": false,
+          "description": "Responsive side padding (`space.gutter`). Defaults to true.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "width",
+          "type": "\"content\" | \"form\" | \"full\"",
+          "required": false,
+          "description": "\"content\" (960px, default), \"form\" (440px, for single-column forms) or \"full\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-label",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[] | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "inputMode",
+          "type": "\"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | \"search\"",
+          "required": false,
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents",
+          "from": "@types/react"
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<T> | undefined",
+          "required": false,
+          "from": "@types/react"
+        }
+      ],
+      "inheritedProps": "267 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [],
+      "stories": [
+        {
+          "id": "layout-container--content",
+          "name": "Content"
+        },
+        {
+          "id": "layout-container--form",
+          "name": "Form"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Container/Container.test.tsx"
+      ]
+    },
+    {
       "name": "Dialog",
       "kind": "component",
       "import": "import { Dialog } from \"@dsw/ui\";",
@@ -782,6 +1269,446 @@
       "description": "Disabled if the control says so *or* any enclosing Fieldset is disabled.\nThe fieldset must win: a native `<fieldset disabled>` disables its\ninputs regardless, so `isDisabled={false}` inside one would otherwise\nlook enabled but be inert. Returns the control's own value (possibly\nundefined) when no fieldset is disabled, so React Aria defaults stand.",
       "source": "packages/ui/src/components/Fieldset/FieldsetContext.ts",
       "props": []
+    },
+    {
+      "name": "Grid",
+      "kind": "component",
+      "import": "import { Grid } from \"@dsw/ui\";",
+      "description": "Responsive grid for cards and tiles. Columns collapse on narrow\nscreens on their own, so no breakpoints are needed at the call site.",
+      "source": "packages/ui/src/components/Grid/Grid.tsx",
+      "propsType": "GridProps",
+      "props": [
+        {
+          "name": "as",
+          "type": "\"div\" | \"section\" | \"article\" | \"aside\" | \"header\" | \"footer\" | \"nav\" | \"main\" | \"form\" | \"ul\" | \"ol\" | \"li\"",
+          "required": false,
+          "description": "Element to render. Defaults to \"div\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false,
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "columns",
+          "type": "\"auto\" | 1 | 2 | 3 | 4",
+          "required": false,
+          "description": "\"auto\" (default): as many columns as fit at `size.gridMin` (240px).\nA number: that many from tablet width up (3 and 4 step down through\n2), one column on phones.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "gap",
+          "type": "\"none\" | \"xxs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"xxl\"",
+          "required": false,
+          "description": "Space between cells, from the spacing scale. Defaults to \"lg\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-label",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[] | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "inputMode",
+          "type": "\"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | \"search\"",
+          "required": false,
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents",
+          "from": "@types/react"
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<T> | undefined",
+          "required": false,
+          "from": "@types/react"
+        }
+      ],
+      "inheritedProps": "267 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [],
+      "stories": [
+        {
+          "id": "layout-grid--auto",
+          "name": "Auto"
+        },
+        {
+          "id": "layout-grid--three-columns",
+          "name": "ThreeColumns"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Grid/Grid.test.tsx"
+      ]
+    },
+    {
+      "name": "Heading",
+      "kind": "component",
+      "import": "import { Heading } from \"@dsw/ui\";",
+      "description": "A section heading in the brand's display face. Level and size are\nseparate so the outline stays correct when a design wants a small h2\nor a large h3.",
+      "source": "packages/ui/src/components/Heading/Heading.tsx",
+      "propsType": "HeadingProps",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "level",
+          "type": "1 | 2 | 3 | 4 | 5 | 6",
+          "required": true,
+          "description": "Document outline level (h1–h6). Required, because it's structure\nthat screen reader users navigate by: pick it from the page's outline,\nnever for its look. Use `size` to change the look.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "size",
+          "type": "\"display1\" | \"display2\" | \"display3\" | \"xxl\" | \"xl\" | \"lg\" | \"md\"",
+          "required": false,
+          "description": "Visual size, independent of level. Defaults by level (h1 → display2, h2 → display3, h3 → xl…).",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-label",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[] | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "inputMode",
+          "type": "\"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | \"search\"",
+          "required": false,
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents",
+          "from": "@types/react"
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<T> | undefined",
+          "required": false,
+          "from": "@types/react"
+        }
+      ],
+      "inheritedProps": "267 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [
+        "headingShape",
+        "textTokens"
+      ],
+      "stories": [
+        {
+          "id": "typography-heading--default",
+          "name": "Default"
+        },
+        {
+          "id": "typography-heading--scale",
+          "name": "Scale"
+        },
+        {
+          "id": "typography-heading--size-override",
+          "name": "SizeOverride"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Heading/Heading.test.tsx"
+      ]
+    },
+    {
+      "name": "Inline",
+      "kind": "component",
+      "import": "import { Inline } from \"@dsw/ui\";",
+      "description": "Horizontal layout: a row of children with a token gap, wrapping by\ndefault. Use it for button groups, toolbars, a title beside its actions,\nor a label beside a badge.",
+      "source": "packages/ui/src/components/Inline/Inline.tsx",
+      "propsType": "InlineProps",
+      "props": [
+        {
+          "name": "align",
+          "type": "\"start\" | \"center\" | \"end\" | \"baseline\" | \"stretch\"",
+          "required": false,
+          "description": "Cross-axis (vertical) alignment. Defaults to \"center\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "as",
+          "type": "\"div\" | \"section\" | \"article\" | \"aside\" | \"header\" | \"footer\" | \"nav\" | \"main\" | \"form\" | \"ul\" | \"ol\" | \"li\"",
+          "required": false,
+          "description": "Element to render. Defaults to \"div\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false,
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "gap",
+          "type": "\"none\" | \"xxs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"xxl\"",
+          "required": false,
+          "description": "Space between children, from the spacing scale. Defaults to \"sm\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "justify",
+          "type": "\"start\" | \"center\" | \"end\" | \"between\"",
+          "required": false,
+          "description": "Main-axis distribution. \"between\" pushes the first and last apart. Defaults to \"start\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "stackOnMobile",
+          "type": "boolean",
+          "required": false,
+          "description": "Turn into a full-width column on phones, e.g. a title with its actions.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "wrap",
+          "type": "boolean",
+          "required": false,
+          "description": "Wrap onto new lines when out of room. Defaults to true, so rows reflow at 320px (WCAG 1.4.10).",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-label",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[] | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "inputMode",
+          "type": "\"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | \"search\"",
+          "required": false,
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents",
+          "from": "@types/react"
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<T> | undefined",
+          "required": false,
+          "from": "@types/react"
+        }
+      ],
+      "inheritedProps": "267 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [],
+      "stories": [
+        {
+          "id": "layout-inline--default",
+          "name": "Default"
+        },
+        {
+          "id": "layout-inline--end",
+          "name": "End"
+        },
+        {
+          "id": "layout-inline--title-with-actions",
+          "name": "TitleWithActions"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Inline/Inline.test.tsx"
+      ]
+    },
+    {
+      "name": "Link",
+      "kind": "component",
+      "import": "import { Link } from \"@dsw/ui\";",
+      "description": "Navigation to another page or place. Use Button for actions that don't\nnavigate. Always underlined, so it's identifiable without colour\n(WCAG 1.4.1). Client-side routing works through React Aria's\nRouterProvider.",
+      "source": "packages/ui/src/components/Link/Link.tsx",
+      "propsType": "LinkProps",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "externalLabel",
+          "type": "string",
+          "required": false,
+          "description": "Visually hidden text announced for `isExternal`. Override to localise.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "isExternal",
+          "type": "boolean",
+          "required": false,
+          "description": "Opens in a new tab, and says so: adds an icon and \"(opens in a new\ntab)\" for screen readers, plus rel=\"noopener noreferrer\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "description": "Whether the element should receive focus on render.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": false,
+          "description": "The element's unique identifier. See\n[MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id).",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "required": false,
+          "description": "Whether the link is disabled.",
+          "from": "react-aria"
+        },
+        {
+          "name": "onPress",
+          "type": "(e: PressEvent) => void",
+          "required": false,
+          "description": "Handler that is called when the press is released over the target.",
+          "from": "@react-types/shared"
+        }
+      ],
+      "inheritedProps": "94 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [
+        "fieldShape",
+        "fieldTokens",
+        "linkShape",
+        "linkTokens"
+      ],
+      "stories": [
+        {
+          "id": "components-link--default",
+          "name": "Default"
+        },
+        {
+          "id": "components-link--external",
+          "name": "External"
+        },
+        {
+          "id": "components-link--in-text",
+          "name": "InText"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Link/Link.test.tsx"
+      ]
     },
     {
       "name": "Radio",
@@ -1380,6 +2307,118 @@
       ]
     },
     {
+      "name": "Stack",
+      "kind": "component",
+      "import": "import { Stack } from \"@dsw/ui\";",
+      "description": "Vertical layout: children in a column with a token gap between them.\nUse it instead of margins or a hand-written flex column, so spacing\nalways comes from the scale. For a row, use Inline; for a grid of\ncards, Grid.",
+      "source": "packages/ui/src/components/Stack/Stack.tsx",
+      "propsType": "StackProps",
+      "props": [
+        {
+          "name": "align",
+          "type": "\"stretch\" | \"start\" | \"center\" | \"end\"",
+          "required": false,
+          "description": "Cross-axis alignment. Defaults to \"stretch\" (children fill the width).",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "as",
+          "type": "\"div\" | \"section\" | \"article\" | \"aside\" | \"header\" | \"footer\" | \"nav\" | \"main\" | \"form\" | \"ul\" | \"ol\" | \"li\"",
+          "required": false,
+          "description": "Element to render. Defaults to \"div\"; use \"ul\"/\"ol\" for lists of items.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false,
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "gap",
+          "type": "\"none\" | \"xxs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"xxl\"",
+          "required": false,
+          "description": "Space between children, from the spacing scale. Defaults to \"md\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-label",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[] | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "inputMode",
+          "type": "\"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | \"search\"",
+          "required": false,
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents",
+          "from": "@types/react"
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<T> | undefined",
+          "required": false,
+          "from": "@types/react"
+        }
+      ],
+      "inheritedProps": "267 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [],
+      "stories": [
+        {
+          "id": "layout-stack--default",
+          "name": "Default"
+        },
+        {
+          "id": "layout-stack--loose",
+          "name": "Loose"
+        },
+        {
+          "id": "layout-stack--align-start",
+          "name": "AlignStart"
+        },
+        {
+          "id": "layout-stack--as-list",
+          "name": "AsList"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Stack/Stack.test.tsx"
+      ]
+    },
+    {
       "name": "Switch",
       "kind": "component",
       "import": "import { Switch } from \"@dsw/ui\";",
@@ -1520,6 +2559,409 @@
       ]
     },
     {
+      "name": "Tab",
+      "kind": "component",
+      "import": "import { Tab } from \"@dsw/ui\";",
+      "description": "One tab. Keep labels to a word or two.",
+      "source": "packages/ui/src/components/Tabs/Tabs.tsx",
+      "propsType": "TabProps",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "The children of the component. A function may be provided to alter the children based on\ncomponent state.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Matches the `id` of its TabPanel.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "required": false,
+          "description": "Whether the tab is disabled.",
+          "from": "react-aria-components"
+        },
+        {
+          "name": "onPress",
+          "type": "(e: PressEvent) => void",
+          "required": false,
+          "description": "Handler that is called when the press is released over the target.",
+          "from": "@react-types/shared"
+        }
+      ],
+      "inheritedProps": "90 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [
+        "tabsShape",
+        "tabsTokens"
+      ],
+      "stories": [
+        {
+          "id": "components-tabs--default",
+          "name": "Default"
+        },
+        {
+          "id": "components-tabs--default-selected",
+          "name": "DefaultSelected"
+        },
+        {
+          "id": "components-tabs--controlled",
+          "name": "Controlled"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Tabs/Tabs.test.tsx"
+      ]
+    },
+    {
+      "name": "TabList",
+      "kind": "component",
+      "import": "import { TabList } from \"@dsw/ui\";",
+      "description": "The row of tabs. Wraps onto a second line when space runs out.",
+      "source": "packages/ui/src/components/Tabs/Tabs.tsx",
+      "propsType": "TabListProps",
+      "props": [
+        {
+          "name": "aria-label",
+          "type": "string",
+          "required": false,
+          "description": "Name for the tab list, e.g. \"Settings sections\". Required when there's no visible heading to point at.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@react-types/shared"
+        }
+      ],
+      "inheritedProps": "75 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [
+        "tabsShape",
+        "tabsTokens"
+      ],
+      "stories": [
+        {
+          "id": "components-tabs--default",
+          "name": "Default"
+        },
+        {
+          "id": "components-tabs--default-selected",
+          "name": "DefaultSelected"
+        },
+        {
+          "id": "components-tabs--controlled",
+          "name": "Controlled"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Tabs/Tabs.test.tsx"
+      ]
+    },
+    {
+      "name": "TabPanel",
+      "kind": "component",
+      "import": "import { TabPanel } from \"@dsw/ui\";",
+      "description": "The content for one tab. Only the selected panel is rendered.",
+      "source": "packages/ui/src/components/Tabs/Tabs.tsx",
+      "propsType": "TabPanelProps",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "The children of the component. A function may be provided to alter the children based on\ncomponent state.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Matches the `id` of its Tab.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@react-types/shared"
+        }
+      ],
+      "inheritedProps": "73 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [
+        "tabsShape",
+        "tabsTokens"
+      ],
+      "stories": [
+        {
+          "id": "components-tabs--default",
+          "name": "Default"
+        },
+        {
+          "id": "components-tabs--default-selected",
+          "name": "DefaultSelected"
+        },
+        {
+          "id": "components-tabs--controlled",
+          "name": "Controlled"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Tabs/Tabs.test.tsx"
+      ]
+    },
+    {
+      "name": "Tabs",
+      "kind": "component",
+      "import": "import { Tabs } from \"@dsw/ui\";",
+      "description": "Switches between views of one page: settings sections, a record's\ndetails and history. Contains a TabList of Tabs and a TabPanel per tab,\nmatched by `id`. Arrow keys move between tabs (React Aria).\nControlled: `selectedKey` + `onSelectionChange`. Uncontrolled:\n`defaultSelectedKey`. For navigating between pages, use links instead.",
+      "source": "packages/ui/src/components/Tabs/Tabs.tsx",
+      "propsType": "TabsProps",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "The children of the component. A function may be provided to alter the children based on\ncomponent state.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": false,
+          "description": "The element's unique identifier. See\n[MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id).",
+          "from": "@react-types/shared"
+        },
+        {
+          "name": "isDisabled",
+          "type": "boolean",
+          "required": false,
+          "description": "Whether the TabList is disabled.\nShows that a selection exists, but is not available in that circumstance.",
+          "from": "react-stately"
+        }
+      ],
+      "inheritedProps": "79 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [
+        "tabsShape",
+        "tabsTokens"
+      ],
+      "stories": [
+        {
+          "id": "components-tabs--default",
+          "name": "Default"
+        },
+        {
+          "id": "components-tabs--default-selected",
+          "name": "DefaultSelected"
+        },
+        {
+          "id": "components-tabs--controlled",
+          "name": "Controlled"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Tabs/Tabs.test.tsx"
+      ]
+    },
+    {
+      "name": "Text",
+      "kind": "component",
+      "import": "import { Text } from \"@dsw/ui\";",
+      "description": "Body copy in the system's type scale and colour roles.",
+      "source": "packages/ui/src/components/Text/Text.tsx",
+      "propsType": "TextProps",
+      "props": [
+        {
+          "name": "as",
+          "type": "\"p\" | \"span\" | \"div\" | \"strong\" | \"em\" | \"small\" | \"code\"",
+          "required": false,
+          "description": "Element to render. Defaults to \"p\"; \"span\" inside other text.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false,
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "mono",
+          "type": "boolean",
+          "required": false,
+          "description": "Monospace face, for codes, IDs and keys.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
+          "required": false,
+          "description": "Defaults to \"md\" (14px).",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "tone",
+          "type": "\"default\" | \"muted\" | \"accent\" | \"success\" | \"warning\" | \"danger\"",
+          "required": false,
+          "description": "Colour role. Every tone meets 4.5:1 on canvas and surface. Don't let\na tone carry meaning alone (WCAG 1.4.1): \"Payment failed\" in danger,\nnot just a red number.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "weight",
+          "type": "\"regular\" | \"medium\" | \"semibold\"",
+          "required": false,
+          "description": "Defaults to \"regular\".",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-label",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[] | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "inputMode",
+          "type": "\"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | \"search\"",
+          "required": false,
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents",
+          "from": "@types/react"
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<T> | undefined",
+          "required": false,
+          "from": "@types/react"
+        }
+      ],
+      "inheritedProps": "267 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [
+        "textTokens"
+      ],
+      "stories": [
+        {
+          "id": "typography-text--default",
+          "name": "Default"
+        },
+        {
+          "id": "typography-text--muted",
+          "name": "Muted"
+        },
+        {
+          "id": "typography-text--tones",
+          "name": "Tones"
+        },
+        {
+          "id": "typography-text--mono",
+          "name": "Mono"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/Text/Text.test.tsx"
+      ]
+    },
+    {
       "name": "TextField",
       "kind": "component",
       "import": "import { TextField } from \"@dsw/ui\";",
@@ -1612,7 +3054,7 @@
         },
         {
           "name": "inputMode",
-          "type": "\"text\" | \"search\" | \"url\" | \"tel\" | \"email\" | \"none\" | \"numeric\" | \"decimal\"",
+          "type": "\"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | \"search\"",
           "required": false,
           "description": "Hints at the type of data that might be entered by the user while editing the element or its\ncontents. See\n[MDN](https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute).",
           "from": "@react-types/shared"
