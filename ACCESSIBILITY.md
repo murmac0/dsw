@@ -157,4 +157,4 @@ New components must:
 - Handle forced colours for any state shown only by a fill.
 - Have tests for label, description and error association.
 
-The lint rule `dsw/no-raw-style-values` keeps colours on audited tokens.
+The lint rule `@dsw/no-raw-style-values` keeps colours on audited tokens.

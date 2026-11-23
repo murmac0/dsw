@@ -3,6 +3,7 @@ import { contrastRatio, parseColor } from "@dsw/tokens/contrast";
 import { ContrastAudit } from "./ContrastAudit";
 // Primitives are imported here only to document the palette; components
 // never consume them directly.
+// eslint-disable-next-line @dsw/no-primitive-tokens -- documents the raw palette
 import {
   bloomPalette,
   colorPrimitives,

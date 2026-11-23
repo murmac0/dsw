@@ -209,6 +209,9 @@ importers:
       '@dsw/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@dsw/eslint-plugin':
+        specifier: workspace:*
+        version: link:../../packages/eslint-plugin
       '@playwright/test':
         specifier: 1.56.0
         version: 1.56.0
@@ -269,6 +272,9 @@ importers:
 
   packages/eslint-config:
     dependencies:
+      '@dsw/eslint-plugin':
+        specifier: workspace:*
+        version: link:../eslint-plugin
       '@eslint/js':
         specifier: ^9.39.5
         version: 9.39.5
@@ -291,17 +297,27 @@ importers:
         specifier: ^8.72.2
         version: 8.72.2(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.9.3)
 
+  packages/eslint-plugin:
+    dependencies:
+      typescript-eslint:
+        specifier: ^8.72.2
+        version: 8.72.2(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.9.3)
+    devDependencies:
+      '@eslint/js':
+        specifier: ^9.39.5
+        version: 9.39.5
+      eslint:
+        specifier: ^9.39.5
+        version: 9.39.5(supports-color@7.2.0)
+      globals:
+        specifier: ^17.14.0
+        version: 17.14.0
+      vitest:
+        specifier: ^5.1.0
+        version: 5.1.0(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@31.0.0)(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2))
+
   packages/mcp:
     dependencies:
-      '@dsw/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@dsw/tokens':
-        specifier: workspace:*
-        version: link:../tokens
-      '@dsw/ui':
-        specifier: workspace:*
-        version: link:../ui
       '@modelcontextprotocol/sdk':
         specifier: 1.32.2
         version: 1.32.2(supports-color@7.2.0)(zod@4.6.7)
@@ -315,9 +331,24 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
+      '@dsw/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@dsw/eslint-plugin':
+        specifier: workspace:*
+        version: link:../eslint-plugin
+      '@dsw/tokens':
+        specifier: workspace:*
+        version: link:../tokens
+      '@dsw/ui':
+        specifier: workspace:*
+        version: link:../ui
       '@types/node':
         specifier: ^26.6.6
         version: 26.6.6
+      esbuild:
+        specifier: 0.28.2
+        version: 0.28.2
       globals:
         specifier: ^17.14.0
         version: 17.14.0

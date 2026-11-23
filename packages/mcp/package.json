@@ -1,32 +1,50 @@
 {
   "name": "@dsw/mcp",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "description": "MCP server that gives coding agents the @dsw design system: components, tokens per brand and mode, contrast, guidelines and a style linter.",
+  "engines": {
+    "node": ">=22"
+  },
   "bin": {
     "dsw-mcp": "./src/stdio.ts"
   },
   "exports": {
     ".": "./src/server.ts"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "bin": {
+      "dsw-mcp": "./dist/stdio.js"
+    },
+    "exports": {
+      ".": "./dist/server.js"
+    }
+  },
   "scripts": {
+    "build": "node scripts/build.ts",
     "start": "node src/stdio.ts",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
   "dependencies": {
-    "@dsw/eslint-config": "workspace:*",
-    "@dsw/tokens": "workspace:*",
-    "@dsw/ui": "workspace:*",
     "@modelcontextprotocol/sdk": "1.32.2",
     "eslint": "^9.39.5",
     "typescript-eslint": "^8.72.2",
     "zod": "4.6.7"
   },
   "devDependencies": {
+    "@dsw/eslint-config": "workspace:*",
+    "@dsw/eslint-plugin": "workspace:*",
+    "@dsw/tokens": "workspace:*",
+    "@dsw/ui": "workspace:*",
     "@types/node": "^26.6.6",
+    "esbuild": "0.28.2",
     "globals": "^17.14.0",
     "typescript": "^5.9.3",
     "vitest": "^5.1.0"

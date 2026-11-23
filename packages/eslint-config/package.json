@@ -5,13 +5,13 @@
   "type": "module",
   "main": "./index.js",
   "exports": {
-    ".": "./index.js",
-    "./no-raw-style-values": "./no-raw-style-values.js"
+    ".": "./index.js"
   },
   "scripts": {
     "lint": "echo \"@dsw/eslint-config has no lintable source\""
   },
   "dependencies": {
+    "@dsw/eslint-plugin": "workspace:*",
     "@eslint/js": "^9.39.5",
     "@stylexjs/eslint-plugin": "^0.19.1",
     "eslint": "^9.39.5",

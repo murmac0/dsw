@@ -1,5 +1,5 @@
 /**
- * dsw/no-raw-style-values
+ * @dsw/no-raw-style-values
  *
  * Inside stylex.create() / stylex.keyframes(), design values must come from
  * @dsw/tokens. Flags string literals (and template-literal chunks) carrying

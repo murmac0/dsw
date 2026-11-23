@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "dsw": {
+      "command": "npx",
+      "args": ["-y", "--package=@dsw/mcp@^0.1.0", "dsw-mcp"]
+    }
+  }
+}

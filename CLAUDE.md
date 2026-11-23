@@ -4,8 +4,10 @@ pnpm + Turborepo monorepo for a themeable React design system.
 
 - `packages/tokens` (`@dsw/tokens`): StyleX tokens with three tiers, plus themes, the contrast audit and the token export.
 - `packages/ui` (`@dsw/ui`): React 19 components built on react-aria-components, plus the component manifest.
-- `packages/mcp` (`@dsw/mcp`): MCP server over the generated token and component data.
-- `packages/eslint-config`: shared lint config and the `dsw/no-raw-style-values` rule.
+- `packages/mcp` (`@dsw/mcp`): MCP server over the generated token and component data. Runs from source here; `pnpm --filter @dsw/mcp build` bundles it for other repos.
+- `packages/eslint-plugin` (`@dsw/eslint-plugin`): the design-system lint rules (tokens, DS components over native elements, layout primitives) and the `dsw-migrate` codemod. One source of truth for CI, editors and the MCP server's `lint_styles`.
+- `packages/eslint-config`: shared lint config for this repo, built on the plugin's `library` preset.
+- `plugins/dsw`: the Claude Code plugin for app teams (MCP server plus build-screen, review-ui and migrate-to-dsw skills), listed in `.claude-plugin/marketplace.json`.
 - `apps/workbench`: Vite demo app, Storybook (stories live in `packages/ui`) and the Playwright E2E suite.
 
 Read ARCHITECTURE.md for the reasoning behind the design. Read ACCESSIBILITY.md before changing any interactive behaviour.
@@ -22,7 +24,8 @@ Before writing UI code, ask `dsw` rather than guessing:
 - **`get_component`**: check this before building something new. It gives the props, the tokens used and the stories.
 - **`search_tokens`, `get_token` and `find_token_for_value`**: never hand-pick a hex value or px size.
 - **`check_contrast`**: use it for any new foreground and background pair, in all 6 themes.
-- **`lint_styles`**: run it on new style code before finishing.
+- **`suggest_component`**: maps a need in plain words ("status pill", "modal") to a component, and says when the system has nothing for it yet.
+- **`lint_styles`**: run it on new style code before finishing. Use scope `"library"` for code inside `packages/ui`, which is made of native elements and React Aria.
 
 ## Commands
 
@@ -68,6 +71,15 @@ App code should rarely need `stylex.create`; reaching for it usually
 means a component or prop is missing. The workbench's "Example page" tab
 (`apps/workbench/src/pages/SettingsPage.tsx`) is the reference: a full
 settings page with no styles of its own.
+
+## Rules for app teams
+
+Rules in `@dsw/eslint-plugin` are what app teams' CI enforces, so treat a
+change to one as a change to the public contract. Add RuleTester cases for
+every new behaviour; `prefer-ds-components` fixes must only rewrite code
+whose behaviour is unchanged (the codemod applies them unattended).
+After changing the plugin or the MCP server, run
+`pnpm --filter @dsw/mcp build` and pack-test it as the README describes.
 
 ## Adding a component
 

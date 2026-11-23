@@ -35,6 +35,7 @@ describe("dsw MCP server", () => {
       "list_brands",
       "list_components",
       "search_tokens",
+      "suggest_component",
     ]);
     for (const t of tools) expect(t.annotations?.readOnlyHint, t.name).toBe(true);
     expect(client.getInstructions()).toMatch(/lint_styles/);
@@ -54,6 +55,19 @@ describe("dsw MCP server", () => {
     expect(text).toContain("`buttonTokens`");
     expect(text).toMatch(/Primary label: buttonTokens\.primaryFg on buttonTokens\.primaryBg/);
     expect(text).toContain("components-button--primary");
+  });
+
+  it("maps product language to components, and admits gaps", async () => {
+    const modal = await call("suggest_component", { need: "a modal to confirm deleting the workspace" });
+    expect(modal.text.split("\n")[1]).toMatch(/^- Dialog:/);
+    expect(modal.text).toContain('import { Dialog } from "@dsw/ui";');
+
+    const pill = await call("suggest_component", { need: "status pill next to the title" });
+    expect(pill.text).toMatch(/- Badge:/);
+    expect(pill.text).toMatch(/- Inline:/);
+
+    const tooltip = await call("suggest_component", { need: "tooltip on the icon" });
+    expect(tooltip.text).toMatch(/^Not in @dsw\/ui yet: Tooltip\./);
   });
 
   it("errors helpfully for an unknown component", async () => {
@@ -103,7 +117,28 @@ describe("dsw MCP server", () => {
     expect(text).toMatch(/padding: Raw style value "12px"[\s\S]*try: space\.md \(exact\)/);
     expect(text).toMatch(/color: Raw style value "#5e5e70"[\s\S]*try: color\.fgMuted \(exact\)/);
     expect(text).toMatch(/fontWeight: Raw style value 600[\s\S]*fontWeight\.semibold \(exact\)/);
-    expect(text).toContain("dsw/no-primitive-imports");
+    expect(text).toContain("@dsw/no-primitive-tokens");
+  });
+
+  it("in app code, prefers @dsw/ui components and layout primitives over hand-rolled ones", async () => {
+    const { text } = await call("lint_styles", {
+      code: [
+        'import { Tabs } from "react-aria-components";',
+        'const s = stylex.create({ list: { display: "flex", flexDirection: "column", gap: space.md } });',
+        "export const A = () => <h2>Members</h2>;",
+      ].join("\n"),
+    });
+    expect(text).toContain("@dsw/no-react-aria-direct");
+    expect(text).toMatch(/hand-written Stack/);
+    expect(text).toMatch(/Use <Heading> from @dsw\/ui instead of <h2>/);
+  });
+
+  it("in library scope (inside @dsw/ui), checks tokens only", async () => {
+    const { text } = await call("lint_styles", {
+      scope: "library",
+      code: 'import { Button as AriaButton } from "react-aria-components";\nexport const B = () => <button />;',
+    });
+    expect(text).toMatch(/No findings/);
   });
 
   it("passes clean code and honours token-exempt", async () => {
@@ -155,7 +190,7 @@ describe("stdio entry point", () => {
     const c = new Client({ name: "stdio-test", version: "0" });
     await c.connect(transport);
     const { tools } = await c.listTools();
-    expect(tools.length).toBe(9);
+    expect(tools.length).toBe(10);
     await c.close();
   });
 });

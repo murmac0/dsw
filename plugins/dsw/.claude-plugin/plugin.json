@@ -1,0 +1,7 @@
+{
+  "name": "dsw",
+  "version": "0.1.0",
+  "description": "Build, review and migrate UI with the @dsw design system: an MCP server for components, tokens and contrast, plus skills for building screens, reviewing UI and migrating to @dsw/ui.",
+  "author": { "name": "Design System team" },
+  "keywords": ["design-system", "ui", "accessibility", "tokens", "react"]
+}

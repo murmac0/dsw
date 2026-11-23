@@ -4,7 +4,7 @@
  * StyleX compiler. The manifests are produced from them statically and
  * checked against the browser in CI (e2e/token-export.spec.ts).
  */
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 export interface TokenEntry {
@@ -82,24 +82,34 @@ export interface ComponentManifest {
   components: ComponentEntry[];
 }
 
-const readJson = <T>(specifier: string): T =>
-  JSON.parse(readFileSync(fileURLToPath(import.meta.resolve(specifier)), "utf8")) as T;
+/**
+ * Installed from npm, the build copies everything the server reads into
+ * dist/data (see scripts/build.ts). In this repo it reads the workspace
+ * packages and docs directly, so they're never stale while developing.
+ */
+const bundled = new URL("./data/", import.meta.url);
+const isBundled = existsSync(fileURLToPath(new URL("tokens.json", bundled)));
 
-const repoFile = (path: string) =>
-  readFileSync(fileURLToPath(new URL(`../../../${path}`, import.meta.url)), "utf8");
+const read = (url: URL | string) => readFileSync(fileURLToPath(url), "utf8");
+const readJson = <T>(bundledName: string, specifier: string): T =>
+  JSON.parse(read(isBundled ? new URL(bundledName, bundled) : import.meta.resolve(specifier))) as T;
+const repoDoc = (name: string) =>
+  read(isBundled ? new URL(name, bundled) : new URL(`../../../${name}`, import.meta.url));
 
-export const tokens = readJson<TokenManifest>("@dsw/tokens/generated/tokens.json");
-export const components = readJson<ComponentManifest>("@dsw/ui/generated/components.json");
+export const tokens = readJson<TokenManifest>("tokens.json", "@dsw/tokens/generated/tokens.json");
+export const components = readJson<ComponentManifest>("components.json", "@dsw/ui/generated/components.json");
 
 export const docs = {
-  architecture: repoFile("ARCHITECTURE.md"),
-  accessibility: repoFile("ACCESSIBILITY.md"),
+  architecture: repoDoc("ARCHITECTURE.md"),
+  accessibility: repoDoc("ACCESSIBILITY.md"),
 };
 
 export function dtcgFor(brand: string, mode: string): string {
-  return readFileSync(
-    fileURLToPath(new URL(`../../tokens/generated/dtcg/${brand}-${mode}.tokens.json`, import.meta.url)),
-    "utf8",
+  const file = `${brand}-${mode}.tokens.json`;
+  return read(
+    isBundled
+      ? new URL(`dtcg/${file}`, bundled)
+      : new URL(`../../tokens/generated/dtcg/${file}`, import.meta.url),
   );
 }
 

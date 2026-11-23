@@ -3,11 +3,12 @@ import { z } from "zod";
 import { components, DEFAULT_THEME, docs, dtcgFor, tokenByRef, tokens } from "./data.ts";
 import { findGuidelines, sections } from "./guidelines.ts";
 import { lintStyles } from "./lint.ts";
+import { suggestComponents } from "./suggest.ts";
 import { assertTheme, contrastReport, findTokens, searchTokens, tokenLine } from "./tokens.ts";
 
 const INSTRUCTIONS = `You're working in the @dsw design system (React + StyleX + React Aria). Follow this workflow when building or changing UI:
 
-1. Use existing components. Call list_components, then get_component before using one: it gives real prop types, controlled/uncontrolled pairs, accessibility rules and the stories that show it. Build screens from components alone: Container, Stack, Inline and Grid for layout (gaps from the spacing scale), Heading (pick its level from the page outline) and Text for type, Card for sections. Needing stylex.create() in app code usually means a component is missing.
+1. Use existing components. Not sure which? suggest_component maps a need ("a modal", "status pill") to one. Call get_component before using one: it gives real prop types, controlled/uncontrolled pairs, accessibility rules and the stories that show it. Build screens from components alone: Container, Stack, Inline and Grid for layout (gaps from the spacing scale), Heading (pick its level from the page outline) and Text for type, Card for sections. Needing stylex.create() in app code usually means a component is missing.
 2. Style with tokens only. Never write raw colours, px, ms, font weights or z-indexes in stylex.create(). Find tokens with search_tokens, or turn a value from a design into a token with find_token_for_value. Import tokens from their origin file (e.g. @dsw/tokens/semantic.stylex), never primitives.
 3. Don't invent colour pairings. A new foreground/background combination must pass check_contrast (4.5:1 text, 3:1 boundaries and indicators) in every theme; audited pairs are listed in get_token.
 4. Before finishing, run lint_styles on every file you changed that calls stylex.create(), and fix all findings.
@@ -90,6 +91,39 @@ export function createServer(): McpServer {
           .filter(Boolean)
           .join("\n\n"),
       );
+    },
+  );
+
+  server.registerTool(
+    "suggest_component",
+    {
+      title: "Suggest a component",
+      description:
+        'Which @dsw/ui component to use for a need, in plain words or as markup: "a modal to confirm deleting", "status pill", "row of buttons", "<h2>", "settings panel". Also says when the system has nothing for it yet (tooltip, table, toast…) and what to use meanwhile, so you flag the gap instead of hand-building a one-off.',
+      inputSchema: { need: z.string().describe("What the UI needs to do or show, or the element you'd otherwise write") },
+      annotations: readOnly,
+    },
+    async ({ need }) => {
+      const { suggestions, missing } = suggestComponents(need);
+      const lines: string[] = [];
+      for (const m of missing) {
+        lines.push(
+          `Not in @dsw/ui yet: ${m.name}. Meanwhile: ${m.meanwhile}. Don't hand-build one; tell the user it's a gap for the design-system team.`,
+        );
+      }
+      if (suggestions.length) {
+        if (missing.length) lines.push("");
+        lines.push(missing.length ? "Closest components:" : "Use:");
+        for (const { component: c } of suggestions) {
+          const summary = (c.description ?? "").replace(/\s+/g, " ").split(/(?<=\.)\s/)[0];
+          lines.push(`- ${c.name}: ${summary}\n  ${c.import}`);
+        }
+        lines.push("", "Call get_component for props and examples before using one.");
+      }
+      if (!lines.length) {
+        lines.push(`Nothing in @dsw/ui matches "${need}". Call list_components to browse, and if it's truly missing, say so rather than building a one-off.`);
+      }
+      return text(lines.join("\n"));
     },
   );
 
@@ -236,16 +270,20 @@ export function createServer(): McpServer {
     {
       title: "Lint styles",
       description:
-        "Check code against the design system's style rules: no raw colours/lengths/durations/weights/z-indexes/opacities in stylex.create() or keyframes (dsw/no-raw-style-values), no primitive-token or barrel imports, no inline style objects. Each raw value comes with suggested tokens. Run before finishing any UI change.",
+        "Run the design system's ESLint rules (@dsw/eslint-plugin, the same ones CI runs) on code: no raw colours/lengths/durations/weights in stylex.create(); no primitive-token or barrel imports; and in app code, @dsw/ui components instead of native <button>/<a>/<h1>/<input>…, no direct React Aria imports, Stack/Inline/Grid instead of hand-written layout styles, no inline style objects. Each raw value comes with suggested tokens. Run before finishing any UI change.",
       inputSchema: {
         code: z.string().describe("Source of a .ts/.tsx file or snippet"),
+        scope: z
+          .enum(["app", "library"])
+          .optional()
+          .describe('"app" (default): code built with @dsw/ui. "library": code inside @dsw/ui itself, where only token rules apply.'),
         theme: themeArg,
       },
       annotations: readOnly,
     },
-    async ({ code, theme }) => {
-      const findings = lintStyles(code, theme ? assertTheme(theme) : undefined);
-      if (findings.length === 0) return text("✓ No findings. Styles use tokens.");
+    async ({ code, scope, theme }) => {
+      const findings = lintStyles(code, theme ? assertTheme(theme) : undefined, scope ?? "app");
+      if (findings.length === 0) return text("✓ No findings: tokens and design-system components throughout.");
       return text(
         [
           `${findings.length} finding(s):`,

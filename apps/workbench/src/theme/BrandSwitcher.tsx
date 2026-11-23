@@ -1,6 +1,9 @@
 import * as stylex from "@stylexjs/stylex";
 import { useId } from "react";
 import { ToggleButton, ToggleButtonGroup } from "react-aria-components";
+// Each brand's swatch shows that brand's colours whatever theme is active,
+// so it can't use theme-following semantic tokens.
+// eslint-disable-next-line @dsw/no-primitive-tokens -- fixed per-brand swatches
 import {
   bloomPalette,
   colorPrimitives,

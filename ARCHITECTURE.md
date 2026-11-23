@@ -239,8 +239,8 @@ media queries. Layout changes that tokens can't express (Dialog docking to
 the bottom of the screen on phones, stacked footer actions) use the
 `breakpoints` constants as StyleX condition keys.
 
-**Enforced, not just encouraged.** `dsw/no-raw-style-values`
-(`packages/eslint-config/no-raw-style-values.js`) fails lint on raw lengths,
+**Enforced, not just encouraged.** `@dsw/no-raw-style-values`
+(`packages/eslint-plugin/rules/no-raw-style-values.js`) fails lint on raw lengths,
 durations, colours, and numeric weights / line heights / z-indexes /
 opacities inside `stylex.create()` and `stylex.keyframes()`. Percentages,
 full-viewport units, `0` and keywords pass, since they're layout mechanics.
@@ -435,13 +435,41 @@ package's `test`, so a stale export fails CI.
 
 **MCP server (`packages/mcp`).** This gives coding agents the system:
 component reference, token search, value → token mapping, contrast checks,
-guidelines, and `lint_styles`, which runs the real
-`dsw/no-raw-style-values` rule with token suggestions. It reads the
-generated manifests and runs on Node's built-in TypeScript stripping,
-consistent with the repo's no-build-step packages. `.mcp.json` registers
-it alongside Storybook's own MCP server, which handles story previews.
+guidelines, `suggest_component` (product words like "modal" or "pill"
+→ components, and an honest "not yet" for gaps), and `lint_styles`,
+which runs `@dsw/eslint-plugin` with token suggestions. In this repo it
+runs from source on Node's TypeScript stripping; `.mcp.json` registers it
+alongside Storybook's own MCP server, which handles story previews.
 Tests drive it through a real MCP client, including the stdio entry
 point.
+
+## For app teams: lint rules, codemod and Claude Code plugin
+
+Product teams get the system through three channels that share one set
+of rules:
+
+- **`@dsw/eslint-plugin`.** `configs.recommended` for apps:
+  - tokens only, and no primitive or barrel imports
+  - `prefer-ds-components`: native `<button>`, `<a>`, `<h1>`, inputs and so on → @dsw/ui
+  - `no-react-aria-direct`
+  - `prefer-layout-primitives`: a hand-written flex or grid with a gap → Stack, Inline or Grid
+  - `no-inline-style`
+
+  `configs.library` is the token rules alone, for @dsw/ui itself, since it's built from native elements and React Aria.
+- **`dsw-migrate` (in the plugin package).** A codemod built on `prefer-ds-components` in fix mode. It only rewrites conversions that keep behaviour identical, for example `onClick={() => …}` → `onPress`, `target="_blank"` → `isExternal`, and `<h2>` → `<Heading level={2}>`, and adds the imports. Anything that needs a decision (custom classes, handlers that read the DOM event, inputs needing labels) is listed with file and line instead. The fixes run through ESLint, so they're tested with RuleTester like any rule.
+- **`plugins/dsw`, a Claude Code plugin.** It bundles the MCP server with `build-screen`, `review-ui` and `migrate-to-dsw` skills. Teams install it from this repo's marketplace (`.claude-plugin/marketplace.json`).
+- **Publishing the server.** `@dsw/mcp` can't run from `.ts` source once installed, because Node won't strip types inside `node_modules`. `scripts/build.ts` bundles it with esbuild:
+  - workspace code (the ESLint plugin, the colour maths) is inlined
+  - the SDK, zod and ESLint stay as dependencies
+  - the token, component and doc data is copied into `dist/data`, which the server reads when present
+
+  `publishConfig` points `bin` at the build, so this repo keeps running source.
+
+The packages stay `private: true` until there's a registry to publish to.
+They were proven end to end by packing both tarballs and installing them
+offline into a scratch app outside the workspace. There, ESLint found the
+expected violations, `dsw-migrate` rewrote the safe cases, and the MCP
+server answered through the plugin's exact `npx` command.
 
 ## What's deliberately not here yet
 

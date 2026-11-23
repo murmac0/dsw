@@ -1,0 +1,13 @@
+{
+  "name": "dsw",
+  "owner": { "name": "Design System team" },
+  "metadata": { "description": "Plugins for teams building with the @dsw design system." },
+  "plugins": [
+    {
+      "name": "dsw",
+      "source": "./plugins/dsw",
+      "description": "Build, review and migrate UI with @dsw/ui: design-system MCP server plus build-screen, review-ui and migrate-to-dsw skills.",
+      "version": "0.1.0"
+    }
+  ]
+}

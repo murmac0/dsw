@@ -4,7 +4,7 @@ import jsxA11y from "eslint-plugin-jsx-a11y";
 import reactHooks from "eslint-plugin-react-hooks";
 import globals from "globals";
 import tseslint from "typescript-eslint";
-import noRawStyleValues from "./no-raw-style-values.js";
+import dsw from "@dsw/eslint-plugin";
 
 /**
  * Shared flat ESLint config for the workbench monorepo.
@@ -37,13 +37,16 @@ export const reactConfig = tseslint.config(
   jsxA11y.flatConfigs.recommended,
 );
 
-export const stylexConfig = tseslint.config({
+/**
+ * StyleX checks plus the design system's token rules. Packages that build
+ * @dsw/ui use this; apps built *with* it add `dsw.configs.recommended`
+ * (see @dsw/eslint-plugin), which also prefers @dsw/ui components.
+ */
+export const stylexConfig = tseslint.config(dsw.configs.library, {
   plugins: {
     "@stylexjs": stylex,
-    dsw: { rules: { "no-raw-style-values": noRawStyleValues } },
   },
   rules: {
-    "dsw/no-raw-style-values": "error",
     "@stylexjs/no-unused": "error",
     "@stylexjs/valid-styles": "error",
     "@stylexjs/valid-shorthands": "error",

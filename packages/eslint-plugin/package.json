@@ -1,0 +1,44 @@
+{
+  "name": "@dsw/eslint-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ESLint rules for apps built on @dsw/ui: tokens only, design-system components over native elements, layout primitives, plus the dsw-migrate codemod.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./rules/no-raw-style-values": "./rules/no-raw-style-values.js"
+  },
+  "bin": {
+    "dsw-migrate": "./bin/dsw-migrate.js"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "lib",
+    "rules",
+    "bin",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0"
+  },
+  "dependencies": {
+    "typescript-eslint": "^8.72.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "globals": "^17.14.0",
+    "vitest": "^5.1.0"
+  }
+}
