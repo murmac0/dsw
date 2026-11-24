@@ -34,7 +34,8 @@ jobs:
 
   e2e:
     name: E2E (axe, contrast, forced colours, reflow in 6 themes)
-    runs-on: ubuntu-latest
+    # Pinned: Playwright can't install Chromium on ubuntu-latest (26.04) yet.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
       - uses: pnpm/action-setup@v4
