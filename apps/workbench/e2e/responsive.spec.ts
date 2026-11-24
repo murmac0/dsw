@@ -30,20 +30,33 @@ test.describe("phone viewport", () => {
     expect(box?.height).toBeGreaterThanOrEqual(44);
   });
 
-  test("dialog docks to the bottom and stacks its actions", async ({ page }) => {
+  test("dialog docks to the bottom and stacks its actions", async ({
+    page,
+  }) => {
     await page.goto("/");
     await page.getByRole("button", { name: "Open dialog" }).click();
     const dialog = page.getByRole("dialog", { name: "Invite teammates" });
     await expect(dialog).toBeVisible();
+    // Measure after the entry animation: boundingBox includes transforms,
+    // so mid-animation sizes vary with how fast the machine is.
+    await page.waitForFunction(() =>
+      document.getAnimations().every((a) => a.playState !== "running"),
+    );
 
     const dialogBox = await dialog.boundingBox();
     const viewport = page.viewportSize();
     expect(dialogBox && viewport).toBeTruthy();
     // Bottom edge sits near the bottom of the screen (sheet-style).
-    expect(viewport!.height - (dialogBox!.y + dialogBox!.height)).toBeLessThan(40);
+    expect(viewport!.height - (dialogBox!.y + dialogBox!.height)).toBeLessThan(
+      40,
+    );
 
-    const cancel = await dialog.getByRole("button", { name: "Cancel" }).boundingBox();
-    const send = await dialog.getByRole("button", { name: "Send invites" }).boundingBox();
+    const cancel = await dialog
+      .getByRole("button", { name: "Cancel" })
+      .boundingBox();
+    const send = await dialog
+      .getByRole("button", { name: "Send invites" })
+      .boundingBox();
     // Stacked, primary on top, both full width.
     expect(send!.y).toBeLessThan(cancel!.y);
     expect(Math.round(send!.width)).toBe(Math.round(cancel!.width));
