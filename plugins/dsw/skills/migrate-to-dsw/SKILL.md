@@ -1,6 +1,6 @@
 ---
 name: migrate-to-dsw
-description: Move existing app UI onto the @dsw design system. Converts native buttons, links, headings and inputs, hand-written layout styles and raw values to @dsw/ui components and tokens, using the dsw-migrate codemod and then finishing the cases it can't. Use when asked to migrate, adopt, convert or "move to the design system".
+description: Move existing app UI onto the @dsw design system. Converts native buttons, links, headings and inputs, hand-written layout styles and hardcoded values to @dsw/ui components and tokens, using the dsw-migrate codemod and then finishing the cases it can't. Use when asked to migrate, adopt, convert or "move to the design system".
 ---
 
 # Migrate UI to @dsw/ui
@@ -46,7 +46,7 @@ Work through the "need a person" list it prints. For each item, call
 - **`<input>`:** use `TextField` with a visible `label`. Use the nearby label text, then remove the old `<label>`. Keep `type`, `name` and `autoComplete`.
 - **Checkboxes and radios:** `Checkbox` / `CheckboxGroup`, or `RadioGroup` with `Radio` items.
 - **Hand-written layout styles** (`prefer-layout-primitives`): replace the wrapper with `Stack`, `Inline` or `Grid`. Map its gap to the spacing scale with `find_token_for_value` (e.g. `16px` → `gap="lg"`).
-- **Raw values that remain:** use the token `find_token_for_value` gives, passing the CSS property.
+- **Hardcoded values that remain:** use the token `find_token_for_value` gives, passing the CSS property.
 - **Direct React Aria imports:** swap to the @dsw/ui component. If none exists, keep it, add an `eslint-disable-next-line @dsw/no-react-aria-direct -- <reason>`, and list it as a gap.
 
 ## 4. Verify and report

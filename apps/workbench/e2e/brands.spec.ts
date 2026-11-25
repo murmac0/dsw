@@ -1,3 +1,4 @@
+import { PAGES } from "./pages";
 import { expect, test, type Page } from "@playwright/test";
 
 /** Computed styles of the primary "Save changes" button. */
@@ -19,7 +20,7 @@ test("each brand restyles components, not just colours", async ({ page }) => {
   // Reduced motion zeroes the colour transitions, and each read waits for
   // the brand to land on <html>, so nothing is measured mid-transition.
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await page.goto(PAGES.form);
   const html = page.locator("html");
 
   await expect(html).toHaveAttribute("data-brand", "iris");
@@ -51,7 +52,7 @@ test("each brand restyles components, not just colours", async ({ page }) => {
 });
 
 test("brand choice persists across reloads", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.overview);
   await page.getByRole("radio", { name: "Bloom", exact: true }).click();
   await page.getByRole("button", { name: "Dark mode" }).click();
   await page.reload();
@@ -61,7 +62,7 @@ test("brand choice persists across reloads", async ({ page }) => {
 });
 
 test("dialogs and menus pick up the brand (portaled content)", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.dialog);
   await page.getByRole("radio", { name: "Volt", exact: true }).click();
   await page.getByRole("button", { name: "Open dialog" }).click();
   const radius = await page
@@ -71,7 +72,7 @@ test("dialogs and menus pick up the brand (portaled content)", async ({ page }) 
 });
 
 test("checkboxes stay distinguishable from radios in every brand", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.selectionControls);
   for (const brand of ["Iris", "Volt", "Bloom"]) {
     await page.getByRole("radio", { name: brand, exact: true }).click();
     // The visible box is the label's aria-hidden indicator span.

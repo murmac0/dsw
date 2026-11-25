@@ -23,7 +23,7 @@ export default {
     ],
     messages: {
       direct:
-        "Import {{names}} from @dsw/ui, not {{source}}: the raw primitive skips the system's tokens, brands and accessibility defaults. If @dsw/ui has no equivalent, raise it with the design-system team rather than styling your own.",
+        "Import {{names}} from @dsw/ui, not {{source}}: the unstyled primitive skips the system's tokens, brands and accessibility defaults. If @dsw/ui has no equivalent, raise it with the design-system team rather than styling your own.",
     },
   },
   create(context) {

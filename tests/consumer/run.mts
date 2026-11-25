@@ -312,7 +312,7 @@ const mcp = step("MCP server answers over stdio", async () => {
     });
     assert(
       /no-raw-style-values/.test(lintOut),
-      "lint_styles missed a raw colour",
+      "lint_styles missed a hardcoded colour",
     );
     return `${names.length} tools`;
   } finally {

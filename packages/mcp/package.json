@@ -11,7 +11,8 @@
     "dsw-mcp": "./src/stdio.ts"
   },
   "exports": {
-    ".": "./src/server.ts"
+    ".": "./src/server.ts",
+    "./generated/site.json": "./generated/site.json"
   },
   "files": [
     "dist",
@@ -30,7 +31,8 @@
     "start": "node src/stdio.ts",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "node scripts/site-data.ts --check && vitest run",
+    "site-data": "node scripts/site-data.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.32.2",

@@ -933,7 +933,7 @@
         "value": 48,
         "unit": "px"
       },
-      "$description": "Display sizes: Bricolage Grotesque headings.",
+      "$description": "Display sizes, for page and hero headings.",
       "$extensions": {
         "dev.dsw": {
           "ref": "fontSize.display1",
@@ -1548,14 +1548,14 @@
     "display": {
       "$type": "fontFamily",
       "$value": [
-        "Bricolage Grotesque Variable",
+        "Geist Variable",
         "ui-sans-serif",
         "-apple-system",
         "BlinkMacSystemFont",
         "Segoe UI",
         "sans-serif"
       ],
-      "$description": "Headings and display text: expressive, with an optical-size axis.",
+      "$description": "Headings and display text. Iris uses Geist here too, tightly tracked.",
       "$extensions": {
         "dev.dsw": {
           "ref": "fontFamily.display",
@@ -3661,8 +3661,193 @@
       }
     }
   },
+  "codeTokens": {
+    "$description": "Code blocks: source on a raised surface, with syntax colours. Every syntax colour is text and needs 4.5:1 on `bg`; colour is never the only cue, since the code reads the same without it.",
+    "bg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1569,
+          0.1569,
+          0.2235
+        ],
+        "alpha": 1,
+        "hex": "#282839"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.bg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSurfaceRaised"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2039,
+          0.2039,
+          0.2392
+        ],
+        "alpha": 1,
+        "hex": "#34343d"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.border",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderDefault"
+        }
+      }
+    },
+    "text": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9647,
+          0.9647,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#f6f6ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.text",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "label": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$description": "File name or language, and the copy button's idle label.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.label",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "comment": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6667,
+          0.6667,
+          0.7608
+        ],
+        "alpha": 1,
+        "hex": "#aaaac2"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.comment",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "keyword": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529,
+          0.7529,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#c0c0ff"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.keyword",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgAccent"
+        }
+      }
+    },
+    "string": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3804,
+          0.8902,
+          0.7059
+        ],
+        "alpha": 1,
+        "hex": "#61e3b4"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.string",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgSuccess"
+        }
+      }
+    },
+    "name": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9961,
+          0.6824,
+          0.7137
+        ],
+        "alpha": 1,
+        "hex": "#feaeb6"
+      },
+      "$description": "Component, type and function names.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.name",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDanger"
+        }
+      }
+    },
+    "attribute": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9922,
+          0.7255,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#fdb93f"
+      },
+      "$description": "Props and attributes.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.attribute",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgWarning"
+        }
+      }
+    }
+  },
   "alertTokens": {
-    "$description": "Alert: an inline message. Body text is `fg` on each tone's wash; the icon (its shape differs per tone, so meaning never rests on colour) carries 3:1. Borders are decorative.",
     "fg": {
       "$type": "color",
       "$value": {
@@ -4072,7 +4257,7 @@
     "fontFamily": {
       "$type": "fontFamily",
       "$value": [
-        "Bricolage Grotesque Variable",
+        "Geist Variable",
         "ui-sans-serif",
         "-apple-system",
         "BlinkMacSystemFont",
@@ -4320,6 +4505,54 @@
         "dev.dsw": {
           "ref": "alertShape.shadow",
           "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    }
+  },
+  "codeShape": {
+    "radius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeShape.radius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.md"
+        }
+      }
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeShape.borderWidth",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "borderWidth.thin"
+        }
+      }
+    },
+    "fontFamily": {
+      "$type": "fontFamily",
+      "$value": [
+        "Geist Mono Variable",
+        "ui-monospace",
+        "SF Mono",
+        "Menlo",
+        "Consolas",
+        "monospace"
+      ],
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeShape.fontFamily",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontFamily.mono"
         }
       }
     }
@@ -4719,7 +4952,7 @@
     "legendFont": {
       "$type": "fontFamily",
       "$value": [
-        "Bricolage Grotesque Variable",
+        "Geist Variable",
         "ui-sans-serif",
         "-apple-system",
         "BlinkMacSystemFont",

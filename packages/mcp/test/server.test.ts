@@ -89,7 +89,7 @@ describe("dsw MCP server", () => {
     expect(control.text).toMatch(/40px/);
   });
 
-  it("maps a raw value to the right token, using the CSS property as intent", async () => {
+  it("maps a hardcoded value to the right token, using the CSS property as intent", async () => {
     const bg = await call("find_token_for_value", { value: "#6a58ee", property: "backgroundColor" });
     expect(bg.text.split("\n")[1]).toContain("EXACT color.accentDefault");
     const pad = await call("find_token_for_value", { value: "12px", property: "paddingInline" });
@@ -114,9 +114,9 @@ describe("dsw MCP server", () => {
         'const styles = stylex.create({ card: { padding: "12px", color: "#5e5e70", fontWeight: 600 } });',
       ].join("\n"),
     });
-    expect(text).toMatch(/padding: Raw style value "12px"[\s\S]*try: space\.md \(exact\)/);
-    expect(text).toMatch(/color: Raw style value "#5e5e70"[\s\S]*try: color\.fgMuted \(exact\)/);
-    expect(text).toMatch(/fontWeight: Raw style value 600[\s\S]*fontWeight\.semibold \(exact\)/);
+    expect(text).toMatch(/padding: Hardcoded style value "12px"[\s\S]*try: space\.md \(exact\)/);
+    expect(text).toMatch(/color: Hardcoded style value "#5e5e70"[\s\S]*try: color\.fgMuted \(exact\)/);
+    expect(text).toMatch(/fontWeight: Hardcoded style value 600[\s\S]*fontWeight\.semibold \(exact\)/);
     expect(text).toContain("@dsw/no-primitive-tokens");
   });
 

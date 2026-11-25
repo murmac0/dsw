@@ -26,6 +26,7 @@
     "@chromatic-com/storybook": "^5.6.0",
     "@dsw/eslint-config": "workspace:*",
     "@dsw/eslint-plugin": "workspace:*",
+    "@dsw/mcp": "workspace:*",
     "@playwright/test": "1.56.0",
     "@storybook/addon-a11y": "^10.6.7",
     "@storybook/addon-docs": "^10.6.7",
@@ -42,6 +43,7 @@
     "eslint": "^9.39.5",
     "eslint-plugin-storybook": "^10.6.7",
     "playwright": "1.56.0",
+    "shiki": "^4.6.0",
     "storybook": "^10.6.7",
     "vite": "^8.3.7",
     "vitest": "^5.1.0"

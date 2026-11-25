@@ -6,7 +6,7 @@ Scope:
 
 - **Components:** every `@dsw/ui` component (Button, TextField, Select,
   Checkbox, CheckboxGroup, RadioGroup, Switch, Fieldset, Dialog).
-- **Workbench:** the app's Components, Foundations and Playground pages.
+- **Workbench:** every page of the docs site, including its sidebar and phone menu.
 - **Themes:** all three brands (Iris, Volt, Bloom) in light and dark.
 
 ## Method
@@ -67,6 +67,7 @@ example settings page is scanned by axe in every brand and mode.
 | Badge | Plain text, never a live region. Gets an outline under forced colours, where its wash disappears | 1.4.1, 1.4.11 |
 | Tabs | React Aria keyboard model (arrows, Home/End, disabled tabs skipped). The selected bar is a border with `forced-color-adjust: none`, painted `Highlight` under forced colours. Tabs wrap instead of scrolling | 1.4.10, 1.4.11, 2.1.1 |
 | Card | Not a landmark unless `as="section"` with a title, so a page of cards doesn't flood the landmark list. Form controls inside a card are contrast-checked against the card surface | 1.3.1, 1.4.11 |
+| CodeBlock | Long lines wrap instead of scrolling, so there's no scroll region keyboard users must focus and nothing hides at 320px. The copy button's name starts with its visible word and adds the title ("Copy Variants.tsx"), so several on a page are told apart; the result is announced through a status region. Syntax colours are text tokens at 4.5:1, and never the only cue | 1.4.10, 2.5.3, 4.1.3, 1.4.3 |
 | Stack / Inline / Grid | Rendering as `ul`/`ol` keeps list semantics (item counts announced) without bullets. Inline wraps by default and Grid collapses to one column on phones | 1.3.1, 1.4.10 |
 
 Status colours (`fgWarning`, and success, warning and danger washes) were
@@ -78,7 +79,7 @@ ink, not lime.
 
 - axe-core: **0 violations** at WCAG 2.2 A/AA, across all pages, open
   overlays, brands and modes.
-- Contrast audit: **all 109 pairings pass** in all 6 combinations.
+- Contrast audit: **all 116 pairings pass** in all 6 combinations.
 - Forced colours: switch, radio, tab and menu-focus states are painted.
   These tests were checked: they fail with the fixes disabled.
 - Reflow and zoom: no horizontal scroll at 320px and 640px in any brand.

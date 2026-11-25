@@ -1,6 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
 import { contrastRatio, parseColor } from "@dsw/tokens/contrast";
-import { ContrastAudit } from "./ContrastAudit";
 // Primitives are imported here only to document the palette; components
 // never consume them directly.
 // eslint-disable-next-line @dsw/no-primitive-tokens -- documents the raw palette
@@ -381,15 +380,6 @@ export function FoundationsPage() {
             </div>
           ))}
         </div>
-      </section>
-
-      <section {...stylex.props(styles.section)}>
-        <h2 {...stylex.props(styles.heading)}>Contrast audit</h2>
-        <p {...stylex.props(styles.note)}>
-          Every colour pairing a component paints, resolved from the live
-          theme. Switch themes and it re-measures. The same check runs in CI.
-        </p>
-        <ContrastAudit />
       </section>
 
       <section {...stylex.props(styles.section)}>

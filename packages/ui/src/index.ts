@@ -19,6 +19,8 @@ export type { CheckboxProps } from "./components/Checkbox";
 
 export { CheckboxGroup } from "./components/CheckboxGroup";
 export type { CheckboxGroupProps } from "./components/CheckboxGroup";
+export { CodeBlock } from "./components/CodeBlock";
+export type { CodeBlockProps, CodeToken, CodeTokenKind } from "./components/CodeBlock";
 
 export { Container } from "./components/Container";
 export type { ContainerProps, ContainerWidth } from "./components/Container";

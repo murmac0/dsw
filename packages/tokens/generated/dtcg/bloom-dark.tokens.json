@@ -933,7 +933,7 @@
         "value": 48,
         "unit": "px"
       },
-      "$description": "Display sizes: Bricolage Grotesque headings.",
+      "$description": "Display sizes, for page and hero headings.",
       "$extensions": {
         "dev.dsw": {
           "ref": "fontSize.display1",
@@ -1557,7 +1557,7 @@
         "Times New Roman",
         "serif"
       ],
-      "$description": "Headings and display text: expressive, with an optical-size axis.",
+      "$description": "Headings and display text. Iris uses Geist here too, tightly tracked.",
       "$extensions": {
         "dev.dsw": {
           "ref": "fontFamily.display",
@@ -3665,8 +3665,193 @@
       }
     }
   },
+  "codeTokens": {
+    "$description": "Code blocks: source on a raised surface, with syntax colours. Every syntax colour is text and needs 4.5:1 on `bg`; colour is never the only cue, since the code reads the same without it.",
+    "bg": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1137,
+          0.1529,
+          0.1294
+        ],
+        "alpha": 1,
+        "hex": "#1d2721"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.bg",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.bgSurfaceRaised"
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1647,
+          0.2078,
+          0.1882
+        ],
+        "alpha": 1,
+        "hex": "#2a3530"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.border",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.borderDefault"
+        }
+      }
+    },
+    "text": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.949,
+          0.9294,
+          0.8902
+        ],
+        "alpha": 1,
+        "hex": "#f2ede3"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.text",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDefault"
+        }
+      }
+    },
+    "label": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.702,
+          0.7216,
+          0.6824
+        ],
+        "alpha": 1,
+        "hex": "#b3b8ae"
+      },
+      "$description": "File name or language, and the copy button's idle label.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.label",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "comment": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.702,
+          0.7216,
+          0.6824
+        ],
+        "alpha": 1,
+        "hex": "#b3b8ae"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.comment",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgMuted"
+        }
+      }
+    },
+    "keyword": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5608,
+          0.8196,
+          0.6784
+        ],
+        "alpha": 1,
+        "hex": "#8fd1ad"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.keyword",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgAccent"
+        }
+      }
+    },
+    "string": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5608,
+          0.8196,
+          0.6784
+        ],
+        "alpha": 1,
+        "hex": "#8fd1ad"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.string",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgSuccess"
+        }
+      }
+    },
+    "name": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.949,
+          0.6431,
+          0.5608
+        ],
+        "alpha": 1,
+        "hex": "#f2a48f"
+      },
+      "$description": "Component, type and function names.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.name",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgDanger"
+        }
+      }
+    },
+    "attribute": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.851,
+          0.6431,
+          0.2549
+        ],
+        "alpha": 1,
+        "hex": "#d9a441"
+      },
+      "$description": "Props and attributes.",
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeTokens.attribute",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "color.fgWarning"
+        }
+      }
+    }
+  },
   "alertTokens": {
-    "$description": "Alert: an inline message. Body text is `fg` on each tone's wash; the icon (its shape differs per tone, so meaning never rests on colour) carries 3:1. Borders are decorative.",
     "fg": {
       "$type": "color",
       "$value": {
@@ -4322,6 +4507,52 @@
         "dev.dsw": {
           "ref": "alertShape.shadow",
           "import": "@dsw/tokens/components.stylex"
+        }
+      }
+    }
+  },
+  "codeShape": {
+    "radius": {
+      "$type": "dimension",
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeShape.radius",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "radius.md"
+        }
+      }
+    },
+    "borderWidth": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeShape.borderWidth",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "borderWidth.thin"
+        }
+      }
+    },
+    "fontFamily": {
+      "$type": "fontFamily",
+      "$value": [
+        "Geist Mono Variable",
+        "ui-monospace",
+        "Menlo",
+        "monospace"
+      ],
+      "$extensions": {
+        "dev.dsw": {
+          "ref": "codeShape.fontFamily",
+          "import": "@dsw/tokens/components.stylex",
+          "alias": "fontFamily.mono"
         }
       }
     }

@@ -78,7 +78,7 @@ export interface Suggestion {
 }
 
 /**
- * Tokens for a raw value, exact matches first. Colours compare as sRGB
+ * Tokens for a hardcoded value, exact matches first. Colours compare as sRGB
  * (distance for near-misses); lengths in px; durations in ms; plain
  * numbers by property. Semantic tokens rank above component tokens, and
  * decorative `brand.*` colours are flagged.

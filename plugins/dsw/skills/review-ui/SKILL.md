@@ -1,6 +1,6 @@
 ---
 name: review-ui
-description: Review UI code in an app that uses @dsw/ui for design-system compliance and accessibility. Covers DS components over native elements, tokens over raw values, layout primitives, heading structure and announcements. Use when asked to review, audit or check frontend changes, a PR, a diff or specific files against the design system.
+description: Review UI code in an app that uses @dsw/ui for design-system compliance and accessibility. Covers DS components over native elements, tokens over hardcoded values, layout primitives, heading structure and announcements. Use when asked to review, audit or check frontend changes, a PR, a diff or specific files against the design system.
 ---
 
 # Review UI against @dsw
@@ -15,7 +15,7 @@ files.
 
 - **Lint:** if the app's ESLint config includes `@dsw/eslint-plugin`, run ESLint on those files. Otherwise call the `dsw` MCP server's `lint_styles` (scope `"app"`) on each file.
 - **Coverage:** together these catch:
-  - raw colours, sizes and durations, with the token to use instead
+  - hardcoded colours, sizes and durations, with the token to use instead
   - primitive-token imports
   - native `<button>`/`<a>`/`<h1>`/`<input>` where @dsw/ui has a component
   - direct React Aria imports

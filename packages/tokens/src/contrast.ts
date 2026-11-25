@@ -4,6 +4,7 @@ import {
   badgeTokens,
   buttonTokens,
   cardTokens,
+  codeTokens,
   dialogTokens,
   fieldsetTokens,
   fieldTokens,
@@ -164,6 +165,15 @@ export const contrastPairs: readonly ContrastPair[] = [
   pair("Badge", "Success", "text", badgeTokens.successFg, badgeTokens.successBg),
   pair("Badge", "Warning", "text", badgeTokens.warningFg, badgeTokens.warningBg),
   pair("Badge", "Danger", "text", badgeTokens.dangerFg, badgeTokens.dangerBg),
+
+  // CodeBlock
+  pair("CodeBlock", "Code", "text", codeTokens.text, codeTokens.bg),
+  pair("CodeBlock", "File name and copy label", "text", codeTokens.label, codeTokens.bg),
+  pair("CodeBlock", "Comment", "text", codeTokens.comment, codeTokens.bg),
+  pair("CodeBlock", "Keyword", "text", codeTokens.keyword, codeTokens.bg),
+  pair("CodeBlock", "String", "text", codeTokens.string, codeTokens.bg),
+  pair("CodeBlock", "Name", "text", codeTokens.name, codeTokens.bg),
+  pair("CodeBlock", "Attribute", "text", codeTokens.attribute, codeTokens.bg),
 
   // Alert
   pair("Alert", "Info text", "text", alertTokens.fg, alertTokens.infoBg),

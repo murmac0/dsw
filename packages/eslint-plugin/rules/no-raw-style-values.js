@@ -36,11 +36,11 @@ export default {
   meta: {
     type: "suggestion",
     docs: {
-      description: "Require design tokens instead of raw values in StyleX styles",
+      description: "Require design tokens instead of hardcoded values in StyleX styles",
     },
     schema: [],
     messages: {
-      raw: "Raw style value {{value}} — use a token from @dsw/tokens (or add `// token-exempt: <reason>`).",
+      raw: "Hardcoded style value {{value}} — use a token from @dsw/tokens (or add `// token-exempt: <reason>`).",
     },
   },
   create(context) {

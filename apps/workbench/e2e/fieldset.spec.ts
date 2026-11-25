@@ -1,7 +1,8 @@
+import { PAGES } from "./pages";
 import { expect, test } from "@playwright/test";
 
 test("fieldsets name their groups in the accessibility tree", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.fieldset);
   const shipping = page.getByRole("group", { name: "Shipping address" });
   const billing = page.getByRole("group", { name: "Billing address" });
   // Same-labelled fields are reachable, and distinguishable, by group.
@@ -11,7 +12,7 @@ test("fieldsets name their groups in the accessibility tree", async ({ page }) =
 });
 
 test("one prop disables a whole group, natively and visually", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.fieldset);
   const billing = page.getByRole("group", { name: "Billing address" });
   const street = billing.getByRole("textbox", { name: "Street" });
   const same = page.getByText("Billing address is the same as shipping");
@@ -33,7 +34,7 @@ test("one prop disables a whole group, natively and visually", async ({ page }) 
 test("a required CheckboxGroup blocks submit until one option is chosen", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto(PAGES.form);
   const form = page.locator("form", {
     has: page.getByRole("heading", { name: "Workspace settings" }),
   });

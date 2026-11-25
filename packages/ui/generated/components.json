@@ -918,6 +918,149 @@
       ]
     },
     {
+      "name": "CodeBlock",
+      "kind": "component",
+      "import": "import { CodeBlock } from \"@dsw/ui\";",
+      "description": "Source code on a raised surface, with an optional title and a copy\nbutton that announces the result. Long lines wrap rather than scroll.\nFor a word or two of code inside a sentence, use `<Text as=\"code\" mono>`.\nHighlighting is passed in as `tokens`, so the library ships no parser;\nthe colours are tokens, contrast-checked in every theme.",
+      "source": "packages/ui/src/components/CodeBlock/CodeBlock.tsx",
+      "propsType": "CodeBlockProps",
+      "props": [
+        {
+          "name": "code",
+          "type": "string",
+          "required": true,
+          "description": "The source, exactly as it should be copied.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "copiedLabel",
+          "type": "string",
+          "required": false,
+          "description": "Shown and announced after copying.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "copyFailedLabel",
+          "type": "string",
+          "required": false,
+          "description": "Announced if the clipboard refuses.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "copyLabel",
+          "type": "string",
+          "required": false,
+          "description": "Copy button text. Override to localise.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "showCopy",
+          "type": "boolean",
+          "required": false,
+          "description": "Hide the copy button, for very short snippets. Defaults to shown.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "description": "A file name or language shown above the code. Also names the copy button (\"Copy Button.tsx\").",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "tokens",
+          "type": "CodeToken[][]",
+          "required": false,
+          "description": "Optional syntax colouring, as lines of tokens whose text joins up to\n`code` (for example from Shiki at build time). Without it the code is\nshown in one colour.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "aria-describedby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that describes the object.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-label",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Defines a string value that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "aria-labelledby",
+          "type": "string | undefined",
+          "required": false,
+          "description": "Identifies the element (or elements) that labels the current element.",
+          "from": "@types/react"
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | number | readonly string[] | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "id",
+          "type": "string | undefined",
+          "required": false,
+          "from": "@types/react"
+        },
+        {
+          "name": "inputMode",
+          "type": "\"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | \"search\"",
+          "required": false,
+          "description": "Hints at the type of data that might be entered by the user while editing the element or its contents",
+          "from": "@types/react"
+        },
+        {
+          "name": "onChange",
+          "type": "ChangeEventHandler<T> | undefined",
+          "required": false,
+          "from": "@types/react"
+        }
+      ],
+      "inheritedProps": "266 more props inherited from React Aria (event handlers, aria-* and less common options).",
+      "tokenGroups": [
+        "codeShape",
+        "codeTokens",
+        "fieldShape",
+        "fieldTokens"
+      ],
+      "stories": [
+        {
+          "id": "components-codeblock--default",
+          "name": "Default"
+        },
+        {
+          "id": "components-codeblock--highlighted",
+          "name": "Highlighted"
+        },
+        {
+          "id": "components-codeblock--without-title",
+          "name": "WithoutTitle"
+        },
+        {
+          "id": "components-codeblock--no-copy-button",
+          "name": "NoCopyButton"
+        },
+        {
+          "id": "components-codeblock--long-lines-wrap",
+          "name": "LongLinesWrap"
+        }
+      ],
+      "tests": [
+        "packages/ui/src/components/CodeBlock/CodeBlock.test.tsx"
+      ]
+    },
+    {
       "name": "Container",
       "kind": "component",
       "import": "import { Container } from \"@dsw/ui\";",

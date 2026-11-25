@@ -43,8 +43,8 @@ token system (see below) — themes are typed objects, not string overrides.
   exported from such a file (enforced by `@stylexjs/eslint-plugin`'s
   `enforce-extension` rule). `createTheme()` output must NOT live in a
   `.stylex.ts` file — it goes in a plain `.ts` file instead.
-- `defineVars()`/`createTheme()` values are resolved by *static AST
-  analysis*, not runtime evaluation. A plain exported object's properties
+- `defineVars()`/`createTheme()` values are resolved by _static AST
+  analysis_, not runtime evaluation. A plain exported object's properties
   (`primitives.white`) are invisible to the compiler across a file/package
   boundary — hence `packages/tokens/src/primitives.stylex.ts` uses
   `stylex.defineConsts()` for primitives, StyleX's purpose-built construct
@@ -57,7 +57,7 @@ token system (see below) — themes are typed objects, not string overrides.
 - Mixing a raw `style` prop with `{...stylex.props(...)}` is a lint error
   (`no-conflicting-props`). For values that are only known at render time
   (e.g. iterating over a token list to render swatches), `stylex.create()`
-  supports per-call style *functions* — `styles.swatchFill(hexValue)` — which
+  supports per-call style _functions_ — `styles.swatchFill(hexValue)` — which
   stay inside StyleX's compiled system instead of falling back to inline
   styles.
 
@@ -136,9 +136,9 @@ Rule this encodes: form controls are specified for `bgCanvas` and
 
 Self-hosted variable fonts via Fontsource (`import "@dsw/tokens/fonts"`):
 
-- **Bricolage Grotesque** (`fontFamily.display`): headings, with an
-  optical-size axis.
-- **Geist** (`fontFamily.sans`): UI text.
+- **Geist** (`fontFamily.display` and `fontFamily.sans`): headings and
+  UI text. One family keeps Iris quiet and technical; headings get their
+  character from weight and `letterSpacing.tight`, not a second face.
 - **Geist Mono** (`fontFamily.mono`): code.
 
 They're self-hosted rather than loaded from a font CDN: no third-party
@@ -149,11 +149,11 @@ request, works offline, and versions are pinned. Display sizes
 
 Three brands ship, each in light and dark, from `@dsw/tokens/themes`:
 
-| Brand | Character | Type |
-|---|---|---|
-| **Iris** (default) | Electric violet, soft geometry | Bricolage Grotesque / Geist |
-| **Volt** | Neo-brutalist: square, 2px ink outlines, hard offset shadows, uppercase mono buttons that press into the page | Space Grotesk / JetBrains Mono |
-| **Bloom** | Editorial: cream and forest, pill buttons, generous curves, warm diffuse shadows | Fraunces / Instrument Sans |
+| Brand              | Character                                                                                                     | Type                           |
+| ------------------ | ------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| **Iris** (default) | Electric violet, soft geometry                                                                                | Geist / Geist                  |
+| **Volt**           | Neo-brutalist: square, 2px ink outlines, hard offset shadows, uppercase mono buttons that press into the page | Space Grotesk / JetBrains Mono |
+| **Bloom**          | Editorial: cream and forest, pill buttons, generous curves, warm diffuse shadows                              | Fraunces / Instrument Sans     |
 
 A brand is more than a colour swap. That's why component tokens come in
 two kinds:
@@ -212,23 +212,24 @@ but haven't been signed off by a design lead. Worth a review:
 - Neutral tint strength. `ink50` canvas is noticeably lavender.
 - Dark surface steps.
 - Radius scale (6/10/16/22).
-- The Bricolage + Geist pairing at small display sizes.
+- Geist for Iris's headings (it replaced Bricolage Grotesque, which read
+  as quirky next to technical docs).
 
 ### Token groups
 
-| Group | Examples | Notes |
-|---|---|---|
-| `color` | `bgSurface`, `fgDanger`, `borderFocus`, `fgGradientStart` | Overridden per theme |
-| `brand` | `iris`, `coral`, `mint`, `amber` | Decorative only, never text |
-| component groups | `buttonTokens`, `fieldTokens`, `selectionTokens`, `switchTokens`, `menuTokens`, `dialogTokens` | Alias semantic; themed where needed |
-| `space` | `xxs`…`xxl`, `gutter` | 4px scale; `gutter` is responsive |
-| `size` | `controlSm/Md/Lg`, `indicator`, `dialogMd`, `contentMax` | Control sizes grow on touch |
-| `radius` | `sm`…`full` | |
-| `borderWidth`, `focus` | `thin`, `thick`; `focus.width/offset` | One focus ring everywhere |
-| `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing`, `fontFamily` | `display1`, `semibold`, `tight`, `display` | |
-| `motion` | `fast/medium/slow`, `easeOut`, `emphasized` | 0ms under reduced motion |
-| `opacity`, `zIndex`, `shadow` | `pressed`, `overlay`, `dialog` | |
-| `breakpoints` (consts) | `mobile`, `tablet`, `reducedMotion`, `forcedColors` | Media queries can't be CSS vars |
+| Group                                                                 | Examples                                                                                       | Notes                               |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------------- |
+| `color`                                                               | `bgSurface`, `fgDanger`, `borderFocus`, `fgGradientStart`                                      | Overridden per theme                |
+| `brand`                                                               | `iris`, `coral`, `mint`, `amber`                                                               | Decorative only, never text         |
+| component groups                                                      | `buttonTokens`, `fieldTokens`, `selectionTokens`, `switchTokens`, `menuTokens`, `dialogTokens` | Alias semantic; themed where needed |
+| `space`                                                               | `xxs`…`xxl`, `gutter`                                                                          | 4px scale; `gutter` is responsive   |
+| `size`                                                                | `controlSm/Md/Lg`, `indicator`, `dialogMd`, `contentMax`                                       | Control sizes grow on touch         |
+| `radius`                                                              | `sm`…`full`                                                                                    |                                     |
+| `borderWidth`, `focus`                                                | `thin`, `thick`; `focus.width/offset`                                                          | One focus ring everywhere           |
+| `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing`, `fontFamily` | `display1`, `semibold`, `tight`, `display`                                                     |                                     |
+| `motion`                                                              | `fast/medium/slow`, `easeOut`, `emphasized`                                                    | 0ms under reduced motion            |
+| `opacity`, `zIndex`, `shadow`                                         | `pressed`, `overlay`, `dialog`                                                                 |                                     |
+| `breakpoints` (consts)                                                | `mobile`, `tablet`, `reducedMotion`, `forcedColors`                                            | Media queries can't be CSS vars     |
 
 **Responsive behaviour lives in tokens where it can.** `defineVars()` values
 can be conditional on a media query, so `space.gutter` tightens on phones
@@ -315,7 +316,7 @@ prove it. A wrapper around arbitrary children can't guarantee that wiring,
 and fails silently when it doesn't hold. New input types become dedicated
 components on the shared `Field` pieces instead.
 
-**`Fieldset`** groups *different* controls under one announced legend
+**`Fieldset`** groups _different_ controls under one announced legend
 (WCAG 1.3.1): shipping vs billing "Street", or the sections of a long form.
 
 - It's a native `<fieldset>`/`<legend>`, the most reliably announced
@@ -325,7 +326,7 @@ components on the shared `Field` pieces instead.
 - The error sits in a polite live region that's always rendered (empty
   when valid, never `display: none`), so an error that appears after
   submit is announced.
-- `isDisabled` sets native `disabled` *and* flows through
+- `isDisabled` sets native `disabled` _and_ flows through
   `FieldsetContext`. Native disabling makes inputs inert but React Aria
   doesn't know, so without the context the controls would still look
   enabled.
@@ -456,6 +457,7 @@ of rules:
   - `no-inline-style`
 
   `configs.library` is the token rules alone, for @dsw/ui itself, since it's built from native elements and React Aria.
+
 - **`dsw-migrate` (in the plugin package).** A codemod built on `prefer-ds-components` in fix mode. It only rewrites conversions that keep behaviour identical, for example `onClick={() => …}` → `onPress`, `target="_blank"` → `isExternal`, and `<h2>` → `<Heading level={2}>`, and adds the imports. Anything that needs a decision (custom classes, handlers that read the DOM event, inputs needing labels) is listed with file and line instead. The fixes run through ESLint, so they're tested with RuleTester like any rule.
 - **`plugins/dsw`, a Claude Code plugin.** It bundles the MCP server with `build-screen`, `review-ui` and `migrate-to-dsw` skills. Teams install it from this repo's marketplace (`.claude-plugin/marketplace.json`).
 - **Publishing the server.** `@dsw/mcp` can't run from `.ts` source once installed, because Node won't strip types inside `node_modules`. `scripts/build.ts` bundles it with esbuild:
@@ -494,10 +496,82 @@ elsewhere in the workspace.
 
 The packages stay `private: true` until there's a registry to publish to.
 
+## AI-ready: how agents use the system
+
+Coding agents are now one of a design system's main consumers. They fail in
+predictable ways: they invent components and props, hard-code values from
+a mockup, and copy patterns from whatever docs they read, stale or not.
+The system is built so that the right answer is the easy one to find and
+the wrong one fails a check.
+
+**What agents read is placed by how often it's loaded.** Agent context
+comes in tiers, and the cost of a tier rises with how often it's loaded,
+not with how much it holds:
+
+| Tier        | Here                                                                    | Loaded                                     |
+| ----------- | ----------------------------------------------------------------------- | ------------------------------------------ |
+| Always      | `AGENTS.md`, `CLAUDE.md`                                                | every turn, so kept short                  |
+| On demand   | skills (`add-component`, `build-screen`, `review-ui`, `migrate-to-dsw`) | only the description, until a task matches |
+| Live        | the `dsw` MCP server                                                    | per question, from the generated data      |
+| Handed over | `llms.txt`, `tokens.json`, DTCG, `components.json`                      | only when someone points an agent at them  |
+
+**`AGENTS.md` is the source, and `CLAUDE.md` imports it.** Cursor, Copilot
+and Codex read `AGENTS.md`; Claude Code reads only `CLAUDE.md`. So
+`CLAUDE.md` starts with a bare `@AGENTS.md` line, which Claude Code expands
+into context at launch. A markdown link there would be inert text, which
+is a bug several large design systems ship. The two files also combine
+differently: nested `AGENTS.md` files override their parents, while every
+`CLAUDE.md` is concatenated, so this repo keeps one of each at the root.
+
+**Instructions are tested like code.** An agent follows its instructions
+faithfully, including a component name that was renamed last month, so a
+stale doc becomes a build error in generated code. `packages/mcp/src/agent-files.ts`
+reads every agent file and checks each component, prop, literal prop
+value, token and MCP tool it names against the component manifest, the
+token export and the server; `pnpm test` runs it.
+
+**The website shows real output, not claims.** `packages/mcp/scripts/site-data.ts`
+asks the real server real questions, measures the agent files and runs
+the check above. The workbench's Overview and AI agents pages render that, and `pnpm test`
+fails if it's out of date. The page also scores the system against an
+outside checklist, gaps included: there's no Figma Code Connect yet, and
+no benchmark of agent output with and without the MCP server. That
+benchmark is the next step, because a machine interface is only worth
+what it measurably changes, and no numbers are shown until they're measured.
+
+**Accessibility that axe can't see.** Studies of generated UI find about
+two accessibility problems per screen that pass axe: generic button
+labels, vague link text, unlabelled repeats. axe runs in all 6 themes,
+and the `review-ui` skill and the starter's `AGENTS.md` cover these by
+instruction.
+
+## Docs examples: the code shown is the code that runs
+
+Each example on the docs site is one file under
+`apps/workbench/src/examples`. The page imports it twice: normally, to
+render the live demo, and with `?example`, which a small Vite plugin
+(`vite-plugin-examples.ts`) turns into the file's source plus syntax
+tokens. So the shown code can't drift from the demo, and because the
+files are real code they're typechecked and held to the app lint preset.
+
+- **Highlighting happens at build time** with Shiki, so pages ship no
+  highlighter. Shiki colours tokens from a theme; ours gives each syntax
+  role a placeholder colour that's read back as a role name
+  (`keyword`, `string`, `comment`, `name`, `attribute`). `@dsw/ui`'s
+  `CodeBlock` paints roles with `codeTokens`, which are contrast-checked
+  in every theme like any other text, and takes tokens as a prop, so the
+  library has no parser dependency.
+- **Inline, not iframes,** for component demos: themes live on `<html>`,
+  overlays portal to `<body>`, and axe scans the page as it is. The one
+  exception is previewing a whole page at phone or tablet width:
+  breakpoints follow the window, so only a frame of that width shows the
+  real layout. `#/frame/<name>?brand=&mode=` renders a bare page with the
+  theme from the URL, and the frame reloads when the theme changes.
+
 ## What's deliberately not here yet
 
 - No visual regression testing (Chromatic/Percy) — flagged as a Phase 2
   addition, not needed to prove the component architecture.
-- No router in the workbench app — three sections switched by local state
-  via React Aria's `Tabs` is simpler than adding a routing dependency for
-  three screens, at the cost of no deep-linkable URLs per section.
+- No router library in the workbench: a hash route per page (one
+  `siteMap` list drives the sidebar, titles and routing) deep-links on
+  GitHub Pages without server rewrites, and needs no dependency.

@@ -1,3 +1,4 @@
+import { PAGES } from "./pages";
 import { expect, test } from "@playwright/test";
 
 /**
@@ -8,12 +9,12 @@ import { expect, test } from "@playwright/test";
  */
 
 test("composed form: fieldsets, groups, names and states", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.form);
   const form = page.locator("form", {
     has: page.getByRole("heading", { name: "Workspace settings" }),
   });
   await expect(form).toMatchAriaSnapshot(`
-    - heading "Workspace settings" [level=3]
+    - heading "Workspace settings" [level=2]
     - group "Workspace":
       - textbox "Workspace name": Acme
       - button /Europe \\(Frankfurt\\) Region/
@@ -39,7 +40,7 @@ test("composed form: fieldsets, groups, names and states", async ({ page }) => {
 });
 
 test("a disabled fieldset exposes every field as disabled", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.fieldset);
   await expect(page.getByRole("group", { name: "Billing address" })).toMatchAriaSnapshot(`
     - group "Billing address":
       - textbox "Street" [disabled]
@@ -48,7 +49,7 @@ test("a disabled fieldset exposes every field as disabled", async ({ page }) => 
 });
 
 test("destructive confirm is an alertdialog named by its title", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.form);
   await page.getByRole("button", { name: "Delete workspace" }).click();
   await expect(page.getByRole("alertdialog")).toMatchAriaSnapshot(`
     - alertdialog "Delete workspace?":
@@ -60,7 +61,7 @@ test("destructive confirm is an alertdialog named by its title", async ({ page }
 });
 
 test("brand switcher is a radiogroup; each brand is described", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.overview);
   await expect(page.getByRole("radiogroup", { name: "Brand" })).toMatchAriaSnapshot(`
     - radiogroup "Brand":
       - radio "Iris" [checked]
@@ -73,7 +74,7 @@ test("brand switcher is a radiogroup; each brand is described", async ({ page })
 });
 
 test("a loading button keeps its name and announces loading", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.button);
   const save = page.getByRole("button", { name: "Save draft" });
   await save.click();
   await expect(save).toMatchAriaSnapshot(`- button "Save draft" [disabled]`);
@@ -81,11 +82,12 @@ test("a loading button keeps its name and announces loading", async ({ page }) =
 });
 
 test("example page: outline, tabs, named list and announced save", async ({ page }) => {
-  await page.goto("/");
-  await page.getByRole("tab", { name: "Example page" }).click();
-  const panel = page.getByRole("tabpanel", { name: "Example page" });
-  await expect(panel).toMatchAriaSnapshot(`
-    - tabpanel "Example page":
+  await page.goto(PAGES.settings);
+  // Children match in order but aren't exhaustive, so the docs page's own
+  // heading, intro and pager around the example don't need listing.
+  await expect(page.getByRole("main")).toMatchAriaSnapshot(`
+    - main:
+      - heading /Example. a settings page/ [level=1]
       - heading "Settings" [level=2]
       - text: Pro plan
       - paragraph: Manage how the Acme workspace works for everyone in it.

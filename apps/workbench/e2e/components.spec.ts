@@ -1,9 +1,10 @@
+import { PAGES } from "./pages";
 import { expect, test } from "@playwright/test";
 
 test("Select opens a listbox and commits a choice with the keyboard", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto(PAGES.select);
 
   const trigger = page.getByRole("button", { name: /Country/ }).first();
   await trigger.focus();
@@ -22,7 +23,7 @@ test("Select opens a listbox and commits a choice with the keyboard", async ({
 test("Dialog traps focus, closes on Escape and restores focus", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto(PAGES.dialog);
 
   const trigger = page.getByRole("button", { name: "Open dialog" });
   await trigger.click();
@@ -47,7 +48,7 @@ test("Dialog traps focus, closes on Escape and restores focus", async ({
 test("alertdialog is not dismissed by clicking the backdrop", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto(PAGES.form);
 
   await page.getByRole("button", { name: "Delete workspace" }).click();
   const dialog = page.getByRole("alertdialog", { name: "Delete workspace?" });
@@ -63,7 +64,7 @@ test("alertdialog is not dismissed by clicking the backdrop", async ({
 test("composed form blocks submit and shows linked errors until valid", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto(PAGES.form);
 
   const email = page.getByRole("textbox", { name: "Billing email" });
   const save = page.getByRole("button", { name: "Save changes" });
@@ -86,7 +87,7 @@ test("composed form blocks submit and shows linked errors until valid", async ({
 });
 
 test("portaled overlays inherit the active theme", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.dialog);
   await page.getByRole("button", { name: "Dark mode" }).click();
   await page.getByRole("button", { name: "Open dialog" }).click();
 
@@ -99,7 +100,7 @@ test("portaled overlays inherit the active theme", async ({ page }) => {
 });
 
 test("controlled demo: parent state drives every control", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.controlled);
   const readout = page.getByTestId("controlled-state");
   const section = page.locator("section", {
     has: page.getByRole("heading", { name: "Controlled", exact: true }),
@@ -123,4 +124,36 @@ test("controlled demo: parent state drives every control", async ({ page }) => {
   await expect(readout).toContainText('"isOpen": true');
   await page.keyboard.press("Escape");
   await expect(readout).toContainText('"isOpen": false');
+});
+
+test("an example's code is its real source, highlighted, behind Show code", async ({ page }) => {
+  await page.goto(PAGES.button);
+  const toggle = page.getByRole("button", { name: "Show code: Variants.tsx" });
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await toggle.click();
+  await expect(page.getByRole("button", { name: "Hide code: Variants.tsx" })).toHaveAttribute(
+    "aria-expanded",
+    "true",
+  );
+  const code = page.locator("code", { hasText: "export default function Variants()" });
+  await expect(code).toContainText('<Button variant="secondary">Secondary</Button>');
+  // Syntax roles are painted: "import" isn't the plain text colour.
+  const colours = await code.evaluate((el) => {
+    const keyword = [...el.querySelectorAll("span")].find((s) => s.textContent === "import");
+    return [getComputedStyle(el).color, keyword && getComputedStyle(keyword).color];
+  });
+  expect(colours[1]).toBeTruthy();
+  expect(colours[1]).not.toBe(colours[0]);
+  await expect(page.getByRole("button", { name: "Copy Variants.tsx" })).toBeVisible();
+});
+
+test("the settings example previews at phone width in a themed frame", async ({ page }) => {
+  await page.goto(PAGES.settings);
+  await page.getByRole("radio", { name: "Volt", exact: true }).click();
+  await page.getByText("Phone (375px)").click();
+  const frame = page.getByTitle("Settings page at phone (375px)");
+  await expect(frame).toHaveAttribute("width", "375");
+  const inside = page.frameLocator('iframe[title="Settings page at phone (375px)"]');
+  await expect(inside.getByRole("heading", { name: "Settings", level: 2 })).toBeVisible();
+  await expect(inside.locator("html")).toHaveAttribute("data-brand", "volt");
 });

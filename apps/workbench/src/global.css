@@ -23,3 +23,9 @@ body {
 #root {
   min-height: 100%;
 }
+
+/* The app moves focus to a page's h1 after navigation so screen readers
+   announce the new page. The heading isn't interactive, so no ring. */
+main h1[tabindex="-1"]:focus {
+  outline: none;
+}

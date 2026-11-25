@@ -1,0 +1,30 @@
+# DSW design system
+
+> A themeable React design system (React 19, StyleX, React Aria) with three-tier tokens, three brands in light and dark, WCAG 2.2 AA audits, and tooling for coding agents: an MCP server, Claude Code skills and ESLint rules. This file indexes what an agent needs; point your agent at it.
+
+For live answers while coding, install `@dsw/mcp` and run `npx dsw-mcp` (stdio): it answers from the release you have installed. Apps should start from the starter template.
+
+## Agent instructions
+
+- [AGENTS.md](https://github.com/murmac0/dsw/blob/main/AGENTS.md): rules for agents working on the design system itself
+- [Starter AGENTS.md](https://github.com/murmac0/dsw/blob/main/templates/starter/AGENTS.md): rules for agents building apps on it
+- [build-screen skill](https://github.com/murmac0/dsw/blob/main/plugins/dsw/skills/build-screen/SKILL.md): compose a page from @dsw/ui only
+- [review-ui skill](https://github.com/murmac0/dsw/blob/main/plugins/dsw/skills/review-ui/SKILL.md): review UI against the system and WCAG
+- [migrate-to-dsw skill](https://github.com/murmac0/dsw/blob/main/plugins/dsw/skills/migrate-to-dsw/SKILL.md): move existing UI onto the system
+
+## Machine-readable data
+
+- [tokens.json](https://raw.githubusercontent.com/murmac0/dsw/main/packages/tokens/generated/tokens.json): every token with its value in all 6 themes, and the contrast audit
+- [DTCG tokens](https://github.com/murmac0/dsw/tree/main/packages/tokens/generated/dtcg): W3C Design Tokens, one file per brand and mode
+- [components.json](https://raw.githubusercontent.com/murmac0/dsw/main/packages/ui/generated/components.json): every component's props, types, tokens and stories
+
+## Docs
+
+- [ARCHITECTURE.md](https://github.com/murmac0/dsw/blob/main/ARCHITECTURE.md): why the system is built the way it is
+- [ACCESSIBILITY.md](https://github.com/murmac0/dsw/blob/main/ACCESSIBILITY.md): the WCAG 2.2 AA review and how each criterion is enforced
+- [Starter app](https://github.com/murmac0/dsw/tree/main/templates/starter): how an app team should start
+
+## Optional
+
+- [Storybook](storybook/): every component and its states
+- [MCP server README](https://github.com/murmac0/dsw/blob/main/packages/mcp/README.md): tools and setup for other repos

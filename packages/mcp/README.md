@@ -34,11 +34,11 @@ All read-only.
 | Tool | Answers |
 |---|---|
 | `list_components` / `get_component` | What exists; props with real types, controlled/uncontrolled pairs, token groups, audited contrast pairs, story ids, tests |
-| `search_tokens` / `get_token` | Which token to use, its value in each of the 6 themes, what it aliases, touch / reduced-motion variants |
+| `search_tokens` / `get_token` | Which token to use, its value in each of the 6 themes, what it aliases, reduced-motion variants |
 | `find_token_for_value` | `#6a58ee` / `12px` / `150ms` → the token, using the CSS property as intent |
 | `check_contrast` | WCAG ratio for colours or token pairs, per theme, and whether the pair is already audited |
 | `suggest_component` | "a modal", "status pill", `<h2>` → the component to use, or "not in @dsw/ui yet" with a stand-in |
-| `lint_styles` | Runs `@dsw/eslint-plugin` on code (scope `app` or `library`), with token suggestions for each raw value |
+| `lint_styles` | Runs `@dsw/eslint-plugin` on code (scope `app` or `library`), with token suggestions for each hardcoded value |
 | `list_brands` / `get_guidelines` | Brands, fonts, how to apply a theme; sections of ARCHITECTURE.md / ACCESSIBILITY.md |
 
 Resources: `dsw://components`, `dsw://tokens`, `dsw://tokens/{brand}/{mode}`

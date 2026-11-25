@@ -27,7 +27,7 @@ import {
 
 /**
  * A complete product page built only from @dsw/ui: no StyleX, no CSS, no
- * raw values. If something here needed a one-off style, the system was
+ * hardcoded values. If something here needed a one-off style, the system was
  * missing a piece. It doubles as the target for agents building screens.
  */
 export function SettingsPage() {

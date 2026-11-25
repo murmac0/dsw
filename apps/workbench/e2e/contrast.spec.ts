@@ -1,7 +1,7 @@
+import { PAGES } from "./pages";
 import { expect, test, type Page } from "@playwright/test";
 
 async function auditResults(page: Page) {
-  await page.getByRole("tab", { name: "Foundations" }).click();
   const audit = page.getByTestId("contrast-audit");
   await expect(audit).toBeVisible();
   return page.getByTestId("contrast-row").evaluateAll((rows) =>
@@ -21,7 +21,7 @@ for (const brand of brands) {
     test(`every shipped colour pairing meets WCAG AA in ${brand} ${theme}`, async ({
       page,
     }) => {
-      await page.goto("/");
+      await page.goto(PAGES.accessibility);
       await page.getByRole("radio", { name: brand, exact: true }).click();
       if (theme === "dark") {
         await page.getByRole("button", { name: "Dark mode" }).click();
@@ -43,7 +43,7 @@ for (const brand of brands) {
 }
 
 test("themes actually differ (audit re-measures on switch)", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.accessibility);
   const light = await auditResults(page);
   await page.getByRole("button", { name: "Dark mode" }).click();
   await expect
@@ -52,8 +52,7 @@ test("themes actually differ (audit re-measures on switch)", async ({ page }) =>
 });
 
 test("the audit is a real table screen readers can navigate", async ({ page }) => {
-  await page.goto("/");
-  await page.getByRole("tab", { name: "Foundations" }).click();
+  await page.goto(PAGES.accessibility);
   const buttonTable = page.getByRole("table", { name: "Button" });
   await expect(buttonTable.getByRole("columnheader", { name: "Contrast ratio" })).toBeAttached();
   await expect(buttonTable.getByRole("rowheader", { name: /Primary label/ }).first()).toBeVisible();

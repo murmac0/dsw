@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
+import { ALL_PAGES, PAGES } from "./pages";
 
-const sections = ["Components", "Foundations", "Playground"] as const;
 
 test.describe("phone viewport", () => {
   // iPhone-sized touch device.
@@ -11,10 +11,10 @@ test.describe("phone viewport", () => {
     deviceScaleFactor: 3,
   });
 
-  for (const section of sections) {
-    test(`${section} has no horizontal overflow`, async ({ page }) => {
-      await page.goto("/");
-      await page.getByRole("tab", { name: section }).click();
+  for (const path of ALL_PAGES) {
+    test(`${path} has no horizontal overflow`, async ({ page }) => {
+      await page.goto(path);
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
       const overflow = await page.evaluate(
         () => document.documentElement.scrollWidth - window.innerWidth,
       );
@@ -25,7 +25,7 @@ test.describe("phone viewport", () => {
   test("dialog docks to the bottom and stacks its actions", async ({
     page,
   }) => {
-    await page.goto("/");
+    await page.goto(PAGES.dialog);
     await page.getByRole("button", { name: "Open dialog" }).click();
     const dialog = page.getByRole("dialog", { name: "Invite teammates" });
     await expect(dialog).toBeVisible();
@@ -56,7 +56,7 @@ test.describe("phone viewport", () => {
 });
 
 test("desktop keeps mouse-sized controls", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(PAGES.form);
   const box = await page
     .getByRole("textbox", { name: "Billing email" })
     .boundingBox();

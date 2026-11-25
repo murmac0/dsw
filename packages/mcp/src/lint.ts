@@ -42,7 +42,7 @@ export interface LintFinding {
 
 /**
  * Lints a code snippet with the design system's style rules, and for each
- * raw value suggests the token to use instead (in the given theme).
+ * hardcoded value suggests the token to use instead (in the given theme).
  */
 export function lintStyles(code: string, theme?: string, scope: LintScope = "app"): LintFinding[] {
   const lines = code.split("\n");
@@ -52,7 +52,7 @@ export function lintStyles(code: string, theme?: string, scope: LintScope = "app
       if (m.fatal) {
         return { line: m.line, column: m.column, rule: "parse-error", message: m.message };
       }
-      const raw = /Raw style value (.+?) —/.exec(m.message)?.[1];
+      const raw = /Hardcoded style value (.+?) —/.exec(m.message)?.[1];
       const value = raw?.replace(/^"|"$/g, "");
       // The CSS property is whatever key precedes the value on its line.
       const before = (lines[m.line - 1] ?? "").slice(0, m.column - 1);

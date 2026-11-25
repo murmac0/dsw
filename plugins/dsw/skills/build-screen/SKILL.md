@@ -6,7 +6,7 @@ description: Build a page, screen, view or form with the @dsw design system (@ds
 # Build a screen with @dsw/ui
 
 The goal is a screen built only from design-system components. If you
-need `stylex.create`, CSS or a raw colour, either a component or prop is
+need `stylex.create`, CSS or a hardcoded colour, either a component or prop is
 missing (say so) or you've missed one (ask the `dsw` MCP server).
 
 The `dsw` MCP server answers every lookup below. Use it instead of

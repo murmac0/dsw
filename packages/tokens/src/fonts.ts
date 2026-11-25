@@ -8,7 +8,6 @@
  * works offline, and versions are pinned with the rest of the system.
  * `fontFamily` tokens name these families with system fallbacks.
  */
-import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/geist";
 import "@fontsource-variable/geist-mono";
 // Brand fonts. @font-face only downloads a file when text actually uses

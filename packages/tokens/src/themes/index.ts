@@ -35,7 +35,7 @@ export const brands: readonly BrandInfo[] = [
     id: "iris",
     label: "Iris",
     tagline: "Electric violet, soft geometry",
-    fonts: { display: "Bricolage Grotesque", sans: "Geist", mono: "Geist Mono" },
+    fonts: { display: "Geist", sans: "Geist", mono: "Geist Mono" },
   },
   {
     id: "volt",

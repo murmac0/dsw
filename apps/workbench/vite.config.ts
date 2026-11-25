@@ -5,6 +5,7 @@ import stylexVite from "@stylexjs/unplugin/vite";
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import { playwright } from "@vitest/browser-playwright";
 import { defineConfig } from "vite";
+import { examples } from "./vite-plugin-examples";
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
@@ -12,6 +13,7 @@ export default defineConfig({
     conditions: ["import", "module", "browser", "development|production", "default"],
   },
   plugins: [
+    examples(),
     stylexVite({
       unstable_moduleResolution: { type: "commonJS" },
     }),

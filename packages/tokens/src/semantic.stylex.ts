@@ -118,7 +118,7 @@ export const fontSize = stylex.defineVars({
   lg: fontSizePrimitives.lg,
   xl: fontSizePrimitives.xl,
   xxl: fontSizePrimitives.xxl,
-  /** Display sizes: Bricolage Grotesque headings. */
+  /** Display sizes, for page and hero headings. */
   display1: fontSizePrimitives.display1,
   display2: fontSizePrimitives.display2,
   display3: fontSizePrimitives.display3,
@@ -252,9 +252,9 @@ export const zIndex = stylex.defineVars({
  * font fails to load.
  */
 export const fontFamily = stylex.defineVars({
-  /** Headings and display text: expressive, with an optical-size axis. */
+  /** Headings and display text. Iris uses Geist here too, tightly tracked. */
   display:
-    '"Bricolage Grotesque Variable", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    '"Geist Variable", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
   /** UI and body text: neutral and crisp at small sizes. */
   sans: '"Geist Variable", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   mono: '"Geist Mono Variable", ui-monospace, "SF Mono", Menlo, Consolas, monospace',

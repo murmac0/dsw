@@ -14,7 +14,7 @@ export default [...yourConfig, dsw.configs.recommended];
 
 | Rule | `recommended` | What it catches |
 |---|---|---|
-| `no-raw-style-values` | error | Raw colours, lengths, durations, weights in `stylex.create()`. `// token-exempt: <reason>` for real one-offs |
+| `no-raw-style-values` | error | Hardcoded colours, lengths, durations, weights in `stylex.create()`. `// token-exempt: <reason>` for real one-offs |
 | `no-primitive-tokens` | error | Imports from `@dsw/tokens/primitives.stylex` (not themed, not contrast-audited) |
 | `no-token-barrel` | error | Value imports from `@dsw/tokens` (StyleX can't trace through the barrel) |
 | `prefer-ds-components` | error | `<button>`, `<a href>`, `<h1>`–`<h6>`, inputs, `<select>`, `<dialog>`, `<fieldset>` where @dsw/ui has a component |

@@ -9,7 +9,7 @@ import { assertTheme, contrastReport, findTokens, searchTokens, tokenLine } from
 const INSTRUCTIONS = `You're working in the @dsw design system (React + StyleX + React Aria). Follow this workflow when building or changing UI:
 
 1. Use existing components. Not sure which? suggest_component maps a need ("a modal", "status pill") to one. Call get_component before using one: it gives real prop types, controlled/uncontrolled pairs, accessibility rules and the stories that show it. Build screens from components alone: Container, Stack, Inline and Grid for layout (gaps from the spacing scale), Heading (pick its level from the page outline) and Text for type, Card for sections. Needing stylex.create() in app code usually means a component is missing.
-2. Style with tokens only. Never write raw colours, px, ms, font weights or z-indexes in stylex.create(). Find tokens with search_tokens, or turn a value from a design into a token with find_token_for_value. Import tokens from their origin file (e.g. @dsw/tokens/semantic.stylex), never primitives.
+2. Style with tokens only. Never hardcode colours, px, ms, font weights or z-indexes in stylex.create(). Find tokens with search_tokens, or turn a value from a design into a token with find_token_for_value. Import tokens from their origin file (e.g. @dsw/tokens/semantic.stylex), never primitives.
 3. Don't invent colour pairings. A new foreground/background combination must pass check_contrast (4.5:1 text, 3:1 boundaries and indicators) in every theme; audited pairs are listed in get_token.
 4. Before finishing, run lint_styles on every file you changed that calls stylex.create(), and fix all findings.
 5. Accessibility is non-negotiable: every field has a visible label; group related fields with Fieldset; personal-data inputs need autoComplete; states shown only by a fill need a forced-colours treatment. See get_guidelines("accessibility").
@@ -166,7 +166,7 @@ export function createServer(): McpServer {
     {
       title: "Get token",
       description:
-        "One token in full: value in every brand × mode, what it aliases, media-query variants (touch sizes, reduced motion), and the audited contrast pairs it's part of.",
+        "One token in full: value in every brand × mode, what it aliases, media-query variants (such as reduced motion), and the audited contrast pairs it's part of.",
       inputSchema: { ref: z.string().describe('e.g. "color.fgMuted" or "buttonTokens.primaryBg"') },
       annotations: readOnly,
     },
@@ -199,9 +199,9 @@ export function createServer(): McpServer {
   server.registerTool(
     "find_token_for_value",
     {
-      title: "Find token for a raw value",
+      title: "Find token for a hardcoded value",
       description:
-        'Map a raw CSS value (from a design, a screenshot or legacy code) to the token to use: "#6a58ee", "12px", "150ms", "600". Exact matches first, then nearest. Pass the CSS property to narrow it (e.g. padding → space, borderRadius → radius).',
+        'Map a hardcoded CSS value (from a design, a screenshot or legacy code) to the token to use: "#6a58ee", "12px", "150ms", "600". Exact matches first, then nearest. Pass the CSS property to narrow it (e.g. padding → space, borderRadius → radius).',
       inputSchema: {
         value: z.string(),
         property: z.string().optional().describe('CSS property in camelCase, e.g. "paddingInline"'),
@@ -270,7 +270,7 @@ export function createServer(): McpServer {
     {
       title: "Lint styles",
       description:
-        "Run the design system's ESLint rules (@dsw/eslint-plugin, the same ones CI runs) on code: no raw colours/lengths/durations/weights in stylex.create(); no primitive-token or barrel imports; and in app code, @dsw/ui components instead of native <button>/<a>/<h1>/<input>…, no direct React Aria imports, Stack/Inline/Grid instead of hand-written layout styles, no inline style objects. Each raw value comes with suggested tokens. Run before finishing any UI change.",
+        "Run the design system's ESLint rules (@dsw/eslint-plugin, the same ones CI runs) on code: no hardcoded colours/lengths/durations/weights in stylex.create(); no primitive-token or barrel imports; and in app code, @dsw/ui components instead of native <button>/<a>/<h1>/<input>…, no direct React Aria imports, Stack/Inline/Grid instead of hand-written layout styles, no inline style objects. Each hardcoded value comes with suggested tokens. Run before finishing any UI change.",
       inputSchema: {
         code: z.string().describe("Source of a .ts/.tsx file or snippet"),
         scope: z

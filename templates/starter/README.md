@@ -6,7 +6,7 @@ design system:
 - `@dsw/ui` components and `@dsw/tokens` themes, compiled by StyleX's Vite plugin
 - `ThemeProvider` putting the brand × mode theme on `<html>`, with a brand and dark-mode switcher
 - ESLint with `@dsw/eslint-plugin`'s `recommended` rules
-- Claude Code: the `dsw` plugin (MCP server and skills) and a `CLAUDE.md`
+- Agent instructions: `AGENTS.md` for any coding agent, and a `CLAUDE.md` that imports it and enables the `dsw` Claude Code plugin (MCP server and skills)
 - A Playwright smoke test: styles load, themes apply, axe passes in all 6 themes
 
 ## Start

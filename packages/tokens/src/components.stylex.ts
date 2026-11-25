@@ -205,6 +205,26 @@ export const badgeTokens = stylex.defineVars({
  * icon (its shape differs per tone, so meaning never rests on colour)
  * carries 3:1. Borders are decorative.
  */
+/**
+ * Code blocks: source on a raised surface, with syntax colours. Every
+ * syntax colour is text and needs 4.5:1 on `bg`; colour is never the only
+ * cue, since the code reads the same without it.
+ */
+export const codeTokens = stylex.defineVars({
+  bg: color.bgSurfaceRaised,
+  border: color.borderDefault,
+  text: color.fgDefault,
+  /** File name or language, and the copy button's idle label. */
+  label: color.fgMuted,
+  comment: color.fgMuted,
+  keyword: color.fgAccent,
+  string: color.fgSuccess,
+  /** Component, type and function names. */
+  name: color.fgDanger,
+  /** Props and attributes. */
+  attribute: color.fgWarning,
+});
+
 export const alertTokens = stylex.defineVars({
   fg: color.fgDefault,
   infoBg: color.bgAccentSubtle,
@@ -270,6 +290,12 @@ export const alertShape = stylex.defineVars({
   radius: radius.md,
   borderWidth: borderWidth.thin,
   shadow: "none",
+});
+
+export const codeShape = stylex.defineVars({
+  radius: radius.md,
+  borderWidth: borderWidth.thin,
+  fontFamily: fontFamily.mono,
 });
 
 export const tabsShape = stylex.defineVars({

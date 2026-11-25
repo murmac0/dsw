@@ -365,6 +365,7 @@ const COMPONENT_OF: Record<string, string> = {
   card: "Card",
   badge: "Badge",
   alert: "Alert",
+  code: "CodeBlock",
   tabs: "Tabs",
 };
 
