@@ -21,7 +21,7 @@ Scope:
 | Reflow and zoom (1.4.10, 1.4.4) | No horizontal scroll or off-screen content at 320 CSS px (= 400% zoom) and 640 CSS px (= 200% zoom), every brand and page | `e2e/reflow.spec.ts` |
 | Text spacing (1.4.12) | WCAG override values applied; no clipped controls or spilled button text, every brand | `e2e/reflow.spec.ts` |
 | What screen readers receive | Accessibility-tree snapshots of the composed form, disabled fieldset, alert dialog, brand switcher and loading button: roles, names, states, no stray live regions | `e2e/a11y-tree.spec.ts` |
-| Target size (2.5.8) | axe `target-size` rule. Touch devices also get 44px controls via tokens | `e2e/a11y.spec.ts`, `e2e/responsive.spec.ts` |
+| Target size (2.5.8) | axe `target-size` rule. The smallest control is 32px, above the 24px minimum | `e2e/a11y.spec.ts` |
 | Structure | One `<header>` and one `<main>`, no skipped heading levels, `lang="en"`, page title | Manual |
 
 ## Findings and fixes (this review)

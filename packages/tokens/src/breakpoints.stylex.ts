@@ -13,8 +13,6 @@ export const breakpoints = stylex.defineConsts({
   mobile: "@media (max-width: 639.98px)",
   tablet: "@media (min-width: 640px)",
   desktop: "@media (min-width: 1024px)",
-  /** Touch-first devices: larger hit targets regardless of width. */
-  coarsePointer: "@media (pointer: coarse)",
   reducedMotion: "@media (prefers-reduced-motion: reduce)",
   /**
    * Windows High Contrast and other forced-colour modes. The browser

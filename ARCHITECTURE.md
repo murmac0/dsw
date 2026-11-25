@@ -228,14 +228,14 @@ but haven't been signed off by a design lead. Worth a review:
 | `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing`, `fontFamily` | `display1`, `semibold`, `tight`, `display` | |
 | `motion` | `fast/medium/slow`, `easeOut`, `emphasized` | 0ms under reduced motion |
 | `opacity`, `zIndex`, `shadow` | `pressed`, `overlay`, `dialog` | |
-| `breakpoints` (consts) | `mobile`, `tablet`, `coarsePointer` | Media queries can't be CSS vars |
+| `breakpoints` (consts) | `mobile`, `tablet`, `reducedMotion`, `forcedColors` | Media queries can't be CSS vars |
 
 **Responsive behaviour lives in tokens where it can.** `defineVars()` values
-can be conditional on a media query, so `size.controlMd` is 40px with a
-mouse and 44px on touch screens, `space.gutter` tightens on phones, and every
-`motion` duration becomes 0ms under `prefers-reduced-motion`. Components get
-touch targets and reduced motion for free, with no component-level
-media queries. Layout changes that tokens can't express (Dialog docking to
+can be conditional on a media query, so `space.gutter` tightens on phones
+and every `motion` duration becomes 0ms under `prefers-reduced-motion`.
+Components get reduced motion for free, with no component-level media
+queries. Control sizes are the same on every device: the smallest is 32px,
+above WCAG 2.5.8's 24px minimum. Layout changes that tokens can't express (Dialog docking to
 the bottom of the screen on phones, stacked footer actions) use the
 `breakpoints` constants as StyleX condition keys.
 

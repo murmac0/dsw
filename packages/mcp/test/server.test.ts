@@ -86,7 +86,7 @@ describe("dsw MCP server", () => {
     const primary = await call("get_token", { ref: "buttonTokens.primaryBorder" });
     expect(primary.text).toMatch(/volt\/light: #0a0a0a\s+\(→ color\.borderStrong\)/);
     const control = await call("get_token", { ref: "size.controlMd" });
-    expect(control.text).toMatch(/@media \(pointer: coarse\): 44px/);
+    expect(control.text).toMatch(/40px/);
   });
 
   it("maps a raw value to the right token, using the CSS property as intent", async () => {

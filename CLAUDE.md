@@ -61,7 +61,7 @@ pnpm test:consumer                         # pack every @dsw package, install te
 - **Controlled and uncontrolled:** every stateful component supports both. Use `value`/`isSelected` + `onChange`, or `defaultValue`/`defaultSelected`, and pass the props through to react-aria.
 - **Disabled state:** form controls call `useInheritedDisabled(props.isDisabled)` so a disabled `Fieldset` disables them.
 - **Forced colours:** anything drawn only with fills (tracks, dots, selected items) needs `forcedColorAdjust: "none"` plus system colours under `breakpoints.forcedColors`. E2E checks this by comparing pixels, because computed styles don't reflect forced colours.
-- **Responsive and motion:** these are token-level. Control heights grow under `pointer: coarse`, and motion durations drop to 0 under reduced motion. Use the tokens and don't write your own media queries for these.
+- **Motion:** this is token-level. Motion durations drop to 0 under reduced motion, so use the `motion` tokens and don't write your own media query for it.
 - **TypeScript is strict:** `exactOptionalPropertyTypes` and `noUncheckedIndexedAccess` are on. Spread optional props conditionally: `{...(x !== undefined && { x })}`.
 - **Dependencies:** only use package versions released at least two weeks ago, per the repo's `minimumReleaseAge` policy.
 

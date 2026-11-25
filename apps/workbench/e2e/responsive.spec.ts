@@ -3,8 +3,7 @@ import { expect, test } from "@playwright/test";
 const sections = ["Components", "Foundations", "Playground"] as const;
 
 test.describe("phone viewport", () => {
-  // iPhone-sized touch device; hasTouch makes Chromium report
-  // `pointer: coarse`, which the size tokens respond to.
+  // iPhone-sized touch device.
   test.use({
     viewport: { width: 390, height: 844 },
     isMobile: true,
@@ -22,13 +21,6 @@ test.describe("phone viewport", () => {
       expect(overflow).toBeLessThanOrEqual(0);
     });
   }
-
-  test("controls grow to 44px touch targets", async ({ page }) => {
-    await page.goto("/");
-    const input = page.getByRole("textbox", { name: "Billing email" });
-    const box = await input.boundingBox();
-    expect(box?.height).toBeGreaterThanOrEqual(44);
-  });
 
   test("dialog docks to the bottom and stacks its actions", async ({
     page,

@@ -88,7 +88,7 @@ Create `Name.tsx` and `index.ts` (which re-exports the component and `NameProps`
 - **Labels:** reuse `FieldLabel`, `FieldDescription` and `FieldError` from `../Field`. Pass `announceRequired` when the required state isn't otherwise announced (it isn't for groups or button-triggered pickers).
 - **State styles** come from react-aria render props (`isHovered`, `isPressed`, `isFocusVisible`, `isDisabled`, …). Draw focus with `outlineColor: color.borderFocus`, `outlineWidth: focus.width` and `outlineOffset: focus.offset`.
 - **Forced colours:** for anything drawn only with fills, add `forcedColorAdjust: "none"` plus a `[breakpoints.forcedColors]` value in system colours (`Canvas`, `CanvasText`, `Highlight`, `HighlightText`, `GrayText`).
-- **Responsive:** use `size.control*` and `space.*` tokens, which already grow under `pointer: coarse` and tighten on mobile. Use logical properties (`insetInlineStart`, `paddingInline`). Mirror any directional transform in RTL (`useLocale().direction`).
+- **Responsive:** use `size.control*` and `space.*` tokens; spacing already tightens on mobile. Use logical properties (`insetInlineStart`, `paddingInline`). Mirror any directional transform in RTL (`useLocale().direction`).
 - **Motion:** use `motion.*` durations, which become 0ms under reduced motion. Don't add your own `prefers-reduced-motion` query.
 
 Then export it from `packages/ui/src/index.ts`, keeping the alphabetical order, with the component and its `type` exports.

@@ -410,8 +410,7 @@ export function FoundationsPage() {
       <section {...stylex.props(styles.section)}>
         <h2 {...stylex.props(styles.heading)}>Control size</h2>
         <p {...stylex.props(styles.note)}>
-          Shared by Button, TextField and Select. On touch screens, sm and md
-          grow so tap targets meet the 44px guideline.
+          Shared by Button, TextField and Select, the same on every device.
         </p>
         {controlSizes.map((step) => (
           <div key={step.name} {...stylex.props(styles.scaleRow)}>

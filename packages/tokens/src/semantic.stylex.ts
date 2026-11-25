@@ -149,27 +149,16 @@ export const shadow = stylex.defineVars({
 });
 
 /**
- * Fixed dimensions. Control heights are responsive: on coarse (touch)
- * pointers they grow to 44px, the WCAG 2.5.5 / Apple HIG target size,
- * so every Button, TextField and Select gets touch-friendly hit areas
- * without a single component-level media query.
+ * Fixed dimensions. Control heights are the same on every device; the
+ * smallest (controlSm, 32px) is above WCAG 2.5.8's 24px minimum target.
  */
 export const size = stylex.defineVars({
-  controlSm: {
-    default: sizePrimitives.px32,
-    "@media (pointer: coarse)": sizePrimitives.px40,
-  },
-  controlMd: {
-    default: sizePrimitives.px40,
-    "@media (pointer: coarse)": sizePrimitives.px44,
-  },
+  controlSm: sizePrimitives.px32,
+  controlMd: sizePrimitives.px40,
   controlLg: sizePrimitives.px48,
 
   /** Checkbox / radio box. */
-  indicator: {
-    default: sizePrimitives.px18,
-    "@media (pointer: coarse)": sizePrimitives.px22,
-  },
+  indicator: sizePrimitives.px18,
   indicatorDot: sizePrimitives.px8,
   icon: sizePrimitives.px16,
 
