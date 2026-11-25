@@ -13,7 +13,7 @@ import { FoundationsPage } from "./pages/FoundationsPage";
 import { PlaygroundPage } from "./pages/PlaygroundPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { BrandSwitcher } from "./theme/BrandSwitcher";
-import { useTheme } from "./theme/ThemeProvider";
+import { useTheme } from "@dsw/ui";
 
 function getTabClassName(renderProps: TabRenderProps): string {
   return (

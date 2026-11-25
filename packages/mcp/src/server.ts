@@ -319,7 +319,7 @@ export function createServer(): McpServer {
           "Apply exactly one theme list to <html> (overlays are portaled to <body>, and component-token aliases resolve at :root):",
           '  import { themes } from "@dsw/tokens/themes";',
           "  document.documentElement.className = stylex.props(themes[brand][mode]).className;",
-          'In the workbench this is ThemeProvider; load fonts once with import "@dsw/tokens/fonts".',
+          'In React, <ThemeProvider> from @dsw/ui does this (useTheme() reads or changes the brand and mode). Load fonts once with import "@dsw/tokens/fonts".',
           `Breakpoints (@dsw/tokens/breakpoints.stylex): ${Object.entries(tokens.breakpoints)
             .map(([k, v]) => `${k} = ${v}`)
             .join("; ")}.`,

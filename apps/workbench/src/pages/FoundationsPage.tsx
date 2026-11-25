@@ -10,7 +10,7 @@ import {
   voltPalette,
 } from "@dsw/tokens/primitives.stylex";
 import { brands } from "@dsw/tokens/themes";
-import { useTheme } from "../theme/ThemeProvider";
+import { useTheme } from "@dsw/ui";
 import { breakpoints } from "@dsw/tokens/breakpoints.stylex";
 import {
   borderWidth,

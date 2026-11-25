@@ -63,3 +63,6 @@ export type { TextProps, TextSize, TextTone, TextWeight } from "./components/Tex
 
 export { TextField } from "./components/TextField";
 export type { TextFieldProps } from "./components/TextField";
+
+export { ThemeProvider, useTheme } from "./components/ThemeProvider";
+export type { ThemeContextValue, ThemeProviderProps } from "./components/ThemeProvider";

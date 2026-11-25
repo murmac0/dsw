@@ -7,6 +7,7 @@ pnpm + Turborepo monorepo for a themeable React design system.
 - `packages/mcp` (`@dsw/mcp`): MCP server over the generated token and component data. Runs from source here; `pnpm --filter @dsw/mcp build` bundles it for other repos.
 - `packages/eslint-plugin` (`@dsw/eslint-plugin`): the design-system lint rules (tokens, DS components over native elements, layout primitives) and the `dsw-migrate` codemod. One source of truth for CI, editors and the MCP server's `lint_styles`.
 - `packages/eslint-config`: shared lint config for this repo, built on the plugin's `library` preset.
+- `templates/starter`: the app teams' starter (Vite, `ThemeProvider`, lint, Claude Code plugin, Playwright smoke test). `pnpm test:consumer` proves a packed release works in it.
 - `plugins/dsw`: the Claude Code plugin for app teams (MCP server plus build-screen, review-ui and migrate-to-dsw skills), listed in `.claude-plugin/marketplace.json`.
 - `apps/workbench`: Vite demo app, Storybook (stories live in `packages/ui`) and the Playwright E2E suite.
 
@@ -38,6 +39,7 @@ pnpm dev                                   # workbench on :5173
 pnpm storybook                             # Storybook on :6006
 pnpm --filter @dsw/tokens export           # regenerate packages/tokens/generated
 pnpm --filter @dsw/ui manifest             # regenerate packages/ui/generated
+pnpm test:consumer                         # pack every @dsw package, install templates/starter from the packs, run its checks
 ```
 
 `pnpm test` fails if either generated folder is out of date. Regenerate them and commit them along with the source change.

@@ -3190,6 +3190,82 @@
         "packages/ui/src/components/TextField/TextField.modes.test.tsx",
         "packages/ui/src/components/TextField/TextField.test.tsx"
       ]
+    },
+    {
+      "name": "ThemeProvider",
+      "kind": "component",
+      "import": "import { ThemeProvider } from \"@dsw/ui\";",
+      "description": "Applies one brand × colour-mode theme to <html>, the only place it works:\noverlays are portaled to <body> and component tokens resolve at :root.\nWrap the app in it once, and read or change the theme with `useTheme()`.",
+      "source": "packages/ui/src/components/ThemeProvider/ThemeProvider.tsx",
+      "propsType": "ThemeProviderProps",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "brand",
+          "type": "\"iris\" | \"volt\" | \"bloom\"",
+          "required": false,
+          "description": "Controlled brand. Pair with `onBrandChange`.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "defaultBrand",
+          "type": "\"iris\" | \"volt\" | \"bloom\"",
+          "required": false,
+          "description": "Starting brand when uncontrolled. A choice saved on this device wins.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "defaultTheme",
+          "type": "\"light\" | \"dark\"",
+          "required": false,
+          "description": "Starting colour mode when uncontrolled. A choice saved on this device wins.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "onBrandChange",
+          "type": "(brand: BrandName) => void",
+          "required": false,
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "onThemeChange",
+          "type": "(theme: ColorMode) => void",
+          "required": false,
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "persist",
+          "type": "boolean",
+          "required": false,
+          "description": "Remember the brand and mode on this device (localStorage) when\nuncontrolled. Defaults to true.",
+          "from": "@dsw/ui"
+        },
+        {
+          "name": "theme",
+          "type": "\"light\" | \"dark\"",
+          "required": false,
+          "description": "Controlled colour mode. Pair with `onThemeChange`.",
+          "from": "@dsw/ui"
+        }
+      ],
+      "tokenGroups": [],
+      "stories": [],
+      "tests": [
+        "packages/ui/src/components/ThemeProvider/ThemeProvider.test.tsx"
+      ]
+    },
+    {
+      "name": "useTheme",
+      "kind": "hook",
+      "import": "import { useTheme } from \"@dsw/ui\";",
+      "description": "The current brand and colour mode, and setters for both. Use inside a ThemeProvider.",
+      "source": "packages/ui/src/components/ThemeProvider/ThemeProvider.tsx",
+      "props": []
     }
   ]
 }

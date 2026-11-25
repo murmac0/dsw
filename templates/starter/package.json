@@ -1,0 +1,39 @@
+{
+  "name": "dsw-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Starter app for the @dsw design system: themes, lint, Claude Code plugin and a smoke test, set up the way an app team should start.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "smoke": "playwright test"
+  },
+  "dependencies": {
+    "@dsw/tokens": "workspace:*",
+    "@dsw/ui": "workspace:*",
+    "@stylexjs/stylex": "^0.19.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@dsw/eslint-plugin": "workspace:*",
+    "@dsw/mcp": "workspace:*",
+    "@eslint/js": "^9.39.5",
+    "@playwright/test": "1.56.0",
+    "@stylexjs/unplugin": "^0.19.1",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "eslint": "^9.39.5",
+    "globals": "^17.14.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.2",
+    "vite": "^8.3.7"
+  }
+}

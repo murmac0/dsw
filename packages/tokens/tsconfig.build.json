@@ -1,0 +1,15 @@
+{
+  // Emits the published package: plain JS plus .d.ts in dist/, keeping
+  // the .stylex file names StyleX needs. The workspace uses src/ directly.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "noEmit": false,
+    "composite": false,
+    "declaration": true,
+    "declarationMap": false,
+    "types": []
+  },
+  "include": ["src"]
+}

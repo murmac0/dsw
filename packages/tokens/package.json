@@ -1,6 +1,6 @@
 {
   "name": "@dsw/tokens",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "main": "./src/index.ts",
@@ -18,7 +18,65 @@
     "./generated/tokens.json": "./generated/tokens.json",
     "./color-math": "./src/color-math.ts"
   },
+  "files": [
+    "dist",
+    "generated",
+    "README.md"
+  ],
+  "sideEffects": [
+    "./src/fonts.ts",
+    "./dist/fonts.js",
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./semantic.stylex": {
+        "types": "./dist/semantic.stylex.d.ts",
+        "default": "./dist/semantic.stylex.js"
+      },
+      "./primitives.stylex": {
+        "types": "./dist/primitives.stylex.d.ts",
+        "default": "./dist/primitives.stylex.js"
+      },
+      "./breakpoints.stylex": {
+        "types": "./dist/breakpoints.stylex.d.ts",
+        "default": "./dist/breakpoints.stylex.js"
+      },
+      "./components.stylex": {
+        "types": "./dist/components.stylex.d.ts",
+        "default": "./dist/components.stylex.js"
+      },
+      "./fonts": {
+        "types": "./dist/fonts.d.ts",
+        "default": "./dist/fonts.js"
+      },
+      "./contrast": {
+        "types": "./dist/contrast.d.ts",
+        "default": "./dist/contrast.js"
+      },
+      "./themes/dark": {
+        "types": "./dist/themes/dark.d.ts",
+        "default": "./dist/themes/dark.js"
+      },
+      "./themes": {
+        "types": "./dist/themes/index.d.ts",
+        "default": "./dist/themes/index.js"
+      },
+      "./generated/tokens.json": "./generated/tokens.json",
+      "./color-math": {
+        "types": "./dist/color-math.d.ts",
+        "default": "./dist/color-math.js"
+      }
+    }
+  },
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "export": "node scripts/export-tokens.ts",

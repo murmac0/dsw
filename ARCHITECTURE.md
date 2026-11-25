@@ -33,7 +33,7 @@ picking something else for this portfolio piece, discussed with the author
 rather than assumed) and over Tailwind. StyleX is the zero-runtime,
 RSC-compatible successor pattern to styled-components-style CSS-in-JS
 (see Linear's 2026 migration write-up), compiles to atomic, collision-free
-CSS, and its `defineVars`/`createTheme` pair maps directly onto a two-tier
+CSS, and its `defineVars`/`createTheme` pair maps directly onto a tiered
 token system (see below) — themes are typed objects, not string overrides.
 
 **Rules the compiler enforces that aren't obvious from the docs alone:**
@@ -443,7 +443,7 @@ alongside Storybook's own MCP server, which handles story previews.
 Tests drive it through a real MCP client, including the stdio entry
 point.
 
-## For app teams: lint rules, codemod and Claude Code plugin
+## For app teams: lint rules, codemod, Claude Code plugin and packages
 
 Product teams get the system through three channels that share one set
 of rules:
@@ -465,11 +465,34 @@ of rules:
 
   `publishConfig` points `bin` at the build, so this repo keeps running source.
 
+- **Publishing the components and tokens.** `@dsw/ui` and `@dsw/tokens` publish plain JavaScript and `.d.ts` built by `tsc -p tsconfig.build.json`, keeping the `.stylex` file names. They don't ship compiled CSS: StyleX's Vite plugin finds packages that depend on `@stylexjs/stylex` and compiles them with the app's own code. That's how StyleX libraries are meant to ship, because a `defineVars` hash must come from one compiler run for the whole app. As with the server, `publishConfig` points `exports` at `dist`, so the workspace keeps using source.
+- **`ThemeProvider` lives in @dsw/ui.** Every app needs the brand × mode theme on `<html>`, and the code that puts it there uses `stylex.create`. Shipping it means app code doesn't need StyleX for theming. It supports controlled and uncontrolled use like any stateful component, and remembers the viewer's choice unless `persist={false}`.
+
+## The starter and the consumer test
+
+`templates/starter` is how an app team should start: Vite with the StyleX
+plugin, `ThemeProvider`, the `recommended` lint rules, the Claude Code
+plugin and a Playwright smoke test (styles load, themes apply, axe in all
+six themes). It's a workspace package, so it's typechecked and linted
+with everything else.
+
+`pnpm test:consumer` (`tests/consumer/run.mts`, and a CI job) is the proof
+that a release works for someone outside this repo:
+
+1. builds and packs every `@dsw/*` package
+2. copies the starter to a temp folder and installs it from the packs only
+3. runs its typecheck, lint, build (checking the design system's CSS reached the bundle) and smoke test
+4. talks to the packed MCP server over stdio
+5. runs `dsw-migrate` on a legacy screen and checks what it rewrote and what it left
+6. lints a screen that breaks every rule and checks each one is reported
+
+The workspace can't catch these problems, because there everything
+resolves to source through symlinks. Its first run found two: themes
+needed about 100 lines of copied StyleX code (hence `ThemeProvider` in
+@dsw/ui), and the starter's typecheck relied on `@types/node` from
+elsewhere in the workspace.
+
 The packages stay `private: true` until there's a registry to publish to.
-They were proven end to end by packing both tarballs and installing them
-offline into a scratch app outside the workspace. There, ESLint found the
-expected violations, `dsw-migrate` rewrote the safe cases, and the MCP
-server answered through the plugin's exact `npx` command.
 
 ## What's deliberately not here yet
 

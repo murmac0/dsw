@@ -1,0 +1,10 @@
+{
+  "extraKnownMarketplaces": {
+    "dsw": {
+      "source": { "source": "github", "repo": "murmac0/dsw" }
+    }
+  },
+  "enabledPlugins": {
+    "dsw@dsw": true
+  }
+}

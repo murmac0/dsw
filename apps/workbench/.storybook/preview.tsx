@@ -3,7 +3,7 @@ import "@dsw/tokens/fonts";
 import "../src/global.css";
 import { brands } from "@dsw/tokens/themes";
 import type { BrandName, ColorMode } from "@dsw/tokens";
-import { ThemeProvider } from "../src/theme/ThemeProvider";
+import { ThemeProvider } from "@dsw/ui";
 
 const preview: Preview = {
   // Toolbar pickers: every story can be viewed in any brand × mode.

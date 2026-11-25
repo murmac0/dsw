@@ -1,0 +1,21 @@
+{
+  // Emits the published package: plain JS plus .d.ts in dist/. Consumers'
+  // StyleX plugin compiles the stylex.create calls, as it does for app code.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "noEmit": false,
+    "composite": false,
+    "declaration": true,
+    "declarationMap": false,
+    "types": []
+  },
+  "include": ["src"],
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.stories.tsx",
+    "src/__tests__"
+  ]
+}

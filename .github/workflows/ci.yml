@@ -56,3 +56,22 @@ jobs:
             apps/workbench/test-results
             apps/workbench/playwright-report
           retention-days: 7
+
+  consumer:
+    name: Consumer (packed release in the starter app)
+    # Pinned for the same reason as e2e: Playwright's Chromium.
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Install Playwright Chromium
+        run: pnpm --filter @dsw/workbench exec playwright install --with-deps chromium
+      - name: Pack every @dsw package, install the starter from the packs, run its checks
+        run: pnpm test:consumer
+        env:
+          CONSUMER_DIR: ${{ runner.temp }}

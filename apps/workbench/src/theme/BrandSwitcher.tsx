@@ -24,7 +24,7 @@ import {
 } from "@dsw/tokens/semantic.stylex";
 import { brands } from "@dsw/tokens/themes";
 import type { BrandName } from "@dsw/tokens";
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "@dsw/ui";
 
 const styles = stylex.create({
   group: {

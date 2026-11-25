@@ -1,0 +1,14 @@
+/*
+ * The only stylesheet you should need. Colours, fonts and the canvas come
+ * from the theme ThemeProvider puts on <html>.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
